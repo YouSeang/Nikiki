@@ -137,6 +137,7 @@
 			</script>
         </head>
         
+        <!-- header -->
     	<jsp:include page="header.jsp" />
             
             <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
