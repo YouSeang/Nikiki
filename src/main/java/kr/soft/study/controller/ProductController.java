@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ProductController {
 
-	@RequestMapping
+	@RequestMapping("/bed")
 	public String bedList(Model model) {
 		
-		return "bed";
+		return "product/bed";
 	}
 }

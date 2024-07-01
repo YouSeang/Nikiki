@@ -118,15 +118,16 @@
         <script type="text/javascript" src="/common/js/selectivizr.js"></script>
         <![endif]-->
 <script type="text/javascript">
-        //<![CDATA[[
-			jQuery(document).ready(function(){
-				if (/((MSIE)|(Trident))/.test(navigator.userAgent) && cmmCtrl.getCookie("browserUpdate") != "false")
-				{
+	//<![CDATA[[
+	jQuery(document).ready(
+			function() {
+				if (/((MSIE)|(Trident))/.test(navigator.userAgent)
+						&& cmmCtrl.getCookie("browserUpdate") != "false") {
 					subScript.layerPop(".browser_pop");
 				}
-        	});
-        //]]>
-        </script>
+			});
+	//]]>
+</script>
 <script type="application/ld+json">
 			{
  				"@context": "http://schema.org",
@@ -144,42 +145,59 @@
 		</script>
 
 <script>
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
 
-				ga('create', 'UA-34811848-3', 'acebed.com');
-				ga('send', 'pageview');
-			</script>
+	ga('create', 'UA-34811848-3', 'acebed.com');
+	ga('send', 'pageview');
+</script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
-				if(!wcs_add) var wcs_add = {};
-				wcs_add["wa"] = "1276645a581ed94";
-				wcs_do();
-			</script>
+	if (!wcs_add)
+		var wcs_add = {};
+	wcs_add["wa"] = "1276645a581ed94";
+	wcs_do();
+</script>
 <script type="text/javascript">
-				if (!wcs_add) var wcs_add={};
-				wcs_add["wa"] = "s_49cc4fcb32e0";
-				if (!_nasa) var _nasa={};
-				wcs.inflow();
-				wcs_do(_nasa);
-			</script>
+	if (!wcs_add)
+		var wcs_add = {};
+	wcs_add["wa"] = "s_49cc4fcb32e0";
+	if (!_nasa)
+		var _nasa = {};
+	wcs.inflow();
+	wcs_do(_nasa);
+</script>
 <!-- 카카오 로그인 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
-
+<!-- 로그인 submit -->
+<script>
+	function submitLoginForm() {
+		document.getElementById("loginForm").submit();
+	}
+</script>
 
 
 <!-- Google tag (gtag.js) -->
 <script async
 	src="https://www.googletagmanager.com/gtag/js?id=G-9DZP1N4254"></script>
 <script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
 
-				gtag('config', 'G-9DZP1N4254');
-			</script>
+	gtag('config', 'G-9DZP1N4254');
+</script>
 </head>
 <jsp:include page="../header.jsp" />
 <div id="content" data-swiftype-name="body" data-swiftype-type="text"
@@ -192,22 +210,18 @@
 		</div>
 		<div class="content_div"
 			data-controller="controller/mb/mba/MBAMemberLoginIndexCtrl">
-			<form id="frmData" name="frmData" method="post" action="./login.do">
-				<input type="hidden" class="notRequired" id="rtnUrl" name="rtnUrl"
-					value="%2Fboard%2Fevent%2Flist.do" /> <input type="hidden"
-					class="notRequired" name="joinCd" value=""> <input
-					type="hidden" class="notRequired" id="csrfKey" name="csrfKey"
-					value="S9odmUeTAgFPkT6iw00V" />
+			<form id="loginForm" method="post" action="./login">
 				<div class="member_area">
 					<div class="member_box">
 						<div class="member_form">
-							<form action="./login" method="post">
-								<input type="text" id="email" name="email" title="아이디"
-									placeholder="아이디" maxlength="200"> <span
-									class="password_box"> <input type="password" id="password"
-									name="password" title="비밀번호" placeholder="비밀번호" maxlength="100">
-									<i class="fas fa-eye" aria-hidden="true"></i>
-								</span>
+
+							<input type="text" id="email" name="email" title="아이디"
+								placeholder="아이디" maxlength="200"> <span
+								class="password_box"> <input type="password"
+								id="password" name="password" title="비밀번호" placeholder="비밀번호"
+								maxlength="100"> <i class="fas fa-eye"
+								aria-hidden="true"></i>
+							</span>
 						</div>
 						<div class="member_util">
 							<p class="chk_txt">
@@ -219,59 +233,93 @@
 									찾기</span></a>
 						</div>
 						<div class="btn_div">
-							<a href="javascript:" class="blue_btn btnNormalLgn"><span>로그인</span></a>
+							<button type="submit" class="blue_btn btnNormalLgn">
+								<span>로그인</span>
+							</button>
 			</form>
 			<!-- 2020-11-17 수정 -->
 			<div class="flt_div">
-				<a href="javascript:" id="kakao-login-btn">카카오 로그인</a> <a
-					href="javascript:" id="kakao-logout-btn" style="display: none;">로그아웃</a>
+				<a href="javascript:" style="width: 100%;"
+					class="btn sns_btn kakao " id="kakao-login-btn"><span>카카오
+						로그인</span></a> <a href="javascript:" id="kakao-logout-btn"
+					style="display: none;">로그아웃</a>
 
 				<script>
-// 페이지가 로드된 후 실행될 JavaScript 코드
-document.addEventListener('DOMContentLoaded', function() {
-    Kakao.init('03cd42affa016a13d1a49cc36f511530');
+					// 페이지가 로드된 후 실행될 JavaScript 코드
+					document
+							.addEventListener(
+									'DOMContentLoaded',
+									function() {
+										Kakao
+												.init('03cd42affa016a13d1a49cc36f511530');
 
-    // 카카오 로그인 버튼 클릭 시
-    document.getElementById('kakao-login-btn').addEventListener('click', function() {
-        Kakao.Auth.login({
-            success: function(authObj) {
-                console.log(authObj);
-                // 로그인 성공 시 사용자 정보를 가져옵니다.
-                Kakao.API.request({
-                    url: '/v2/user/me',
-                    success: function(res) {
-                        console.log(res);
-                        // 사용자 정보 처리 로직
-                        alert('로그인 성공: ' + res.kakao_account.profile.nickname);
-                        document.getElementById('kakao-login-btn').style.display = 'none';
-                        document.getElementById('kakao-logout-btn').style.display = 'block';
-                    },
-                    fail: function(error) {
-                        console.error(error);
-                    }
-                });
-            },
-            fail: function(err) {
-                console.error(err);
-            }
-        });
-    });
+										// 카카오 로그인 버튼 클릭 시
+										document
+												.getElementById(
+														'kakao-login-btn')
+												.addEventListener(
+														'click',
+														function() {
+															Kakao.Auth
+																	.login({
+																		success : function(
+																				authObj) {
+																			console
+																					.log(authObj);
+																			// 로그인 성공 시 사용자 정보를 가져옵니다.
+																			Kakao.API
+																					.request({
+																						url : '/v2/user/me',
+																						success : function(
+																								res) {
+																							console
+																									.log(res);
+																							// 사용자 정보 처리 로직
+																							alert('로그인 성공: '
+																									+ res.kakao_account.profile.nickname);
+																							document
+																									.getElementById('kakao-login-btn').style.display = 'none';
+																							document
+																									.getElementById('kakao-logout-btn').style.display = 'block';
+																						},
+																						fail : function(
+																								error) {
+																							console
+																									.error(error);
+																						}
+																					});
+																		},
+																		fail : function(
+																				err) {
+																			console
+																					.error(err);
+																		}
+																	});
+														});
 
-    // 카카오 로그아웃 버튼 클릭 시
-    document.getElementById('kakao-logout-btn').addEventListener('click', function() {
-        Kakao.Auth.logout(function() {
-            alert('로그아웃 되었습니다.');
-            document.getElementById('kakao-login-btn').style.display = 'block';
-            document.getElementById('kakao-logout-btn').style.display = 'none';
-        });
-    });
-});
-</script>
+										// 카카오 로그아웃 버튼 클릭 시
+										document
+												.getElementById(
+														'kakao-logout-btn')
+												.addEventListener(
+														'click',
+														function() {
+															Kakao.Auth
+																	.logout(function() {
+																		alert('로그아웃 되었습니다.');
+																		document
+																				.getElementById('kakao-login-btn').style.display = 'block';
+																		document
+																				.getElementById('kakao-logout-btn').style.display = 'none';
+																	});
+														});
+									});
+				</script>
 			</div>
 		</div>
 		<div class="bottom_div btn_div">
 			<p>아직 에이스침대 회원이 아니신가요?</p>
-			<a href="/member/join/index.do" class="btn btn3"><span>회원가입</span></a>
+			<a href="./join" class="btn btn3"><span>회원가입</span></a>
 		</div>
 	</div>
 </div>

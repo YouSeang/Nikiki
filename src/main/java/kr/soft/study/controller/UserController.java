@@ -1,14 +1,26 @@
 package kr.soft.study.controller;
 
+import java.net.http.HttpRequest;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.soft.study.command.user.Login;
+import kr.soft.study.command.user.UserCommand;
 
 @Controller
 public class UserController {
+	UserCommand command=null;
+	@Autowired
+	private SqlSession sqlSession;
 	
 	// home
 	@RequestMapping("/")
@@ -17,15 +29,37 @@ public class UserController {
 		
 		return "main";
 	}
-	
-	// 로그인
-	@RequestMapping("/loginView")
-	public String login(Model model) {
+	//home리다이렉트용
+	@RequestMapping("/main")
+	public String mainRedirect(Model model) {
+		System.out.println("main()");
 		
-		System.out.println("login()");
+		return "main";
+	}
+	
+	// 로그인화면이동
+	@RequestMapping("/loginView")
+	public String loginView(Model model) {
+		
+		System.out.println("loginView()");
 		
 		return "user/login";
-	}	
+	}
+	//로그인
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(HttpSession session,HttpServletRequest request,Model model) {
+		
+		System.out.println("login()");
+        model.addAttribute("request", request);
+   
+		command=new Login(sqlSession);
+		command.execute(model);
+		String path=(String) model.asMap().get("path");
+		String email=(String) model.asMap().get("email");
+
+		session.setAttribute("email", email);
+		return path;
+	}
 	
 	// 로그아웃
 	@RequestMapping("/logout")
@@ -40,7 +74,7 @@ public class UserController {
     }
 	
 	// 회원가입
-    @RequestMapping("/user/join")
+    @RequestMapping("/join")
     public String join(Model model) {
         System.out.println("join()");
         return "user/join";
