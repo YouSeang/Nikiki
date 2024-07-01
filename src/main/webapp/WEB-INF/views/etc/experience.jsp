@@ -7,7 +7,7 @@
     	<meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>
-			뉴스룸 | 에이스 스토리 | 에이스침대</title>
+			매트리스 체험존 | 고객체험 | 에이스침대</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,target-densitydpi=medium-dpi, initial-scale=1.0" />
         <meta http-equiv="content-language" content="kr" />
         <meta http-equiv="imagetoolbar" content="no" />
@@ -19,19 +19,19 @@
 
         <meta property="og:site_name" content="에이스침대" id="og-sitename-value" />
         <meta property="og:type" content="website" id="og-type-value" />
-        <meta property="og:url" content="http://www.acebed.com:80/ace-story/news/list.do?listCnt=10&pageIndex=1" id="og-url-value" />
+        <meta property="og:url" content="http://www.acebed.com:80/experience/mattress/index.do" id="og-url-value" />
         <meta property="og:image" content="http://www.acebed.com:80/common/images/sns-share-thumbnail.jpg" id="og-image-value" />
-        	<meta property="og:title" content="뉴스룸" id="og-title-value" />
+        	<meta property="og:title" content="매트리스 체험존" id="og-title-value" />
         	<meta property="og:description" content="에이스침대의 공식 홈페이지 입니다." id="og-description-value" />
 
-        <meta itemprop="url" content="http://www.acebed.com:80/ace-story/news/list.do?listCnt=10&pageIndex=1" id="schema-url-value" />
+        <meta itemprop="url" content="http://www.acebed.com:80/experience/mattress/index.do" id="schema-url-value" />
         <meta itemprop="name" content="에이스침대" id="schema-name-value" />
         <meta itemprop="description" content="에이스침대의 공식 홈페이지 입니다." id="schema-discription-value" />
 
         <!-- //swiftype 검색 메타태그 -->
-		<meta class="swiftype" name="top_menu" data-type="string" content="에이스 스토리" />
-		<meta class="swiftype" name="child_menu" data-type="string" content="뉴스룸" />
-		<meta class="swiftype" name="title" data-type="string" content="에이스 스토리 > 뉴스룸" />
+		<meta class="swiftype" name="top_menu" data-type="string" content="고객체험" />
+		<meta class="swiftype" name="child_menu" data-type="string" content="매트리스 체험존" />
+		<meta class="swiftype" name="title" data-type="string" content="고객체험 > 매트리스 체험존" />
 		
 		<!-- swiftype 검색 메타태그// -->
 		<link rel="shortcut icon" href="https://www.acebed.com/common/images/favicon.ico">
@@ -135,39 +135,19 @@
 				gtag('config', 'G-9DZP1N4254');
 			</script>
         </head>
-        	<jsp:include page="header.jsp" />
+   		<jsp:include page="../header.jsp" />
             <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
 			<div class="subCon">
                		<input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />
-			<div class="head_div">
-                        <h2 class="titleH1">뉴스룸</h2>
-                    </div>
-                    <div class="content_div" data-controller="controller/as/asc/ASCNewsListCtrl" data-csrf-key="8jLQwHIqCS0wclzxu8D3">
-                        <div class="inner">
-                        	<form id="frmSearch" name="frmSearch" method="get" action="">
-                        		<input type="hidden" id="listCnt"  	 name="listCnt"    value="10" />
-                        		<input type="hidden" id="pageIndex"  name="pageIndex"  value="1" />
-	                            <div class="list_area">
-	                                <div class="top">
-	                                    <p class="total" id="trgtTop">총 <strong><span></span> 건</strong></p>
-	                                </div>
-
-                                	<div class="dataAreaY">
-                                		<div class="list_type2 newstype" id="listArea">
-		                                </div>
-                                	</div>
-
-                                	<div class="none_div" id="dataAreaN" style="display:none;">
-	                                    보도된 뉴스가 없습니다.
-                                	</div>
-
-	                                <div class="paging" id="pagination"><!-- 웹에서는 페이징 노출 -->
-			                        </div>
-			                        <div class="btn_div m_paging"><!-- 모바일에서는 더보기 버튼 노출 -->
-			                            <a href="javascript:" class="btn m_btn" id="btnMore" style="display:none">더보기<p class="num"></p></a>
-			                        </div>
-	                            </div>
-                            </form>
+			<div class="mat_find_area window_load">
+                        <div class="mat_find_main">
+                            <p class="mat_find_main_bg"></p>
+                            <h2 class="titleH1">나에게 맞는 <br class="br_s">매트리스 찾기</h2>
+                            <p class="sub_tit">
+                                침대는 과학! 에이스침대에서 운영하는 이동수면공학연구소의 기술과 노하우가 담긴 <br>
+                                5만여 건의 분석 데이터를 기반으로 고객님에게 맞는 매트리스를 찾아드립니다.
+                            </p>
+                            <div class="btn_div"><a href="./step.do" class="btn btn1"><span>시작하기</span></a></div>
                         </div>
                     </div></div>
 	            <div class="side_dimd"></div>
@@ -181,4 +161,4 @@
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 s-->
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 e-->
 
-            <jsp:include page="footer.jsp" />
+            <jsp:include page="../footer.jsp" />
