@@ -45,5 +45,5 @@ public class UserController {
         System.out.println("join()");
         return "user/join";
     }
->>>>>>> refs/heads/main
+
 }

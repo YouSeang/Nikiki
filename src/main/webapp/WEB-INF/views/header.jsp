@@ -135,13 +135,9 @@
             <header data-swiftype-index="false">
                 <a href="/main/index.do" class="logo"><h1>ACE BED</h1></a>
                 <div class="utill_div">
-<<<<<<< HEAD
+
                     <a href="./loginView">로그인</a>
-                    <a href="/member/join/index.do">회원가입</a>
-=======
-                    <a href="./user/login">로그인</a>
                     <a href="./user/join">회원가입</a>
->>>>>>> refs/heads/main
                     <a href="/wedding-members/benefit/index.do" class="wedding wedding_2024">웨딩멤버스</a> <!-- 2022-12-26 wedding_2023 클래스 추가 2023-12-29 클래스 수정 -->
                     <a href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스 침대몰</a>
                 </div>
@@ -356,7 +352,7 @@
                         </div>
                         <div class="all_menu">
                             <div class="m_utill_div">
-                                <a href="javascript:" onclick="cmmCtrl.loginPage()">로그인</a>
+                                <a href="./loginView">로그인</a>
                                 <a href="/member/join/index.do">회원가입</a>
                                 <a href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스 침대몰</a>
                             </div>
