@@ -201,7 +201,7 @@
 					</c:when>
 					<c:otherwise>
 						<a href="./loginView">로그인</a>
-						<a href="./join">회원가입</a>
+						<a href="./joinView">회원가입</a>
 					</c:otherwise>
 				</c:choose>
 				<a href="/wedding-members/benefit/index.do"
@@ -461,7 +461,7 @@
 					</div>
 					<div class="all_menu">
 						<div class="m_utill_div">
-							<a href="./loginView">로그인</a> <a href="./join">회원가입</a> <a
+							<a href="./loginView">로그인</a> <a href="./joinView">회원가입</a> <a
 								href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스
 								침대몰</a>
 						</div>
