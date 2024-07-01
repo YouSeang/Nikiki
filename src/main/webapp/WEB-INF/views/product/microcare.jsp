@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <body data-login-flag="N" data-device-type="web" data-kakao-key="6f6b5601b844d8e4d8835588b2da67f2" data-curt-dt="2024-06-28">
     <div id="wrap">
@@ -386,6 +386,6 @@
             <p class="toast_noti"><span>내가 찜한 제품 바로보기</span></p>
         </div>
     </div>
-    <%@ include file="footer.jsp" %>
+    <%@ include file="../footer.jsp" %>
 </body>
 </html>

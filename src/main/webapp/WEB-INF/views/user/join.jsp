@@ -177,7 +177,7 @@
 	data-kakao-key="6f6b5601b844d8e4d8835588b2da67f2"
 	data-curt-dt="2024-06-28">
 	<div id="wrap">
-		<jsp:include page="header.jsp" />
+		<jsp:include page="../header.jsp" />
 		<div id="content" data-swiftype-name="body" data-swiftype-type="text"
 			data-swiftype-index="true">
 			<div class="subCon">
@@ -1499,7 +1499,7 @@
 		<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 s-->
 		<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 e-->
 
-		<jsp:include page="footer.jsp" />
+		<jsp:include page="../footer.jsp" />
 		<div class="black_bg" id="dimdBg" data-swiftype-index="false"></div>
 		<!-- 2022-12-26 웨딩멤버스 레이어 팝업 s-->
 		<!-- 2022-12-26 웨딩멤버스 레이어 팝업 e-->
