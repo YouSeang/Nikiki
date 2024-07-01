@@ -141,7 +141,7 @@
 			<div class="subCon">
                		<input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />
 			<div class="head_div visual">
-                        <p class="vs vs1"></p><!-- 비주얼 이미지마다 클래스 다르게 붙음 (vs1, vs2 ...)  -->
+                        <p class="vs vs2"></p><!-- 비주얼 이미지마다 클래스 다르게 붙음 (vs1, vs2 ...)  -->
                         <h2 class="titleH1">프레임</h2>
                     </div>
                     <div class="content_div" data-controller="controller/ps/PSProductListCtrl" id="trgtTop">
