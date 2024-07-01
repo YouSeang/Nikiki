@@ -12,4 +12,20 @@ public class ProductController {
 		
 		return "product/bed";
 	}
+	
+	@RequestMapping("/cart")
+	public String cart(Model model) {
+		
+		return "product/cart";
+	}
+	@RequestMapping("/recently")
+	public String recently(Model model) {
+		
+		return "product/recently";
+	}
+	@RequestMapping("/microcare")
+	public String microcare(Model model) {
+		
+		return "product/microcare";
+	}
 }

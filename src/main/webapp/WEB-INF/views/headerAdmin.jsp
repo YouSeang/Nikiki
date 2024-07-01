@@ -179,17 +179,15 @@
 </head>
 <body data-login-flag="N" data-device-type="web"
 	data-curt-dt="2024-06-28">
-	<div id="content" data-swiftype-name="body" data-swiftype-type="text"
-	data-swiftype-index="true">
 	<div id="wrap">
 		<header data-swiftype-index="false">
-			<a href="./main" class="logo"><h1>ACE BED</h1></a>
+			<a href="/main/index.do" class="logo"><h1>ACE BED</h1></a>
 			<div class="utill_div">
 				<c:choose>
 					<c:when test="${not empty sessionScope.email}">
 						<a href="./logout">로그아웃</a>
 						<div class="my_page">
-							<a href="javascript:"><span>마이페이지</span></a>
+							<a href="javascript:"><span>관리자페이지</span></a>
 							<div class="slc_div">
 								<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
 									href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
@@ -197,11 +195,10 @@
 									href="/my-page/counsel/index.do">상담내역</a> <a
 									href="/my-page/review/index.do">나의 후기</a>
 							</div>
-						</div>
 					</c:when>
 					<c:otherwise>
 						<a href="./loginView">로그인</a>
-						<a href="./join">회원가입</a>
+						<a href="./mypage">마이페이지</a>
 					</c:otherwise>
 				</c:choose>
 				<a href="/wedding-members/benefit/index.do"
@@ -214,15 +211,15 @@
 				<div class="gnb_section gnb1">
 					<div class="one_dep">
 						<div>
-							<a href="./bedList?category_id=3"> <span class="one">BED</span>
+							<a href="/product/bed/frame/list.do"> <span class="one">BED</span>
 								<span>침대</span>
 							</a>
 							<div class="two_dep">
-								<a href="./bedList?category_id=3"
+								<a href="https://www.acebed.com/product/bed/frame/list.do"
 									target="_self"><span>프레임</span></a> <a
-									href="./bedList?category_id=4"
+									href="https://www.acebed.com/product/bed/mattress/list.do"
 									target="_self"><span>매트리스</span></a> <a
-									href="./recently"
+									href="https://www.acebed.com/product/bed/new/list.do"
 									target="_self"><span>신제품</span></a> <a
 									href="https://www.acebed.com/customer/prdct-manual/index.do?type=gnb"
 									target="_self"><span>제품 매뉴얼</span></a>
@@ -265,7 +262,7 @@
 								class="one">SLEEP CARE</span> <span>슬립케어</span>
 							</a>
 							<div class="two_dep">
-								<a href="./microcare" target="_self"><span>마이크로케어</span></a>
+								<a href="/product/sleep-care/microcare/index.do" target="_self"><span>마이크로케어</span></a>
 								<a href="/product/sleep-care/smart-sleeve/index.do"
 									target="_self"><span>스마트슬리브</span></a> <a
 									href="/product/sleep-care/microcare-coolingpad/index.do"
@@ -587,6 +584,5 @@
 					</div>
 					<a href="javascript:" class="all_x_btn">닫기</a>
 				</div>
-			</div>
 			</div>
 		</header>
