@@ -67,7 +67,6 @@
         <script type="text/javascript" src="https://www.acebed.com/common/js/lib/clipboard.min.js"></script>
         <script type="text/javascript" src="https://www.acebed.com/common/js/controller/co/COCmmCtrl.js"></script>
         <script type="text/javascript" src="https://www.acebed.com/common/js/controller/co/COMsgCtrl.js"></script>
-        <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
         <script type="text/javascript" src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script type="text/javascript" src="https://kit.fontawesome.com/7db9bc3ad6.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://www.acebed.com/common/js/blowup.js"></script>

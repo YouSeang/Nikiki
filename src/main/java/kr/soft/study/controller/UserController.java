@@ -12,4 +12,9 @@ public class UserController {
 		
 		return "main";
 	}
+	@RequestMapping("/loginView")
+	public String loginView(Model model) {
+		
+		return "login";
+	}
 }

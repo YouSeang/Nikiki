@@ -63,7 +63,6 @@
         <script type="text/javascript" src="https://www.acebed.com/common/js/lib/clipboard.min.js"></script>
         <script type="text/javascript" src="https://www.acebed.com/common/js/controller/co/COCmmCtrl.js"></script>
         <script type="text/javascript" src="https://www.acebed.com/common/js/controller/co/COMsgCtrl.js"></script>
-        <script type="text/javascript" src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
         <script type="text/javascript" src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
         <script type="text/javascript" src="https://kit.fontawesome.com/7db9bc3ad6.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://www.acebed.com/common/js/blowup.js"></script>
@@ -131,12 +130,12 @@
             gtag('config', 'G-9DZP1N4254');
         </script>
     </head>
-    <body data-login-flag="N" data-device-type="web" data-kakao-key="6f6b5601b844d8e4d8835588b2da67f2" data-curt-dt="2024-06-28">
+    <body data-login-flag="N" data-device-type="web" data-curt-dt="2024-06-28">
         <div id="wrap">
             <header data-swiftype-index="false">
                 <a href="/main/index.do" class="logo"><h1>ACE BED</h1></a>
                 <div class="utill_div">
-                    <a href="javascript:" onclick="cmmCtrl.loginPage()">로그인</a>
+                    <a href="./loginView">로그인</a>
                     <a href="/member/join/index.do">회원가입</a>
                     <a href="/wedding-members/benefit/index.do" class="wedding wedding_2024">웨딩멤버스</a> <!-- 2022-12-26 wedding_2023 클래스 추가 2023-12-29 클래스 수정 -->
                     <a href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스 침대몰</a>
@@ -442,7 +441,7 @@
                                 </div>
                             </div>
                             <div class="m_banner">
-                                <a href="/member/join/write.do?joinCd=wedding"><img src="/common/images/m-wedding-banner.jpg" alt="" /></a>
+                                <a href="/member/join/write.do?joinCd=wedding"><img src="https://www.acebed.com/common/images/m-wedding-banner.jpg" alt="" /></a>
                             </div>
                             <div class="lnk_div">
                                 <a href="https://acebedmall.co.kr" target="_blank"><span>에이스 침대몰<br />바로가기</span></a>
