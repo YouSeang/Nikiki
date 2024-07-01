@@ -136,12 +136,12 @@
 				gtag('config', 'G-9DZP1N4254');
 			</script>
         </head>
-		<jsp:include page="header.jsp" />
+		<jsp:include page="../header.jsp" />
             <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
 			<div class="subCon">
                		<input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />
 			<div class="head_div visual">
-                        <p class="vs vs1"></p><!-- 비주얼 이미지마다 클래스 다르게 붙음 (vs1, vs2 ...)  -->
+                        <p class="vs vs2"></p><!-- 비주얼 이미지마다 클래스 다르게 붙음 (vs1, vs2 ...)  -->
                         <h2 class="titleH1">프레임</h2>
                     </div>
                     <div class="content_div" data-controller="controller/ps/PSProductListCtrl" id="trgtTop">
@@ -589,5 +589,5 @@
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 s-->
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 e-->
 
-            <jsp:include page="footer.jsp" />
+            <jsp:include page="../footer.jsp" />
             

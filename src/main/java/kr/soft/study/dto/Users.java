@@ -2,9 +2,7 @@ package kr.soft.study.dto;
 
 import java.time.LocalDate;
 
-import javax.xml.bind.annotation.XmlRootElement;
 
- @XmlRootElement  // 객체를 XML 데이터 형식으로 변환하는 작업
 public class Users {
 
 	private int user_id;

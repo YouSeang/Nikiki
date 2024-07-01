@@ -9,4 +9,9 @@
  	 <insert id="loginJoin">
  	 	insert into Users (name,birth_date,phone_number,email,password) values (#{param1}, #{param2},#{param3},#{param4},#{param5});
  	 </insert>
+ 	 
+ 	 <!-- 로그인 -->
+ 	<select id="isLogin" resultType="kr.soft.study.dto.Users">
+ 	select * from Users where email=#{param1} and password=#{param2}
+ 	</select>
  </mapper>

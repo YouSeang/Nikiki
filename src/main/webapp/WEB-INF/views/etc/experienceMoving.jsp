@@ -7,7 +7,7 @@
     	<meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>
-			매트리스 체험존 | 고객체험 | 에이스침대</title>
+			이동수면공학 연구소 | 고객체험 | 에이스침대</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,target-densitydpi=medium-dpi, initial-scale=1.0" />
         <meta http-equiv="content-language" content="kr" />
         <meta http-equiv="imagetoolbar" content="no" />
@@ -19,19 +19,19 @@
 
         <meta property="og:site_name" content="에이스침대" id="og-sitename-value" />
         <meta property="og:type" content="website" id="og-type-value" />
-        <meta property="og:url" content="http://www.acebed.com:80/experience/mattress/index.do" id="og-url-value" />
+        <meta property="og:url" content="http://www.acebed.com:80/experience/move/index.do" id="og-url-value" />
         <meta property="og:image" content="http://www.acebed.com:80/common/images/sns-share-thumbnail.jpg" id="og-image-value" />
-        	<meta property="og:title" content="매트리스 체험존" id="og-title-value" />
+        	<meta property="og:title" content="이동수면공학 연구소" id="og-title-value" />
         	<meta property="og:description" content="에이스침대의 공식 홈페이지 입니다." id="og-description-value" />
 
-        <meta itemprop="url" content="http://www.acebed.com:80/experience/mattress/index.do" id="schema-url-value" />
+        <meta itemprop="url" content="http://www.acebed.com:80/experience/move/index.do" id="schema-url-value" />
         <meta itemprop="name" content="에이스침대" id="schema-name-value" />
         <meta itemprop="description" content="에이스침대의 공식 홈페이지 입니다." id="schema-discription-value" />
 
         <!-- //swiftype 검색 메타태그 -->
 		<meta class="swiftype" name="top_menu" data-type="string" content="고객체험" />
-		<meta class="swiftype" name="child_menu" data-type="string" content="매트리스 체험존" />
-		<meta class="swiftype" name="title" data-type="string" content="고객체험 > 매트리스 체험존" />
+		<meta class="swiftype" name="child_menu" data-type="string" content="이동수면공학 연구소" />
+		<meta class="swiftype" name="title" data-type="string" content="고객체험 > 이동수면공학 연구소" />
 		
 		<!-- swiftype 검색 메타태그// -->
 		<link rel="shortcut icon" href="https://www.acebed.com/common/images/favicon.ico">
@@ -135,21 +135,111 @@
 				gtag('config', 'G-9DZP1N4254');
 			</script>
         </head>
-   		<jsp:include page="header.jsp" />
+    	<jsp:include page="../header.jsp" />
             <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
 			<div class="subCon">
                		<input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />
-			<div class="mat_find_area window_load">
-                        <div class="mat_find_main">
-                            <p class="mat_find_main_bg"></p>
-                            <h2 class="titleH1">나에게 맞는 <br class="br_s">매트리스 찾기</h2>
-                            <p class="sub_tit">
-                                침대는 과학! 에이스침대에서 운영하는 이동수면공학연구소의 기술과 노하우가 담긴 <br>
-                                5만여 건의 분석 데이터를 기반으로 고객님에게 맞는 매트리스를 찾아드립니다.
-                            </p>
-                            <div class="btn_div"><a href="./step.do" class="btn btn1"><span>시작하기</span></a></div>
-                        </div>
-                    </div></div>
+			<div class="sub_vis window_load">
+						<div class="bg_img">
+							<p class="only_web" style="background-image:url('https://www.acebed.com/common/images/sub-vis-exp-bg01.jpg');"></p>
+							<p class="only_mob" style="background-image:url('https://www.acebed.com/common/images/m-sub-vis-exp-bg01.jpg');"></p>
+						</div>
+						<div class="txt_div">
+							<h2 class="txt1">이동수면공학 연구소</h2>
+							<p class="txt2">
+								대한민국 침대문화를 리드해 온 에이스침대가 첨단 측정장비를 갖추고 고객을 직접 찾아가 <br>최적의 침대를 선정해 드리는 신개념의 ‘찾아가는 침대과학 서비스’ 입니다.
+							</p>
+							<div class="btn_div">
+								<a href="/bed-science/lab/index.do?tabIndex=4&moveYn=Y" class="btn btn3"><span>연구소 자세히 보기</span></a>
+							</div>
+						</div>
+						<div class="white_border"></div>
+					</div>
+					<div class="content_div exp_sleep_div" data-controller="controller/ce/cea/CEAMoveIndexCtrl">
+						<div class="member_area">
+							<div class="member_box">
+								<div class="title">
+									신청 유형 선택하기
+								</div>
+
+                                <div class="chose_div">
+                                    <a href="javascript:" class="unit">
+                                        <p class="circle goWrite" pageType="personal">
+                                            <img src="https://www.acebed.com/common/images/single-icon.png" alt="">
+                                            <img src="https://www.acebed.com/common/images/single-icon_on.png" class="on_img" alt="">
+                                        </p>
+                                        <div class="circle_txt">
+                                            <p class="txt goWrite" pageType="personal" >개인접수하기</p>
+                                            <p href="javascript:" class="qm_btn"></p>
+                                        </div>
+
+                                        <div class="tooltip_box" style="display: none;">
+                                            <p class="tool_01">
+                                            </p><p class="x_bt">닫기</p>
+                                            <p></p>
+                                        </div>
+                                    </a>
+                                    <a href="javascript:" class="unit">
+                                        <p class="circle goWrite" pageType="group">
+                                            <img src="https://www.acebed.com/common/images/group-icon.png" alt="">
+                                            <img src="https://www.acebed.com/common/images/group-icon_on.png" class="on_img" alt="">
+                                        </p>
+                                        <div class="circle_txt">
+                                            <p class="txt goWrite" pageType="group">단체접수하기</p>
+                                            <p href="javascript:" class="qm_btn"></p>
+                                        </div>
+
+                                        <div class="tooltip_box posLeft" style="display: none;">
+                                            <p class="tool_02">
+                                            </p><p class="x_bt">닫기</p>
+                                            <p></p>
+                                        </div>
+
+                                    </a>
+                                </div>
+
+							</div>
+						</div>
+					</div>
+
+<script type="text/javascript" src="https://www.acebed.com/common/js/lib/datetimepicker/jquery.datetimepicker.ko.js"></script>
+<!-- 풀캘린더용 -->
+<script src='https://www.acebed.com/common/fullcalendar/dist/index.global.js'></script>
+<script src='https://www.acebed.com/common/fullcalendar/core/locales/ko.global.js'></script>
+<!--2023-03-15 현행화 s-->
+<style>
+
+.tempIcon {
+	width: 30px !important;
+	height: 30px;
+	padding: 15px;
+	border-radius: 100%;
+	border: 1px solid #0890c8;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #0890c0;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 1;
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	/*top: 50%;*/
+	/*transform: translateY(-50%);*/
+}
+.tempIcon:hover {
+	background-color: #0890c0;
+	color: white;
+	transition: all 0.4s ease;
+}
+
+
+
+</style>
+<!--//2023-03-15 현행화 e-->
+</div>
 	            <div class="side_dimd"></div>
 				<div class="side_bts" data-swiftype-index="false">
                     <a href="javascript:" class="tob_btn">TOP</a>
@@ -161,4 +251,4 @@
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 s-->
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 e-->
 
-            <jsp:include page="footer.jsp" />
+            <jsp:include page="../footer.jsp" />
