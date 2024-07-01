@@ -181,7 +181,7 @@
 				gtag('config', 'G-9DZP1N4254');
 			</script>
 </head>
-<jsp:include page="header.jsp" />
+<jsp:include page="../header.jsp" />
 <div id="content" data-swiftype-name="body" data-swiftype-type="text"
 	data-swiftype-index="true">
 	<div class="subCon">
@@ -291,4 +291,4 @@ document.addEventListener('DOMContentLoaded', function() {
 <!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 s-->
 <!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 e-->
 
-<jsp:include page="footer.jsp" />
+<jsp:include page="../footer.jsp" />
