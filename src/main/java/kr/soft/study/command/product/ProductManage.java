@@ -39,6 +39,7 @@ public class ProductManage implements ProductCommand {
         int category_id = Integer.parseInt(multipartRequest.getParameter("category_id"));
         String description = multipartRequest.getParameter("description");
         int attribute_type_id = Integer.parseInt(multipartRequest.getParameter("attribute_type_id"));
+        
         String value = multipartRequest.getParameter("value");
         int price = Integer.parseInt(multipartRequest.getParameter("price"));
 
@@ -80,8 +81,14 @@ public class ProductManage implements ProductCommand {
         // Insert product price
         ProductPrices productPrice = new ProductPrices();
         productPrice.setProduct_id(product_id);
-        productPrice.setAttribute_id(productAttribute.getAttribute_id());
+        int attribute_id = getAttributeId(attribute_type_id);
+        productPrice.setAttribute_id(attribute_id);
         productPrice.setPrice(price);
         productDao.insertProductPrice(productPrice);
     }
+
+	private int getAttributeId(int attribute_type_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

@@ -38,7 +38,7 @@ public class ProductController {
             model.addAttribute("request", request);
             productCommand = new ProductManage(sqlSession);
             productCommand.execute(model);
-            return "redirect:/productmanage";
+            return "redirect:/main";
         }
 
         return "product/productmanage";

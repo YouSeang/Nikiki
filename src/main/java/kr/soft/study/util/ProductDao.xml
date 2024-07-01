@@ -23,7 +23,7 @@
 
     <!-- 최근 삽입된 ID 가져오기 -->
     <select id="getLastInsertId" resultType="int">
-        SELECT LAST_INSERT_ID()
+        SELECT MAX(product_id) from Products
     </select>
     
     <!-- 카테고리 목록을 가져오는 쿼리 -->
@@ -33,6 +33,10 @@
 
     <!-- 특성 유형 목록을 가져오는 쿼리 -->
     <select id="getAttributeTypes" resultType="kr.soft.study.dto.AttributeTypes">
-        SELECT attribute_type_id, attribute_name FROM AttributeTypes
+        SELECT * FROM AttributeTypes
+    </select>
+    <!-- 특성 유형 목록을 가져오는 쿼리 -->
+    <select id="getAttributeId" resultType="int">
+        SELECT * FROM AttributeTypes where attribute_type_id=#{param1}
     </select>
 </mapper>

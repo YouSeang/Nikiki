@@ -15,4 +15,5 @@ public interface ProductDao {
     void insertProductAttribute(ProductAttributes productAttribute);
     void insertProductPrice(ProductPrices productPrice);
     int getLastInsertId();
+    int getAttributeId(int attribute_type_id);
 }
