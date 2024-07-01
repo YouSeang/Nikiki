@@ -7,7 +7,7 @@
  		
  	 <!--  회원가입 -->
  	 <insert id="loginJoin">
- 	 	insert into Users (name,birth_date,phone_number,email,password) values (#{param1}, #{param2},#{param3},#{param4},#{param5});
+ 	 	insert into Users (name,birth_date,phone_number,email,password) values (#{param1}, #{param2},#{param3},#{param4},#{param5})
  	 </insert>
  	 
  	 <!-- 로그인 -->
