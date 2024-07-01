@@ -6,7 +6,6 @@ public class Reservations {
 
 	private int reservation_id;
 	private int user_id;
-	private String location;
 	private Date desired_date;
 	private String group_name;
 	private int number_of_people;
@@ -24,12 +23,6 @@ public class Reservations {
 	}
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
 	}
 	public Date getDesired_date() {
 		return desired_date;
