@@ -7,7 +7,7 @@
     	<meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<title>
-			에이스침대</title>
+			이벤트 | 이벤트 | 에이스침대</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,target-densitydpi=medium-dpi, initial-scale=1.0" />
         <meta http-equiv="content-language" content="kr" />
         <meta http-equiv="imagetoolbar" content="no" />
@@ -19,19 +19,19 @@
 
         <meta property="og:site_name" content="에이스침대" id="og-sitename-value" />
         <meta property="og:type" content="website" id="og-type-value" />
-        <meta property="og:url" content="http://www.acebed.com:80/member/login/index.do?rtnUrl=%2Fboard%2Fevent%2Flist.do" id="og-url-value" />
+        <meta property="og:url" content="http://www.acebed.com:80/board/event/list.do" id="og-url-value" />
         <meta property="og:image" content="http://www.acebed.com:80/common/images/sns-share-thumbnail.jpg" id="og-image-value" />
-        	<meta property="og:title" content="에이스침대" id="og-title-value" />
+        	<meta property="og:title" content="이벤트" id="og-title-value" />
         	<meta property="og:description" content="에이스침대의 공식 홈페이지 입니다." id="og-description-value" />
 
-        <meta itemprop="url" content="http://www.acebed.com:80/member/login/index.do?rtnUrl=%2Fboard%2Fevent%2Flist.do" id="schema-url-value" />
+        <meta itemprop="url" content="http://www.acebed.com:80/board/event/list.do" id="schema-url-value" />
         <meta itemprop="name" content="에이스침대" id="schema-name-value" />
         <meta itemprop="description" content="에이스침대의 공식 홈페이지 입니다." id="schema-discription-value" />
 
         <!-- //swiftype 검색 메타태그 -->
-		<meta class="swiftype" name="top_menu" data-type="string" content="" />
-		<meta class="swiftype" name="child_menu" data-type="string" content="" />
-		<meta class="swiftype" name="title" data-type="string" content="" />
+		<meta class="swiftype" name="top_menu" data-type="string" content="이벤트" />
+		<meta class="swiftype" name="child_menu" data-type="string" content="이벤트" />
+		<meta class="swiftype" name="title" data-type="string" content="이벤트 > 이벤트" />
 		
 		<!-- swiftype 검색 메타태그// -->
 		<link rel="shortcut icon" href="https://www.acebed.com/common/images/favicon.ico">
@@ -135,50 +135,98 @@
 				gtag('config', 'G-9DZP1N4254');
 			</script>
         </head>
-    	<jsp:include page="header.jsp" />
+    	<jsp:include page="../header.jsp" />
             <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
 			<div class="subCon">
                		<input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />
 			<div class="head_div">
-                        <h2 class="titleH1">로그인</h2>
+                        <h2 class="titleH1">이벤트</h2>
                     </div>
-                    <div class="content_div" data-controller="controller/mb/mba/MBAMemberLoginIndexCtrl">
-                    	<form id="frmData" name="frmData" method="post" action="./login.do">
-                    		<input type="hidden" class="notRequired" id="rtnUrl" name="rtnUrl" value="%2Fboard%2Fevent%2Flist.do" />
-                    		<input type="hidden" class="notRequired" name="joinCd" value="">
-                    		<input type="hidden" class="notRequired" id="csrfKey" name="csrfKey" value="S9odmUeTAgFPkT6iw00V" />
-	                        <div class="member_area">
-	                            <div class="member_box">
-	                                <div class="member_form">
-	                                    <input type="text" id="email" name="email" title="아이디" placeholder="아이디" maxlength="200">
-	                                    <span class="password_box">
-                                        	<input type="password" id="pwd" name="pwd" title="비밀번호" placeholder="비밀번호" maxlength="100">
-	                                        <i class="fas fa-eye" aria-hidden="true"></i> 
-	                                    </span>
-	                                </div>
-	                                <div class="member_util">
-	                                    <p class="chk_txt">
-	                                        <input type="checkbox" class="notRequired" id="saveId" name="saveId" value="Y" title="아이디 저장">
-	                                        <label for="saveId">아이디 저장</label>
-	                                    </p>
-	                                    <a href="/member/search/index.do" class="txt_btn"><span>아이디/비밀번호 찾기</span></a>
-	                                </div>
-	                                <div class="btn_div">
-                                        <a href="javascript:" class="blue_btn btnNormalLgn"><span>로그인</span></a> <!-- 2020-11-17 수정 -->
-	                                    <div class="flt_div">
-	                                        <a href="javascript:" class="btn sns_btn kakao btnKakaoLgn"><span>카카오 로그인</span></a>
-	                                        <a href="javascript:" class="btn sns_btn naver btnNaverLgn"><span>네이버 로그인</span></a>
-	                                    </div>
-	                                </div>
-	                                <div class="bottom_div btn_div">
-	                                    <p>아직 에이스침대 회원이 아니신가요?</p>
-	                                    <a href="/member/join/index.do" class="btn btn3"><span>회원가입</span></a>
-	                                </div>
-	                            </div>
-	                        </div>
-                        </form>
-                    </div>
-</div>
+                    <div class="content_div">
+                        <div class="event_banner window_load">
+                            <div class="img">
+								<!-- 2021-12-15 이미지 교체 및 대체 텍스트 추가, 2022-12-26 수정 -->
+								<p class="only_web"><img src="https://www.acebed.com/common/images/event-banner3.jpg" alt="ACE 2023 Wedding Members 오직 신혼부부에게만 드리는 다양한 구매가입 혜택을 만나보세요!"></p>
+								<p class="only_mob"><img src="https://www.acebed.com/common/images/m-event-banner3.jpg" alt="ACE 2023 Wedding Members 오직 신혼부부에게만 드리는 다양한 구매가입 혜택을 만나보세요!"></p>
+								<!-- // 2021-12-15 이미지 교체 및 대체 텍스트 추가, 2022-12-26 수정 -->
+                            </div>
+                            <a href="/wedding-members/benefit/index.do" class="text_box">
+                                <p class="value">더 큰 감동</p>
+                                <p class="tit">Wedding Members</p>
+                                <p class="text">
+                                     웨딩멤버스 가입하고 사은품부터
+                                     할인혜택까지 모두 받으세요
+                                </p>
+                             </a>
+                        </div>
+                        <div class="inner">
+                        	<div class="list_type3 motion_list">
+                        				<a href="./view.do?detailsKey=60" class="list">
+			                                    <p class="img">
+			                                        <img src="https://www.acebed.com/image/2024/1/24010912003749308376.jpg" alt="">
+			                                    </p>
+			                                    <div class="text_div">
+			                                        <p class="tit">2024 스트레스리스 웨딩멤버스 이벤트</p>
+			                                        <p class="date">2024-01-01 - 2024-12-31</p>
+			                                    </div>
+			                                </a>
+		                                <a href="./view.do?detailsKey=54" class="list">
+			                                    <p class="img">
+			                                        <img src="https://www.acebed.com/image/2023/9/23092711473235238466.jpg" alt="">
+			                                    </p>
+			                                    <div class="text_div">
+			                                        <p class="tit">Royal Ace 60th 프로모션</p>
+			                                        <p class="date">2023-08-11 - 2024-12-31</p>
+			                                    </div>
+			                                </a>
+		                                <a href="./view.do?detailsKey=47" class="list">
+			                                    <p class="img">
+			                                        <img src="https://www.acebed.com/image/2024/3/24032809462897027926.jpg" alt="">
+			                                    </p>
+			                                    <div class="text_div">
+			                                        <p class="tit">2024 LG오브제클럽 멤버쉽 혜택</p>
+			                                        <p class="date">2024-01-01 - 2024-12-31</p>
+			                                    </div>
+			                                </a>
+		                                <a href="./view.do?detailsKey=45" class="list">
+			                                    <p class="img">
+			                                        <img src="https://www.acebed.com/image/2023/12/23122904521865727263.jpg" alt="">
+			                                    </p>
+			                                    <div class="text_div">
+			                                        <p class="tit">2024 스트레스리스 구매후기 이벤트</p>
+			                                        <p class="date">2024-01-01 - 2024-12-31</p>
+			                                    </div>
+			                                </a>
+		                                <a href="./view.do?detailsKey=30" class="list">
+			                                    <p class="img">
+			                                        <img src="https://www.acebed.com/image/2023/12/23122904542012510504.jpg" alt="">
+			                                    </p>
+			                                    <div class="text_div">
+			                                        <p class="tit">2024 에이스침대 구매 후기 이벤트</p>
+			                                        <p class="date">2024-01-01 - 2024-12-31</p>
+			                                    </div>
+			                                </a>
+		                                <a href="./view.do?detailsKey=27" class="list">
+			                                    <p class="img">
+			                                        <img src="https://www.acebed.com/image/2024/1/24010208345589827038.jpg" alt="">
+			                                    </p>
+			                                    <div class="text_div">
+			                                        <p class="tit">2024 웨딩멤버스 회원을 위한 혜택</p>
+			                                        <p class="date">2024-01-01 - 2024-12-31</p>
+			                                    </div>
+			                                </a>
+		                                <a href="./view.do?detailsKey=18" class="list">
+			                                    <p class="img">
+			                                        <img src="https://www.acebed.com/image/2021/8/21081812262491990241.jpg" alt="">
+			                                    </p>
+			                                    <div class="text_div">
+			                                        <p class="tit">에이스침대 X LG베스트샵 제휴 이벤트</p>
+			                                        <p class="date">2024-01-01 - 2024-12-31</p>
+			                                    </div>
+			                                </a>
+		                                </div>
+                        		</div>
+                    </div></div>
 	            <div class="side_dimd"></div>
 				<div class="side_bts" data-swiftype-index="false">
                     <a href="javascript:" class="tob_btn">TOP</a>
@@ -190,4 +238,4 @@
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 s-->
 			<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 e-->
 
-            <jsp:include page="footer.jsp" />
+            <jsp:include page="../footer.jsp" />
