@@ -134,7 +134,7 @@
 				gtag('config', 'G-9DZP1N4254');
 			</script>
         </head>
-    	<jsp:include page="header.jsp" />
+    	<jsp:include page="headerAdmin.jsp" />
             <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
 			<div id="mainPage" class="mainCon" data-controller="controller/fm/fma/FMAMainCtrl" data-csrf-key="RZcOWpYpzpnovCucXNty">
 	            <div class="section one swiper-container">
