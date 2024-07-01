@@ -2,7 +2,7 @@ package kr.soft.study.dto;
 
 import java.sql.Date;
 
-public class events {
+public class Events {
 
 	private int event_id;
 	private String title;

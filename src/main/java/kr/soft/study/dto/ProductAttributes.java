@@ -1,6 +1,6 @@
 package kr.soft.study.dto;
 
-public class productAttributes {
+public class ProductAttributes {
 
 	private int attribute_id;
 	private int product_id;

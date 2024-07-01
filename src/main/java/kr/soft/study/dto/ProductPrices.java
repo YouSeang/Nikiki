@@ -1,6 +1,6 @@
 package kr.soft.study.dto;
 
-public class productPrices {
+public class ProductPrices {
 
 	private int price_id;
 	private int product_id;

@@ -2,7 +2,7 @@ package kr.soft.study.dto;
 
 import java.sql.Date;
 
-public class reservations {
+public class Reservations {
 
 	private int reservation_id;
 	private int user_id;

@@ -1,6 +1,6 @@
 package kr.soft.study.dto;
 
-public class likes {
+public class Likes {
 
 	private int like_id;
 	private int review_id;

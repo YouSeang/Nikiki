@@ -2,7 +2,7 @@ package kr.soft.study.dto;
 
 import java.sql.Date;
 
-public class users {
+public class Users {
 
 	private int user_id;
 	private String name;

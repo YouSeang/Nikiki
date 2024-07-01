@@ -1,6 +1,6 @@
 package kr.soft.study.dto;
 
-public class reviewImages {
+public class ReviewImages {
 
 	private int image_id;
 	private int review_id;

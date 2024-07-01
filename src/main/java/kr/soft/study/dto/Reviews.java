@@ -2,7 +2,7 @@ package kr.soft.study.dto;
 
 import java.sql.Timestamp;
 
-public class reviews {
+public class Reviews {
 
 	private int review_id;
 	private int product_id;

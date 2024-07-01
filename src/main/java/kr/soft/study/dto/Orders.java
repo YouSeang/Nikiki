@@ -2,7 +2,7 @@ package kr.soft.study.dto;
 
 import java.sql.Timestamp;
 
-public class orders {
+public class Orders {
 
 	private int order_id;
 	private int user_id;

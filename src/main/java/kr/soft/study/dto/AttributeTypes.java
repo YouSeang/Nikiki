@@ -1,6 +1,6 @@
 package kr.soft.study.dto;
 
-public class attributeTypes {
+public class AttributeTypes {
 
 	private int attribute_type_id;
 	private String attribute_name;

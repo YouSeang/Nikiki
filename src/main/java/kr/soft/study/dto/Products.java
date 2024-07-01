@@ -1,6 +1,6 @@
 package kr.soft.study.dto;
 
-public class products {
+public class Products {
 	private int product_id;
 	private String product_name;
 	private int category_id;
