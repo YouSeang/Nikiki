@@ -5,4 +5,12 @@
  <mapper namespace="kr.soft.study.util.ETCDao">
  <!-- 쿼리문 -->
  
+    <select id="getSchedules" resultType="map">
+        SELECT storeNm, hopeDt FROM schedules
+    </select>
+
+    <insert id="insertSchedule">
+        INSERT INTO schedules (storeNm, hopeDt, name, gender, hpNo, age, collectYn, thirdPartyYn)
+        VALUES (#{storeNm}, #{selectedDate}, #{name}, #{gender}, #{hpNo}, #{age}, #{collectYn}, #{thirdPartyYn})
+    </insert>
  </mapper>

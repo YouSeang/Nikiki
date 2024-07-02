@@ -34,13 +34,6 @@ public class ProductManage implements ProductCommand {
         String value = request.getParameter("value");
         int price = parseInteger(request.getParameter("price"));
 
-        System.out.println("product_name: " + product_name);
-        System.out.println("category_id: " + category_id);
-        System.out.println("description: " + description);
-        System.out.println("attribute_type_id: " + attribute_type_id);
-        System.out.println("value: " + value);
-        System.out.println("price: " + price);
-
         MultipartFile file = request.getFile("image_url");
 
         String fileName = null;

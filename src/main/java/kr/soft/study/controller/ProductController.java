@@ -34,10 +34,6 @@ public class ProductController {
         model.addAttribute("categories", categories);
         model.addAttribute("attributeTypes", attributeTypes);
 
-        // Debugging output
-        System.out.println("Categories: " + categories);
-        System.out.println("AttributeTypes: " + attributeTypes);
-
         if (request instanceof MultipartHttpServletRequest) {
             model.addAttribute("request", request);
             productCommand = new ProductManage(sqlSession);
@@ -48,6 +44,8 @@ public class ProductController {
 
         return "product/productmanage";
     }
+    
+    
 	
 	@RequestMapping("/bed")
 	public String bedList(Model model) {
