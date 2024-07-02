@@ -42,6 +42,7 @@ public class ProductManage implements ProductCommand {
         System.out.println("price: " + price);
 
         MultipartFile file = request.getFile("image_url");
+
         String fileName = null;
 
         if (file != null && !file.isEmpty()) {
@@ -107,4 +108,9 @@ public class ProductManage implements ProductCommand {
             return 0; // 기본값 설정
         }
     }
+
+	private int getAttributeId(int attribute_type_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

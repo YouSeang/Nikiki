@@ -47,7 +47,7 @@ public class Login implements UserCommand {
 			// 로그인 성공한 경우 세션에 정보 저장
 		} else {
 			// 로그인 실패한 경우
-			model.addAttribute("path","login");
+			model.addAttribute("path","user/login");
 		}
 	
 	}
