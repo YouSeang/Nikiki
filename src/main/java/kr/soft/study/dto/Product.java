@@ -1,6 +1,8 @@
 package kr.soft.study.dto;
 
-public class Products {
+import java.util.List;
+
+public class Product {
     private int product_id;
     private String product_name;
     private String category_name;
@@ -8,6 +10,7 @@ public class Products {
     private String description;
     private String image_url;
     private int price;
+    private List<ProductAttributes> attributes;
 	public int getProduct_id() {
 		return product_id;
 	}
@@ -23,8 +26,8 @@ public class Products {
 	public String getCategory_name() {
 		return category_name;
 	}
-	public void setCategory_name(String category_name) {
-		this.category_name = category_name;
+	public void setCategory_name(String category_mame) {
+		this.category_name = category_mame;
 	}
 	public String getParent_category_name() {
 		return parent_category_name;
@@ -50,6 +53,11 @@ public class Products {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	
+	public List<ProductAttributes> getAttributes() {
+		return attributes;
+	}
+	public void setAttributes(List<ProductAttributes> attributes) {
+		this.attributes = attributes;
+	}
+
 }

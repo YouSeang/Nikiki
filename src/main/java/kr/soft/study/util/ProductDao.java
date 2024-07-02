@@ -1,17 +1,22 @@
 package kr.soft.study.util;
 
 import java.util.List;
-import kr.soft.study.dto.AttributeTypes;
-import kr.soft.study.dto.Categories;
-import kr.soft.study.dto.Products;
+
+import kr.soft.study.dto.Product;
 import kr.soft.study.dto.ProductAttributes;
-import kr.soft.study.dto.ProductPrices;
+import kr.soft.study.dto.Products;
+
 
 public interface ProductDao {
-    List<Categories> getCategories();
-    List<AttributeTypes> getAttributeTypes();
     void insertProduct(Products product);
-    void insertProductAttribute(ProductAttributes productAttribute);
-    void insertProductPrice(ProductPrices productPrice);
-    int getLastInsertId(); // 추가된 메서드
+    void updateProduct(Products product);
+    Products selectProduct(int product_id);
+    void insertProductAttribute(ProductAttributes productAttributes);
+    List<ProductAttributes> selectProductAttributes(int product_id);
+    List<Products> selectAllProduct();
+    Product getProductWithAttributes(int productId);
+    void deleteAttribute(int attribute_id);
+    void deleteProductAttribute(int product_id);
+    void deleteProduct(int product_id);
 }
+

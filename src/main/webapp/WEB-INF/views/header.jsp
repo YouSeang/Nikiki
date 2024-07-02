@@ -214,7 +214,7 @@
 				<div class="gnb_section gnb1">
 					<div class="one_dep">
 						<div>
-							<a href="./bedList?category_id=3"> <span class="one">BED</span>
+							<a href="./bed"> <span class="one">BED</span>
 								<span>침대</span>
 							</a>
 							<div class="two_dep">
