@@ -46,6 +46,16 @@ public class UserController {
 
 		return "user/login";
 	}
+	
+	// 관리자 홈화면이동
+		@RequestMapping("/admin")
+		public String admin(Model model) {
+
+			System.out.println("admin()");
+
+			return "admin";
+		}
+
 
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)

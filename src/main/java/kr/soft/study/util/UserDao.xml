@@ -2,16 +2,22 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="kr.soft.study.util.UserDao">
- <!-- 쿼리문 -->
- 		
- 	 <!--  회원가입 -->
- 	 <insert id="loginJoin">
- 	 	insert into Users (name,birth_date,phone_number,email,password) values (#{param1}, #{param2},#{param3},#{param4},#{param5})
- 	 </insert>
- 	 
- 	 <!-- 로그인 -->
- 	<select id="isLogin" resultType="kr.soft.study.dto.Users">
- 	select * from Users where email=#{param1} and password=#{param2}
- 	</select>
- </mapper>
+<mapper namespace="kr.soft.study.util.UserDao">
+	<!-- 쿼리문 -->
+
+	<!-- 회원가입 -->
+	<insert id="loginJoin">
+		insert into Users (name,birth_date,phone_number,email,password) values
+		(#{param1}, #{param2},#{param3},#{param4},#{param5})
+	</insert>
+
+	<!-- 로그인 아이디랑 비밀번호 확인 -->
+	<select id="checkpw" resultType="kr.soft.study.dto.Users">
+		select * from Users where email=#{param1} and password=#{param2}
+	</select>
+
+	<!-- 암호화된 비밀번호 확인 -->
+	<select id="isLogin" resultType="kr.soft.study.dto.Users">
+		select * from Users where email = #{param}
+	</select>
+</mapper>
