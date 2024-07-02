@@ -32,6 +32,27 @@ public class Login implements UserCommand {
 
 		System.out.println(email);
 		UserDao dao = sqlSession.getMapper(UserDao.class);
+<<<<<<< HEAD
+=======
+		Users dto = dao.isLogin(email, password);
+		if (dto!=null) {
+			if ("admin".equals(email) && "1234".equals(password)) {
+				model.addAttribute("path","admin");
+				//main경로로 이동
+			} else {
+				model.addAttribute("path","main");
+				 // 일반 사용자
+			}
+			model.addAttribute("email",email);
+			// 로그인 성공한 경우 세션에 정보 저장
+		} else {
+			// 로그인 실패한 경우
+			model.addAttribute("path","user/login");
+		}
+	
+	}
+	
+>>>>>>> refs/heads/main
 
 		if ("admin".equals(email) && "1234".equals(password)) {
 			// 관리자 로그인
