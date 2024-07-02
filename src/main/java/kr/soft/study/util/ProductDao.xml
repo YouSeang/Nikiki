@@ -3,40 +3,49 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.soft.study.util.ProductDao">
-    <!-- 제품 정보 삽입 -->
-    <insert id="insertProduct" parameterType="kr.soft.study.dto.Products">
-        insert into Products (product_name, category_id, description, image_url) 
-        values (#{product_name}, #{category_id}, #{description}, #{image_url})
-    </insert>
+	<!-- 제품 정보 삽입 -->
+	<insert id="insertProduct"
+		parameterType="kr.soft.study.dto.Products" useGeneratedKeys="true"
+		keyProperty="product_id">
+		insert into Products (product_name, category_id,
+		description, image_url)
+		values (#{product_name}, #{category_id},
+		#{description}, #{image_url})
+	</insert>
 
-    <!-- 제품 속성 삽입 -->
-    <insert id="insertProductAttribute" parameterType="kr.soft.study.dto.ProductAttributes">
-        insert into ProductAttributes (product_id, attribute_type_id, value) 
-        values (#{product_id}, #{attribute_type_id}, #{value})
-    </insert>
+	<!-- 최근 삽입된 ID 가져오기 -->
+	<select id="getLastInsertId" resultType="int">
+		SELECT LAST_INSERT_ID()
+		AS product_id
+	</select>
 
-    <!-- 제품 가격 삽입 -->
-    <insert id="insertProductPrice" parameterType="kr.soft.study.dto.ProductPrices">
-        insert into ProductPrices (product_id, attribute_id, price) 
-        values (#{product_id}, #{attribute_id}, #{price})
-    </insert>
+	<!-- 제품 속성 삽입 -->
+	<insert id="insertProductAttribute"
+		parameterType="kr.soft.study.dto.ProductAttributes"
+		useGeneratedKeys="true" keyProperty="attribute_id">
+		insert into ProductAttributes (product_id, attribute_type_id, value)
+		values (#{product_id}, #{attribute_type_id}, #{value})
+	</insert>
 
-    <!-- 최근 삽입된 ID 가져오기 -->
-    <select id="getLastInsertId" resultType="int">
-        SELECT MAX(product_id) from Products
-    </select>
-    
-    <!-- 카테고리 목록을 가져오는 쿼리 -->
-    <select id="getCategories" resultType="kr.soft.study.dto.Categories">
-        SELECT category_id, category_name FROM Categories
-    </select>
 
-    <!-- 특성 유형 목록을 가져오는 쿼리 -->
-    <select id="getAttributeTypes" resultType="kr.soft.study.dto.AttributeTypes">
-        SELECT * FROM AttributeTypes
-    </select>
-    <!-- 특성 유형 목록을 가져오는 쿼리 -->
-    <select id="getAttributeId" resultType="int">
-        SELECT * FROM AttributeTypes where attribute_type_id=#{param1}
-    </select>
+	<!-- 제품 가격 삽입 -->
+	<insert id="insertProductPrice"
+		parameterType="kr.soft.study.dto.ProductPrices">
+		insert into ProductPrices (product_id, attribute_id,
+		price)
+		values (#{product_id}, #{attribute_id}, #{price})
+	</insert>
+
+	<!-- 카테고리 목록을 가져오는 쿼리 -->
+	<select id="getCategories"
+		resultType="kr.soft.study.dto.Categories">
+		SELECT category_id, category_name FROM Categories
+	</select>
+
+	<!-- 특성 유형 목록을 가져오는 쿼리 -->
+	<select id="getAttributeTypes"
+		resultType="kr.soft.study.dto.AttributeTypes">
+		SELECT attribute_type_id, attribute_name FROM
+		AttributeTypes
+	</select>
 </mapper>

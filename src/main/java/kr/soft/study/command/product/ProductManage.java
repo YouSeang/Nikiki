@@ -22,33 +22,32 @@ public class ProductManage implements ProductCommand {
 
     @Override
     public void execute(Model model) {
-
         Map<String, Object> map = model.asMap();
-        HttpServletRequest request = (HttpServletRequest) map.get("request");
+        MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
+
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
 
-        // Check if the request is multipart
-        if (!(request instanceof MultipartHttpServletRequest)) {
-            System.out.println("Request is not a multipart request.");
-            return;
-        }
+        String product_name = request.getParameter("product_name");
+        int category_id = parseInteger(request.getParameter("category_id"));
+        String description = request.getParameter("description");
+        int attribute_type_id = parseInteger(request.getParameter("attribute_type_id"));
+        String value = request.getParameter("value");
+        int price = parseInteger(request.getParameter("price"));
 
-        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+        System.out.println("product_name: " + product_name);
+        System.out.println("category_id: " + category_id);
+        System.out.println("description: " + description);
+        System.out.println("attribute_type_id: " + attribute_type_id);
+        System.out.println("value: " + value);
+        System.out.println("price: " + price);
 
-        String product_name = multipartRequest.getParameter("product_name");
-        int category_id = Integer.parseInt(multipartRequest.getParameter("category_id"));
-        String description = multipartRequest.getParameter("description");
-        int attribute_type_id = Integer.parseInt(multipartRequest.getParameter("attribute_type_id"));
-        
-        String value = multipartRequest.getParameter("value");
-        int price = Integer.parseInt(multipartRequest.getParameter("price"));
+        MultipartFile file = request.getFile("image_url");
 
-        // Handle file upload
-        MultipartFile file = multipartRequest.getFile("image_url");
         String fileName = null;
 
         if (file != null && !file.isEmpty()) {
             fileName = file.getOriginalFilename();
+            System.out.println("Uploading file: " + fileName);
             try {
                 String uploadPath = "C:\\library\\upload\\";
                 File dest = new File(uploadPath + fileName);
@@ -58,33 +57,56 @@ public class ProductManage implements ProductCommand {
             }
         }
 
-        // Insert product data into database
         Products product = new Products();
         product.setProduct_name(product_name);
         product.setCategory_id(category_id);
         product.setDescription(description);
         product.setImage_url(fileName);
 
+        System.out.println("Inserting product...");
         productDao.insertProduct(product);
-        int product_id = productDao.getLastInsertId();
+
+        int product_id = product.getProduct_id();
+        System.out.println("Inserted product ID: " + product_id);
+
         if (product_id == 0) {
             throw new RuntimeException("Failed to retrieve last insert ID for product.");
         }
 
-        // Insert product attribute
         ProductAttributes productAttribute = new ProductAttributes();
         productAttribute.setProduct_id(product_id);
         productAttribute.setAttribute_type_id(attribute_type_id);
         productAttribute.setValue(value);
+        System.out.println("Inserting product attribute...");
         productDao.insertProductAttribute(productAttribute);
 
-        // Insert product price
+        int attribute_id = productAttribute.getAttribute_id(); // 이 부분이 중요합니다.
+        System.out.println("Inserted attribute ID: " + attribute_id);
+
+        if (attribute_id == 0) {
+            throw new RuntimeException("Failed to retrieve last insert ID for attribute.");
+        }
+
         ProductPrices productPrice = new ProductPrices();
         productPrice.setProduct_id(product_id);
-        int attribute_id = getAttributeId(attribute_type_id);
         productPrice.setAttribute_id(attribute_id);
         productPrice.setPrice(price);
+        System.out.println("Inserting product price...");
         productDao.insertProductPrice(productPrice);
+
+        System.out.println("Product insertion complete.");
+    }
+
+    private int parseInteger(String value) {
+        if (value == null || value.isEmpty()) {
+            return 0; // 기본값 설정
+        }
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return 0; // 기본값 설정
+        }
     }
 
 	private int getAttributeId(int attribute_type_id) {
