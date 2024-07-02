@@ -16,8 +16,25 @@
 		select * from Users where email=#{param1} and password=#{param2}
 	</select>
 
-	<!-- 암호화된 비밀번호 확인 -->
+	<!-- 일반사용자 이메일 확인 -->
 	<select id="isLogin" resultType="kr.soft.study.dto.Users">
 		select * from Users where email = #{param}
 	</select>
+	<!-- 관리자 회원 목록 -->
+	<select id="list" resultType="kr.soft.study.dto.Users">
+		select user_id,name,birth_date,phone_number,email from Users
+	</select>
+    
+	<update id="updateUser" parameterType="kr.soft.study.dto.Users">
+		update Users set name = #{param1}, birth_day = #{param2}, phone_number = #{param3}, email = #{param4}, password = #{param5} WHERE user_id = #{param6}
+	</update>
+	
+	 <insert id="addUser" parameterType="kr.soft.study.dto.Users">
+        INSERT INTO Users (name, birth_date, phone_number, email, password)
+        VALUES (#{param1}, #{param2}, #{param3}, #{param4}, #{param5})
+    </insert>
+  
+    <delete id="delete" parameterType="int">
+        DELETE FROM Users WHERE user_id = #{paramo}
+    </delete>
 </mapper>

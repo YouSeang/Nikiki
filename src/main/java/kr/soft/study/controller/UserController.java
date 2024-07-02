@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 //import kr.soft.study.command.user.Join;
 import kr.soft.study.command.user.UserCommand;
+import kr.soft.study.util.UserDao;
 import kr.soft.study.command.user.Login;
 import kr.soft.study.command.user.Join;
 
@@ -46,17 +47,51 @@ public class UserController {
 
 		return "user/login";
 	}
-	
+
 	// 관리자 홈화면이동
-		@RequestMapping("/admin")
-		public String admin(Model model) {
+	@RequestMapping("/admin")
+	public String admin(Model model) {
 
-			System.out.println("admin()");
+		System.out.println("admin()");
 
-			return "admin";
-		}
+		return "admin";
+	}
 
-
+	// 관리자 회원목록 화면이동
+	@RequestMapping("/memberView")
+	public String memberView(Model model) {
+		System.out.println("memberView()");
+		
+		UserDao userDao = sqlSession.getMapper(UserDao.class);
+		model.addAttribute("list", userDao.list());
+		
+		return "user/memberView";
+	}
+	
+//	// 관리자 회원추가 화면이동
+//		@RequestMapping("/add")
+//		public String add(Model model) {
+//			System.out.println("add()");
+//			
+//			UserDao userDao = sqlSession.getMapper(UserDao.class);
+//			model.addAttribute("add", userDao.add());
+//			
+//			return "user/addNewMember";
+//		}
+	
+	
+	// 관리자 회원삭제 화면이동
+	@RequestMapping("/delete")
+	public String delete(HttpServletRequest request, Model model) {
+		System.out.println("delete()");
+		
+		String user_id = request.getParameter("user_id");
+		
+		UserDao dao = sqlSession.getMapper(UserDao.class);
+		dao.delete(user_id);
+		
+		return "redirect:memberView";
+	}
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, HttpServletRequest request, Model model) {
@@ -75,7 +110,8 @@ public class UserController {
 
 	// 회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(@RequestParam("name") String name,  HttpSession Session, HttpServletRequest request, Model model) {
+	public String join(@RequestParam("name") String name, HttpSession Session, HttpServletRequest request,
+			Model model) {
 
 		System.out.println("join() 메서드 시작");
 		model.addAttribute("request", request);
@@ -107,5 +143,13 @@ public class UserController {
 		System.out.println("joinView()");
 		return "user/join";
 	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+		private void SYSOUT() {
+			// TODO Auto-generated method stub
+
+		}
+	
+	
 
 }

@@ -1400,7 +1400,10 @@
 													<input type="text" id="email" name="email" title="이메일"
 														placeholder="" maxlength="50"> <input
 														type="hidden" class="notRequired" name="emailChkVal">
+													<a href="javascript:void(0);" class="input_btn emailChk" onclick="checkEmail()"><span>중복확인</span></a>
 												</div>
+												<p class="vali_txt emailChkTxt" style="display: none;">입력한
+													이메일 주소로 가입된 정보가 있습니다.</p>
 											</dd>
 										</dl>
 										<dl>
