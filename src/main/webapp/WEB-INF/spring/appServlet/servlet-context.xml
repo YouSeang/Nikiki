@@ -58,6 +58,6 @@
 	</beans:bean>
 
 	<resources mapping="/libraryUploadImg/**"
-		location="file:///C:/library/upload/" />
+		location="/upload/" />
 
 </beans:beans>

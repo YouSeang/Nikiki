@@ -49,7 +49,7 @@ public class ProductManage implements ProductCommand {
             fileName = file.getOriginalFilename();
             System.out.println("Uploading file: " + fileName);
             try {
-                String uploadPath = "C:\\library\\upload\\";
+                String uploadPath = "upload";
                 File dest = new File(uploadPath + fileName);
                 file.transferTo(dest);
             } catch (Exception e) {
