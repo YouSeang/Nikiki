@@ -1,7 +1,5 @@
 package kr.soft.study.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -9,13 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.soft.study.command.product.DeleteAttribute;
+import kr.soft.study.command.product.DeleteProduct;
+import kr.soft.study.command.product.InsertAttributes;
+import kr.soft.study.command.product.ModifyProduct;
+import kr.soft.study.command.product.ProductAllList;
 import kr.soft.study.command.product.ProductCommand;
+import kr.soft.study.command.product.ProductDetail;
+import kr.soft.study.command.product.ProductList;
 import kr.soft.study.command.product.ProductManage;
-import kr.soft.study.dto.AttributeTypes;
-import kr.soft.study.dto.Categories;
-import kr.soft.study.util.ProductDao;
 
 @Controller
 public class ProductController {
@@ -25,33 +27,95 @@ public class ProductController {
     private SqlSession sqlSession;
     
     private ProductCommand productCommand;
+    //전체제품리스트-관리자 
+    @RequestMapping("/productAllList")
+    public String productAllList(HttpServletRequest request, Model model) {
+    	model.addAttribute("request",request);
+    	productCommand=new ProductAllList(sqlSession);
+    	productCommand.execute(model);
+        return "product/productList";
+    }
     
+    //제품상세-관리자
+    @RequestMapping("/productDetail")
+    public String productDetail(HttpServletRequest request, Model model) {
+    	model.addAttribute("request",request);
+    	productCommand=new ProductDetail(sqlSession);
+    	productCommand.execute(model);
+    	return "product/ProductDetail";
+    }
+    //속성삭제
+    @RequestMapping("/deleteAttribute")
+    public String deleteAttribute(HttpServletRequest request, Model model) {
+    	model.addAttribute("request",request);
+    	productCommand=new DeleteAttribute(sqlSession);
+    	productCommand.execute(model);
+    	return "redirect:/productDetail";
+    }
+    //제품수정
+    @RequestMapping("/modifyProduct")
+    public String modifyProduct(HttpServletRequest request, Model model) {
+    	model.addAttribute("request",request);
+    	productCommand=new ModifyProduct(sqlSession);
+    	productCommand.execute(model);
+    	return "redirect:/productDetail";
+    }
+    //제품 등록 및 수정 화면 
     @RequestMapping("/productmanage")
-    public String productmanage(HttpServletRequest request, Model model) {
-        ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-        List<Categories> categories = productDao.getCategories();
-        List<AttributeTypes> attributeTypes = productDao.getAttributeTypes();
-        model.addAttribute("categories", categories);
-        model.addAttribute("attributeTypes", attributeTypes);
+    public String productmanage(HttpServletRequest request, Model model,@RequestParam("product_id")Integer productId) {
 
-        // Debugging output
-        System.out.println("Categories: " + categories);
-        System.out.println("AttributeTypes: " + attributeTypes);
-
-        if (request instanceof MultipartHttpServletRequest) {
-            model.addAttribute("request", request);
-            productCommand = new ProductManage(sqlSession);
-            productCommand.execute(model);
-        } else {
-            System.out.println("Request is not a multipart request.");
-        }
-
-        return "product/productmanage";
+    	model.addAttribute("request",request);
+    	productCommand=new ProductDetail(sqlSession);
+    	productCommand.execute(model);
+        model.addAttribute("product_id", productId);
+    	return "product/productmanage";
+    }
+    //제품등록
+    @RequestMapping("/insertProducts")
+    public String insertProducts(HttpServletRequest request, Model model) {
+    	
+    	model.addAttribute("request",request);
+    	productCommand=new ProductManage(sqlSession);
+    	productCommand.execute(model);
+    	int product_id=(Integer)model.asMap().get("product_id");
+    	model.addAttribute("product_id", product_id);
+    	return "product/insertAttribute";
+    }
+    //제품 속성 추가화면 이동
+    @RequestMapping("/insertAttributeView")
+    public String insertAttributeView(@RequestParam("product_id") String productId, Model model) {
+        int product_id = Integer.parseInt(productId);
+        System.out.println("넘어가니?" + product_id);
+        model.addAttribute("product_id", product_id);
+        return "product/insertAttribute";
+    }
+    //속성DB추가
+    @RequestMapping("/insertAttribute")
+    public String insertAttribute(HttpServletRequest request, Model model) {
+    	
+    	model.addAttribute("request",request);
+    	productCommand=new InsertAttributes(sqlSession);
+    	productCommand.execute(model);
+    	
+    	return "redirect:/productAllList";
     }
 	
+    //제품삭제
+    @RequestMapping("/deleteProduct")
+    public String deleteProduct(HttpServletRequest request, Model model) {
+    	
+    	model.addAttribute("request",request);
+    	productCommand=new DeleteProduct(sqlSession);
+    	productCommand.execute(model);
+    	
+    	return "redirect:/productAllList";
+    }
+    
 	@RequestMapping("/bed")
 	public String bedList(Model model) {
 		
+		productCommand= new ProductList(sqlSession);
+		productCommand.execute(model);
 		return "product/bed";
 	}
 	

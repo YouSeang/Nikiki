@@ -12,28 +12,28 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import kr.soft.study.dto.Products;
 import kr.soft.study.util.ProductDao;
 
-public class ProductManage implements ProductCommand {
+public class ModifyProduct implements ProductCommand {
 
-    private SqlSession sqlSession;
+    SqlSession sqlSession;
 
     @Autowired
-    public ProductManage(SqlSession sqlSession) {
+    public ModifyProduct(SqlSession sqlSession) {
         this.sqlSession = sqlSession;
     }
-
-    @Override
-    public void execute(Model model) {
+	@Override
+	public void execute(Model model) {
+		// TODO Auto-generated method stub
         Map<String, Object> map = model.asMap();
         MultipartHttpServletRequest request = (MultipartHttpServletRequest) map.get("request");
-
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-
+        
         String product_name = request.getParameter("product_name");
         String category_name = request.getParameter("category_name");
         String parent_category_name = request.getParameter("parent_category_name");
         String description = request.getParameter("description");
         String attribute_name = request.getParameter("attribute_name");
         String value = request.getParameter("value");
+        int product_id=Integer.parseInt(request.getParameter("product_id"));
         int price =Integer.parseInt(request.getParameter("price"));
 
         System.out.println("product_name: " + product_name);
@@ -66,16 +66,13 @@ public class ProductManage implements ProductCommand {
         product.setDescription(description);
         product.setImage_url(fileName);
         product.setPrice(price);
+        product.setProduct_id(product_id);
 
         System.out.println("Inserting product...");
-        productDao.insertProduct(product);
+        productDao.updateProduct(product);
 
-        int product_id = product.getProduct_id();
-        System.out.println("Inserted product ID: " + product_id);
-
-        if (product_id == 0) {
-            throw new RuntimeException("Failed to retrieve last insert ID for product.");
-        }
         model.addAttribute("product_id",product_id);
     }
+	
+
 }

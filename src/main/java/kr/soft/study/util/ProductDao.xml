@@ -3,49 +3,109 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.soft.study.util.ProductDao">
-	<!-- 제품 정보 삽입 -->
 	<insert id="insertProduct"
 		parameterType="kr.soft.study.dto.Products" useGeneratedKeys="true"
 		keyProperty="product_id">
-		insert into Products (product_name, category_id,
-		description, image_url)
-		values (#{product_name}, #{category_id},
-		#{description}, #{image_url})
+		INSERT INTO Products (product_name, category_name,
+		parent_category_name,
+		description, image_url, price)
+		VALUES
+		(#{product_name}, #{category_name}, #{parent_category_name},
+		#{description}, #{image_url}, #{price})
 	</insert>
 
-	<!-- 최근 삽입된 ID 가져오기 -->
-	<select id="getLastInsertId" resultType="int">
-		SELECT LAST_INSERT_ID()
-		AS product_id
+	<select id="selectProduct" parameterType="int"
+		resultType="kr.soft.study.dto.Products">
+		SELECT * FROM Products WHERE product_id = #{product_id}
 	</select>
-
-	<!-- 제품 속성 삽입 -->
+	<select id="selectAllProduct"
+		resultType="kr.soft.study.dto.Products">
+		SELECT * FROM Products
+	</select>
 	<insert id="insertProductAttribute"
-		parameterType="kr.soft.study.dto.ProductAttributes"
-		useGeneratedKeys="true" keyProperty="attribute_id">
-		insert into ProductAttributes (product_id, attribute_type_id, value)
-		values (#{product_id}, #{attribute_type_id}, #{value})
+		parameterType="kr.soft.study.dto.ProductAttributes">
+		INSERT INTO ProductAttributes (product_id,
+		attribute_name, value)
+		VALUES (#{product_id}, #{attribute_name},
+		#{value})
 	</insert>
 
-
-	<!-- 제품 가격 삽입 -->
-	<insert id="insertProductPrice"
-		parameterType="kr.soft.study.dto.ProductPrices">
-		insert into ProductPrices (product_id, attribute_id,
-		price)
-		values (#{product_id}, #{attribute_id}, #{price})
-	</insert>
-
-	<!-- 카테고리 목록을 가져오는 쿼리 -->
-	<select id="getCategories"
-		resultType="kr.soft.study.dto.Categories">
-		SELECT category_id, category_name FROM Categories
+	<!-- 하나의 제품과 관련된 모든 특성 조회 -->
+	<select id="getProductWithAttributes"
+		resultMap="productResultMap">
+		SELECT p.product_id, p.product_name, p.category_name,
+		p.parent_category_name,
+		p.description, p.image_url, p.price,
+		pa.attribute_id, pa.attribute_name, pa.value
+		FROM Products p
+		LEFT JOIN
+		ProductAttributes pa ON p.product_id = pa.product_id
+		WHERE p.product_id
+		= #{productId}
 	</select>
-
-	<!-- 특성 유형 목록을 가져오는 쿼리 -->
-	<select id="getAttributeTypes"
-		resultType="kr.soft.study.dto.AttributeTypes">
-		SELECT attribute_type_id, attribute_name FROM
-		AttributeTypes
+	<!--카테고리별 관련된 제품 조회 -->
+	<select id="getProductCategoty"
+		resultMap="productResultMap">
+		SELECT p.product_id, p.product_name, p.category_name,
+		p.parent_category_name,
+		p.description, p.image_url, p.price,
+		pa.attribute_id, pa.attribute_name, pa.value
+		FROM Products p
+		LEFT JOIN
+		ProductAttributes pa ON p.product_id = pa.product_id
+		WHERE p.category_name
+		= #{category_name}
 	</select>
+	<resultMap id="productResultMap"
+		type="kr.soft.study.dto.Product">
+		<id property="product_id" column="product_id" />
+		<result property="product_name" column="product_name" />
+		<result property="category_name" column="category_name" />
+		<result property="parent_category_name"
+			column="parent_category_name" />
+		<result property="description" column="description" />
+		<result property="image_url" column="image_url" />
+		<result property="price" column="price" />
+
+		<!-- attributes에 대한 매핑 -->
+		<collection property="attributes"
+			ofType="kr.soft.study.dto.ProductAttributes">
+			<result property="attribute_id" column="attribute_id" />
+			<result property="attribute_name" column="attribute_name" />
+			<result property="value" column="value" />
+		</collection>
+	</resultMap>
+
+	<select id="selectProductAttributes" parameterType="int"
+		resultType="kr.soft.study.dto.ProductAttributes">
+		SELECT * FROM ProductAttributes WHERE product_id =
+		#{product_id}
+	</select>
+	<select id="getAllProduct"
+		resultType="kr.soft.study.dto.AllProduct">
+
+	</select>
+	<delete id="deleteAttribute">
+		DELETE FROM ProductAttributes WHERE attribute_id =
+		#{attribute_id}
+	</delete>
+		<delete id="deleteProductAttribute">
+		DELETE FROM ProductAttributes WHERE product_id =
+		#{product_id}
+	</delete>
+		<delete id="deleteProduct">
+		DELETE FROM Products WHERE product_id =
+		#{product_id}
+	</delete>
+    <update id="updateProduct" parameterType="kr.soft.study.dto.Products">
+        UPDATE Products
+        SET 
+            product_name = #{product_name},
+            category_name = #{category_name},
+            parent_category_name = #{parent_category_name},
+            description = #{description},
+            image_url = #{image_url},
+            price = #{price}
+        WHERE product_id = #{product_id};
+    </update>
 </mapper>
