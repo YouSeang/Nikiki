@@ -214,13 +214,13 @@
 				<div class="gnb_section gnb1">
 					<div class="one_dep">
 						<div>
-							<a href="./bed"> <span class="one">BED</span>
+							<a href="./bed?category_name=프레임"> <span class="one">BED</span>
 								<span>침대</span>
 							</a>
 							<div class="two_dep">
-								<a href="./bedList?category_id=3"
+								<a href="./bed?category_name=프레임"
 									target="_self"><span>프레임</span></a> <a
-									href="./bedList?category_id=4"
+									href="./bed?category_name=매트리스"
 									target="_self"><span>매트리스</span></a> <a
 									href="./recently"
 									target="_self"><span>신제품</span></a> <a

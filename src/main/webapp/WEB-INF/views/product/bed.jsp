@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -195,6 +196,32 @@
 
 	gtag('config', 'G-9DZP1N4254');
 </script>
+<style>
+.acco_cont1 {
+	display: none;
+	overflow-y: auto; /* 스크롤 추가 */
+	max-height: 150px; /* 최대 높이 설정 */
+}
+
+.custom_scroll {
+	padding: 10px; /* 스크롤 영역 패딩 추가 */
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+        $(document).ready(function() {
+            $('.acco1').click(function() {
+                var $accoCont = $(this).next('.acco_cont1');
+                $accoCont.slideToggle();
+                
+                // 스크롤 자동으로 올리기
+                var offsetTop = $accoCont.offset().top; // 원하는 위치로 조정
+                $('html, body').animate({ scrollTop: offsetTop }, 500);
+                return false; // 기본 이벤트 방지
+            });
+        });
+    </script>
 </head>
 <jsp:include page="../header.jsp" />
 
@@ -313,243 +340,26 @@
 								</div>
 							</div>
 							<div class="acco_area" id="srchFltrArea">
-								<div class="acco_div">
-									<a href="javascript:" class="acco">사이즈</a>
-									<div class="acco_cont">
-										<div class="custom_scroll">
-											<p class="chk_txt">
-												<input type="checkbox" id="sizeCd_1" name="sizeCd"
-													value="LK"> <label for="sizeCd_1">라지킹(LK)</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="sizeCd_2" name="sizeCd" value="K">
-												<label for="sizeCd_2">킹(K)</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="sizeCd_3" name="sizeCd"
-													value="LQ"> <label for="sizeCd_3">라지퀸(LQ)</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="sizeCd_4" name="sizeCd"
-													value="DD"> <label for="sizeCd_4">더블(DD)</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="sizeCd_5" name="sizeCd"
-													value="SS"> <label for="sizeCd_5">슈퍼싱글(SS)</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="sizeCd_6" name="sizeCd"
-													value="DS"> <label for="sizeCd_6">디럭스싱글(DS)</label>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="acco_div">
-									<a href="javascript:" class="acco">용도</a>
-									<div class="acco_cont">
-										<div class="custom_scroll">
-											<p class="chk_txt">
-												<input type="checkbox" id="prpsCd_3" name="prpsCd"
-													value="PRPS030"> <label for="prpsCd_3">신혼침대</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="prpsCd_4" name="prpsCd"
-													value="PRPS040"> <label for="prpsCd_4">주니어침대</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="prpsCd_5" name="prpsCd"
-													value="PRPS050"> <label for="prpsCd_5">패밀리침대</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="prpsCd_6" name="prpsCd"
-													value="PRPS060"> <label for="prpsCd_6">트윈침대</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="prpsCd_7" name="prpsCd"
-													value="PRPS070"> <label for="prpsCd_7">저상형침대</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="prpsCd_8" name="prpsCd"
-													value="PRPS080"> <label for="prpsCd_8">수납형침대</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="prpsCd_9" name="prpsCd"
-													value="PRPS090"> <label for="prpsCd_9">싱글침대</label>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="acco_div">
-									<a href="javascript:" class="acco">소재</a>
-									<div class="acco_cont">
-										<div class="custom_scroll">
-											<p class="chk_txt">
-												<input type="checkbox" id="mtrlCd_1" name="mtrlCd"
-													value="MTRL010"> <label for="mtrlCd_1">우드st</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="mtrlCd_2" name="mtrlCd"
-													value="MTRL020"> <label for="mtrlCd_2">가죽st</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="mtrlCd_3" name="mtrlCd"
-													value="MTRL030"> <label for="mtrlCd_3">패브릭</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="mtrlCd_4" name="mtrlCd"
-													value="MTRL040"> <label for="mtrlCd_4">멀티소재</label>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="acco_div">
-									<a href="javascript:" class="acco">컬러</a>
-									<div class="acco_cont">
-										<div class="custom_scroll">
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span style="background: #8d7674"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_1" name="clrGrpSeq"
-													value="0"> <label for="clrGrpSeq_1">브라운</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span style="background: #ece1d4"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_2" name="clrGrpSeq"
-													value="1"> <label for="clrGrpSeq_2">베이지</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span style="background: #c4c4c4"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_3" name="clrGrpSeq"
-													value="2"> <label for="clrGrpSeq_3">그레이</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span style="background: #5d7cb6"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_4" name="clrGrpSeq"
-													value="11"> <label for="clrGrpSeq_4">블루</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span style="background: #35486b"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_5" name="clrGrpSeq"
-													value="4"> <label for="clrGrpSeq_5">네이비</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span style="background: #ffffff"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_6" name="clrGrpSeq"
-													value="3"> <label for="clrGrpSeq_6">화이트</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span style="background: #2e2e2e"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_7" name="clrGrpSeq"
-													value="5"> <label for="clrGrpSeq_7">블랙</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span
-														style="background-image: url('/image/2020/11/20111909393252418444.png')"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_8" name="clrGrpSeq"
-													value="6"> <label for="clrGrpSeq_8">멀티/기타</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span
-														style="background-image: url('/image/2020/11/20111006221102373764.png')"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_9" name="clrGrpSeq"
-													value="9"> <label for="clrGrpSeq_9">모던한</label>
-											</div>
-											<div class="chk_txt chk_color">
-												<p class="color">
-													<span
-														style="background-image: url('/image/2020/11/20111006213570278649.png')"></span>
-												</p>
-												<input type="checkbox" id="clrGrpSeq_10" name="clrGrpSeq"
-													value="8"> <label for="clrGrpSeq_10">따뜻한</label>
+
+								<c:forEach var="attribute" items="${attributes}">
+									<div class="acco_div">
+										<a href="javascript:" class="acco1">${attribute.attribute_name}</a>
+										<div class="acco_cont1">
+											<div class="custom_scroll">
+												<c:forEach var="value"
+													items="${fn:split(attribute.value, ',')}">
+													<p class="chk_txt">
+														<input type="checkbox"
+															id="${attribute.attribute_name}_${value}"
+															name="${attribute.attribute_name}" value="${value}">
+														<label for="${attribute.attribute_name}_${value}">${value}</label>
+													</p>
+												</c:forEach>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="acco_div">
-									<a href="javascript:" class="acco">컨셉</a>
-									<div class="acco_cont">
-										<div class="custom_scroll">
-											<p class="chk_txt">
-												<input type="checkbox" id="cncptCd_1" name="cncptCd"
-													value="CNCPT010"> <label for="cncptCd_1">모던</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="cncptCd_2" name="cncptCd"
-													value="CNCPT020"> <label for="cncptCd_2">클래식</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="cncptCd_3" name="cncptCd"
-													value="CNCPT030"> <label for="cncptCd_3">호텔형</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="cncptCd_4" name="cncptCd"
-													value="CNCPT040"> <label for="cncptCd_4">기능성</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="cncptCd_5" name="cncptCd"
-													value="CNCPT050"> <label for="cncptCd_5">기타</label>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="acco_div">
-									<a href="javascript:" class="acco">타입</a>
-									<div class="acco_cont">
-										<div class="custom_scroll">
-											<p class="chk_txt">
-												<input type="checkbox" id="typeCd_1" name="typeCd"
-													value="TYPE010"> <label for="typeCd_1">T
-													Type</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="typeCd_2" name="typeCd"
-													value="TYPE020"> <label for="typeCd_2">L/C
-													Type</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="typeCd_3" name="typeCd"
-													value="TYPE030"> <label for="typeCd_3">E
-													Type</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="typeCd_4" name="typeCd"
-													value="TYPE040"> <label for="typeCd_4">N
-													Type</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="typeCd_5" name="typeCd"
-													value="TYPE050"> <label for="typeCd_5">A
-													Type</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="typeCd_6" name="typeCd"
-													value="TYPE060"> <label for="typeCd_6">C
-													Type</label>
-											</p>
-											<p class="chk_txt">
-												<input type="checkbox" id="typeCd_7" name="typeCd"
-													value="ETC"> <label for="typeCd_7">기타</label>
-											</p>
-										</div>
-									</div>
-								</div>
+								</c:forEach>
+
 							</div>
 							<div class="btn_div only_web">
 								<a href="javascript:subScript.layerPop('.type_guide')"
@@ -566,40 +376,63 @@
 						<div class="pro_content">
 							<div id="dataAreaY" style="">
 								<div class="list_type4 square motion_list " id="listArea">
-                    <c:forEach var="product" items="${products}" varStatus="status">
-                    <div class="product-item">
-                        <a href="javascript:" onclick="cmmCtrl.details('detailsKey', ${product.product_id}, './view?product_id=${product.product_id}')" class="img" style="height: 284px;">
-                            <div class="swiper swiper-container-horizontal" id="swiper${product.product_id}" data-seq="${product.product_id}" seq="${product.product_id}">
-                                <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
-                                    <div class="swiper-slide swiper-slide-active" style="width: 284px; height: 284px; margin-right: 10px;">
-                                        <span class="frame_img"><img src='./libraryUploadImg/${product.image_url}' alt="" id="img${product.product_id}"></span>
-                                    </div>
-                                </div>
-                                <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
-                            </div>
-                        </a>
-                        <div class="text_div">
-                            <a href="javascript:" class="like btnIntrsPrdct on" data-intrs-prdct="frame_${product.product_id}" data-action="insert">찜하기</a>
-                            <p class="value">${product.value}</p>
-                            <p class="tit">제품명 : ${product.product_name}</p>
-                            <p class="txt">제품설명 : ${product.description}</p>
-                            <p class="txt">가격 : ${product.max_price}</p>
-                            <div class="color_div">
-                                <div class="color_chip">
-                                    <p class="color" href="javascript:">
-                                        <span style="background: ${product.value}"></span>
-                                    </p>
-                                    <div class="info">
-                                        <div>
-                                            <p class="color"></p>
-                                            <p class="txt">${product.value}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </c:forEach>
+									<c:forEach var="product" items="${products}" varStatus="status">
+										<div class="product-item">
+											<a href="javascript:"
+												onclick="cmmCtrl.details('detailsKey', ${product.product_id}, './view?product_id=${product.product_id}')"
+												class="img" style="height: 284px;">
+												<div class="swiper swiper-container-horizontal"
+													id="swiper${product.product_id}"
+													data-seq="${product.product_id}"
+													seq="${product.product_id}">
+													<div class="swiper-wrapper"
+														style="transform: translate3d(0px, 0px, 0px);">
+														<div class="swiper-slide swiper-slide-active"
+															style="width: 284px; height: 284px; margin-right: 10px;">
+															<span class="frame_img"><img
+																src='./libraryUploadImg/${product.image_url}' alt=""
+																id="img${product.product_id}"></span>
+														</div>
+													</div>
+													<span class="swiper-notification" aria-live="assertive"
+														aria-atomic="true"></span>
+												</div>
+											</a>
+											<div class="text_div">
+												<a href="javascript:" class="like btnIntrsPrdct on"
+													data-intrs-prdct="frame_${product.product_id}"
+													data-action="insert">장바구니 담기</a>
+												<p class="tit">제품명: ${product.product_name}</p>
+												<p class="txt">제품설명: ${product.description}</p>
+												<p class="txt">가격: ${product.price}</p>
+												<div class="color_div">
+													<c:forEach var="attribute" items="${product.attributes}">
+														<c:if test="${attribute.attribute_name eq 'color'}">
+															<div class="color_chip">
+																<p class="color" href="javascript:">
+																	<span style="background: ${attribute.value}"></span>
+																</p>
+																<div class="info">
+																	<div>
+																		<p class="color"></p>
+																		<p class="txt">${attribute.value}</p>
+																	</div>
+																</div>
+															</div>
+														</c:if>
+													</c:forEach>
+												</div>
+												<div class="attribute_div">
+													<c:forEach var="attribute" items="${product.attributes}">
+														<c:if test="${attribute.attribute_name ne 'color'}">
+															<p class="attribute">${attribute.attribute_name}:
+																${attribute.value}</p>
+														</c:if>
+													</c:forEach>
+												</div>
+											</div>
+										</div>
+									</c:forEach>
 									<div class="paging" id="pagination">
 										<div class="number">
 											<a class=" on" href="javascript:">1</a><a class=""

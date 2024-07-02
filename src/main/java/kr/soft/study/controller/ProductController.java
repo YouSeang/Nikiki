@@ -70,6 +70,11 @@ public class ProductController {
         model.addAttribute("product_id", productId);
     	return "product/productmanage";
     }
+    //제품 등록 화면 
+    @RequestMapping("/productmanage1")
+    public String productmanage1(HttpServletRequest request, Model model) {
+    	return "product/productmanage";
+    }
     //제품등록
     @RequestMapping("/insertProducts")
     public String insertProducts(HttpServletRequest request, Model model) {
@@ -110,15 +115,20 @@ public class ProductController {
     	
     	return "redirect:/productAllList";
     }
-    
+    //카테고리별 제품리스트
 	@RequestMapping("/bed")
-	public String bedList(Model model) {
+	public String bedList(HttpServletRequest request,Model model) {
 		
+		model.addAttribute("request",request);
 		productCommand= new ProductList(sqlSession);
 		productCommand.execute(model);
 		return "product/bed";
 	}
-	
+    //제품 등록 화면 
+    @RequestMapping("/bedDetail")
+    public String bedDetail(HttpServletRequest request, Model model) {
+    	return "product/bedDetail";
+    }
 	@RequestMapping("/cart")
 	public String cart(Model model) {
 		
