@@ -21,11 +21,11 @@ import kr.soft.study.util.ProductDao;
 public class ProductController {
 
 	
-	@Autowired
+    @Autowired
     private SqlSession sqlSession;
-
+    
     private ProductCommand productCommand;
-
+    
     @RequestMapping("/productmanage")
     public String productmanage(HttpServletRequest request, Model model) {
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
@@ -34,11 +34,16 @@ public class ProductController {
         model.addAttribute("categories", categories);
         model.addAttribute("attributeTypes", attributeTypes);
 
-        if (request.getMethod().equalsIgnoreCase("POST")) {
+        // Debugging output
+        System.out.println("Categories: " + categories);
+        System.out.println("AttributeTypes: " + attributeTypes);
+
+        if (request instanceof MultipartHttpServletRequest) {
             model.addAttribute("request", request);
             productCommand = new ProductManage(sqlSession);
             productCommand.execute(model);
-            return "redirect:/productmanage";
+        } else {
+            System.out.println("Request is not a multipart request.");
         }
 
         return "product/productmanage";
