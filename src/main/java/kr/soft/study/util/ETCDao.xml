@@ -2,10 +2,10 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="kr.soft.study.util.ETCDao">
- <!-- 쿼리문 -->
- 
-    <select id="getSchedules" resultType="map">
+<mapper namespace="kr.soft.study.util.ETCDao">
+	<!-- 쿼리문 -->
+
+	 <select id="getSchedules" resultType="map">
         SELECT hopeDt AS start, name AS title FROM schedules
     </select>
 
@@ -13,10 +13,55 @@
         INSERT INTO schedules (hopeDt, name, gender, hpNo, age, collectYn, thirdPartyYn)
         VALUES (#{hopeDt}, #{name}, #{gender}, #{hpNo}, #{age}, #{collectYn}, #{thirdPartyYn})
     </insert>
-    
+
     <select id="getApplicationCounts" resultType="map">
         SELECT hopeDt, COUNT(*) as application_count
         FROM schedules
         GROUP BY hopeDt
     </select>
- </mapper>
+
+    <insert id="insertReview" parameterType="kr.soft.study.dto.Reviews" useGeneratedKeys="true" keyProperty="reviewId">
+        INSERT INTO Reviews (rvw_type, buy_type, product_id, sns_link_url, scope, content)
+        VALUES (#{rvwType}, #{buyType}, #{productId}, #{snsLinkUrl}, #{scope}, #{content})
+    </insert>
+
+    <insert id="insertReviewImage">
+        INSERT INTO ReviewImages (review_id, image_url)
+        VALUES (#{reviewId}, #{imageUrl})
+    </insert>
+
+    <select id="getReviewsWithImages" resultMap="reviewResultMap">
+    SELECT r.review_id, r.rvw_type, r.buy_type, r.product_id, r.sns_link_url, r.scope, r.content, r.created_at,
+           ri.image_id, ri.review_id as reviewId, ri.image_url, ri.created_at as imageCreatedAt
+    FROM Reviews r
+    LEFT JOIN ReviewImages ri ON r.review_id = ri.review_id
+    ORDER BY r.created_at DESC
+</select>
+
+    <resultMap id="reviewResultMap" type="kr.soft.study.dto.Reviews">
+        <id property="reviewId" column="review_id"/>
+        <result property="rvwType" column="rvw_type"/>
+        <result property="buyType" column="buy_type"/>
+        <result property="productId" column="product_id"/>
+        <result property="snsLinkUrl" column="sns_link_url"/>
+        <result property="scope" column="scope"/>
+        <result property="content" column="content"/>
+        <result property="createdAt" column="created_at"/>
+        <collection property="images" ofType="kr.soft.study.dto.ReviewImages">
+            <id property="imageId" column="image_id"/>
+            <result property="reviewId" column="reviewId"/>
+            <result property="imageUrl" column="image_url"/>
+            <result property="createdAt" column="imageCreatedAt"/>
+        </collection>
+    </resultMap>
+    
+    <select id="getReviewById" parameterType="int" resultMap="reviewResultMap">
+        SELECT r.review_id, r.rvw_type, r.buy_type, r.product_id, r.sns_link_url, r.scope, r.content, r.created_at,
+               ri.image_id, ri.review_id as reviewId, ri.image_url, ri.created_at as imageCreatedAt
+        FROM Reviews r
+        LEFT JOIN ReviewImages ri ON r.review_id = ri.review_id
+        WHERE r.review_id = #{reviewId}
+    </select>
+
+ 
+</mapper>
