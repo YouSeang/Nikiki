@@ -233,9 +233,6 @@ td:first-child {
 
 input[type=text], input[type=password], input[type=date], input[type=email]
 	{
-	width: 100%;
-	padding: 10px;
-	margin: 5px 0;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -245,11 +242,9 @@ input[type=submit] {
 	background-color: #007B7F;
 	color: white;
 	border: none;
-	padding: 10px 20px;
 	cursor: pointer;
 	text-align: center;
 	border-radius: 5px;
-	width: 100%;
 	font-size: 16px;
 }
 
