@@ -2,27 +2,34 @@ package kr.soft.study.dto;
 
 public class ReviewImages {
 
-	private int image_id;
-	private int review_id;
-	private String image_url;
-	
-	public int getImage_id() {
-		return image_id;
+    private int imageId;
+    private int reviewId;
+    private String imageUrl;
+    private String createdAt;
+    
+	public int getImageId() {
+		return imageId;
 	}
-	public void setImage_id(int image_id) {
-		this.image_id = image_id;
+	public void setImageId(int imageId) {
+		this.imageId = imageId;
 	}
-	public int getReview_id() {
-		return review_id;
+	public int getReviewId() {
+		return reviewId;
 	}
-	public void setReview_id(int review_id) {
-		this.review_id = review_id;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
-	public String getImage_url() {
-		return image_url;
+	public String getImageUrl() {
+		return imageUrl;
 	}
-	public void setImage_url(String image_url) {
-		this.image_url = image_url;
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public String getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 	
 	
