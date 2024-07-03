@@ -238,6 +238,18 @@
 
 
 </style>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".goWrite").click(function() {
+                    var pageType = $(this).attr("pageType");
+                    if (pageType === "personal") {
+                        window.location.href = "./experienceMovingChoice";
+                    } else if (pageType === "group") {
+                        window.location.href = "./experienceGroupChoice"; // 필요에 따라 수정
+                    }
+                });
+            });
+        </script>
 <!--//2023-03-15 현행화 e-->
 </div>
 	            <div class="side_dimd"></div>

@@ -147,7 +147,7 @@
                                 침대는 과학! 에이스침대에서 운영하는 이동수면공학연구소의 기술과 노하우가 담긴 <br>
                                 5만여 건의 분석 데이터를 기반으로 고객님에게 맞는 매트리스를 찾아드립니다.
                             </p>
-                            <div class="btn_div"><a href="./step.do" class="btn btn1"><span>시작하기</span></a></div>
+                            <div class="btn_div"><a href="./experienceStep" class="btn btn1"><span>시작하기</span></a></div>
                         </div>
                     </div></div>
 	            <div class="side_dimd"></div>
