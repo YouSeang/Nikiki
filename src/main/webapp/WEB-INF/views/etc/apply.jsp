@@ -1,11 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List, java.util.Map" %>
 
 <!-- Styles and scripts specific to the calendar and form -->
 <link rel="stylesheet" href="https://www.acebed.com/common/js/lib/datetimepicker/jquery.datetimepicker.css" />
 <script type="text/javascript" src="https://www.acebed.com/common/js/lib/datetimepicker/jquery.datetimepicker.js"></script>
 <script src='https://www.acebed.com/common/fullcalendar/dist/index.global.js'></script>
 <script src='https://www.acebed.com/common/fullcalendar/core/locales/ko.global.js'></script>
+
+<link href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css' rel='stylesheet' />
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/locales/ko.min.js'></script>
+
 
 <div id='calendar' style="margin: 20px 0;"></div>
 
@@ -16,14 +21,13 @@
     <div class="pop_cont">
         <div class="custom_scroll">
             <div class="pop_inner">
-                <form id="moveWritePerson" name="moveWritePerson" method="post" action="insert">
+                <form id="moveWritePerson" name="moveWritePerson" method="post" action="./submitSchedule">
                     <input type="hidden" class="notRequired" id="detailsKey" name="detailsKey" value="" />
                     <input type="hidden" class="notRequired" id="areaCd" name="areaCd" value="" />
                     <input type="hidden" class="notRequired" id="csrfKey" name="csrfKey" value="ZZxDEhkjRH8FUFwEsaih" />
 
                     <div class="form_inner">
                         <div class="form_cont">
-
                             <div class="exp_div">
                                 <p class="tit">서비스 신청 일정</p>
                                 <div class="exp_top">
@@ -36,7 +40,6 @@
                                                 </div>
                                             </dd>
                                         </dl>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -54,9 +57,7 @@
                                             </dd>
                                         </dl>
                                         <dl>
-                                            <dt>
-                                                <p>성별 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p>
-                                            </dt>
+                                            <dt><p>성별 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p></dt>
                                             <dd class="fRow">
                                                 <div>
                                                     <label style="margin-right: 10px;"> <input type="radio" name="gender" title="성별" value="M" /> 남자 </label>
@@ -66,11 +67,9 @@
                                                 </div>
                                             </dd>
                                         </dl>
-                                        <!-- 2023-09-14 추가 -->
+                                        <!-- 생년월일 선택 -->
                                         <dl>
-                                            <dt>
-                                                <p>생년월일 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p>
-                                            </dt>
+                                            <dt><p>생년월일 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p></dt>
                                             <dd>
                                                 <div class="select_box lSpan">
                                                     <select name="year" id="year" class="form-control selectBox w30" title="생년월일">
@@ -94,7 +93,7 @@
                                                 </div>
                                             </dd>
                                         </dl>
-                                        <!-- // 2023-09-14 추가 -->
+                                        <!-- 휴대폰 번호 입력 -->
                                         <dl>
                                             <dt><p>휴대폰 번호 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p></dt>
                                             <dd>
@@ -112,9 +111,7 @@
 
                             <div class="borT">
                                 <div class="exp_div exp_agree_div">
-                                    <div>
-                                        <p class="tit">이동수면공학연구소 체험을 위한 개인정보 수집 이용 동의 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p>
-                                    </div>
+                                    <div><p class="tit">이동수면공학연구소 체험을 위한 개인정보 수집 이용 동의 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p></div>
                                     <p class="chk_txt only_pc">
                                         <input tabindex="0" type="checkbox" id="collectYn" name="collectYn" class="notRequired checkAg" title="개인정보 수집 이용 동의" value="Y">
                                         <label for="collectYn" id="ss" tabindex="0">동의합니다</label>
@@ -139,7 +136,7 @@
                                             </thead>
                                             <tbody>
                                             <tr>
-                                                <td>성명, 휴대폰 번호, 성별, 생년월일</td><!-- 2023-05-10 , 2023-09-14 수정 -->
+                                                <td>성명, 휴대폰 번호, 성별, 생년월일</td>
                                                 <td>이동수면공학연구소 체험 관련 안내 및 전화 상담 서비스 제공</td>
                                                 <td>3개월</td>
                                             </tr>
@@ -147,8 +144,8 @@
                                         </table>
                                         <div class="only_m">
                                             <div class="dot_Txt">
-                                                <p>ㆍ 항목 : 성명, 휴대폰 번호, 성별, 생년월일</p><!-- 2023-05-10, 2023-09-14 수정 -->
-                                                <p>ㆍ 수집목적 : 이동수면공학연구소 체험 관련 안내 및 전화 상담 서비스 제공	</p>
+                                                <p>ㆍ 항목 : 성명, 휴대폰 번호, 성별, 생년월일</p>
+                                                <p>ㆍ 수집목적 : 이동수면공학연구소 체험 관련 안내 및 전화 상담 서비스 제공</p>
                                                 <p>ㆍ 보유기간 : 3개월</p>
                                             </div>
                                         </div>
@@ -163,9 +160,7 @@
                                 </div>
 
                                 <div class="exp_div exp_agree_div">
-                                    <div>
-                                        <p class="tit">이동수면공학연구소 체험을 위한 개인정보 3자 제공 이용 동의 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p>
-                                    </div>
+                                    <div><p class="tit">이동수면공학연구소 체험을 위한 개인정보 3자 제공 이용 동의 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p></div>
                                     <p class="chk_txt only_pc">
                                         <input tabindex="0" type="checkbox" id="thirdPartyYn" name="thirdPartyYn" class="notRequired checkAg" title="개인정보 3자 제공 이용 동의" value="Y">
                                         <label for="thirdPartyYn" tabindex="0">동의합니다</label>
@@ -216,9 +211,7 @@
                                     </div>
                                 </div>
                                 <div class="exp_div exp_agree_div pb40">
-                                    <div>
-                                        <p class="tit">만 14세 이상 여부 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p>
-                                    </div>
+                                    <div><p class="tit">만 14세 이상 여부 <strong class="req_input" title="필수입력"><img src="https://www.acebed.com/common/images/req-input-icon.png" alt="필수입력"></strong></p></div>
                                     <p class="chk_txt chk_txt2">
                                         <input type="checkbox" id="age" name="age" title="만 14세 이상 여부" class="notRequired checkAg" value="Y">
                                         <label for="age">만 14세 이상입니다</label>
@@ -227,7 +220,7 @@
                             </div>
 
                             <div class="btn_div">
-                                <a href="javascript:" class="btn btn1" id="slctStoreBtn"><span>신청하기</span></a>
+                                <button type="submit" class="btn btn1" id="slctStoreBtn"><span>신청하기</span></button>
                             </div>
                         </div>
                     </div>
@@ -238,68 +231,71 @@
     <a href="javascript:" class="x_btn">닫기</a>
 </div>
 
-<script type="text/javascript" src="https://www.acebed.com/common/js/lib/datetimepicker/jquery.datetimepicker.ko.js"></script>
-<!-- 풀캘린더용 -->
-<script src='https://www.acebed.com/common/fullcalendar/dist/index.global.js'></script>
-<script src='https://www.acebed.com/common/fullcalendar/core/locales/ko.global.js'></script>
-
 <script type="text/javascript">
-    $(document).ready(function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            locale: 'ko',
-            dateClick: function(info) {
-                $('#hopeDt').val(info.dateStr);
-                showModal();
-            },
-            events: '/fetchSchedules', // URL to fetch events
-        });
-
-        calendar.render();
-
-        $('#moveWritePerson').submit(function(event) {
-            event.preventDefault(); // Prevent the form from submitting normally
-
-            var formData = $(this).serialize(); // Serialize the form data
-
-            $.post('/insertSchedule', formData, function(response) {
-                if (response.success) {
-                    alert('신청이 완료되었습니다.');
-                    calendar.addEvent({
-                        title: response.storeNm,
-                        start: response.hopeDt,
-                        allDay: true
+$(document).ready(function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        locale: 'ko',
+        dateClick: function(info) {
+            $('#hopeDt').val(info.dateStr);
+            showModal();
+        },
+        events: function(fetchInfo, successCallback, failureCallback) {
+            $.ajax({
+                url: '/study/getApplicationCounts',
+                dataType: 'json',
+                success: function(data) {
+                    console.log('Data fetched successfully:', data); // 디버깅용 로그
+                    var events = data.map(function(event) {
+                        var remainingSlots = 5 - event.application_count;
+                        return {
+                            title: event.hopeDt + ' 신청: ' + event.application_count + '/5',
+                            start: event.hopeDt,
+                            display: 'block',
+                            className: 'custom-event',
+                            extendedProps: {
+                                remainingSlots: remainingSlots
+                            }
+                        };
                     });
-                    hideModal();
-                } else {
-                    alert('신청 중 오류가 발생했습니다. 다시 시도해주세요.');
+                    console.log('Events to be added:', events); // 디버깅용 로그
+                    successCallback(events);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Failed to fetch events:', textStatus, errorThrown);
+                    console.error('Response Text:', jqXHR.responseText); // 디버깅용 로그
+                    failureCallback(errorThrown);
                 }
             });
-        });
-
-        function showModal() {
-            $('.modal-overlay').show();
-            $('.layer_pop.online_app.exp_pop').show();
-            $('.custom_scroll').css('overflow-y', 'auto'); // Enable scrolling in the modal content
-            $('body').css('overflow', 'hidden'); // Prevent background scrolling
         }
-
-        function hideModal() {
-            $('.modal-overlay').hide();
-            $('.layer_pop.online_app.exp_pop').hide();
-            $('.custom_scroll').css('overflow-y', 'hidden'); // Disable scrolling in the modal content
-            $('body').css('overflow', 'auto'); // Allow background scrolling again
-        }
-
-        $('.x_btn').click(function() {
-            hideModal();
-        });
     });
+
+    calendar.render();
+
+    function showModal() {
+        $('.modal-overlay').show();
+        $('.layer_pop.online_app.exp_pop').show();
+        $('.custom_scroll').css('overflow-y', 'auto'); 
+        $('body').css('overflow', 'hidden'); 
+    }
+
+    function hideModal() {
+        $('.modal-overlay').hide();
+        $('.layer_pop.online_app.exp_pop').hide();
+        $('.custom_scroll').css('overflow-y', 'hidden'); 
+        $('body').css('overflow', 'auto'); 
+    }
+
+    $('.x_btn').click(function() {
+        hideModal();
+    });
+});
 </script>
 
+
 <style>
-    .layer_pop { 
+.layer_pop { 
     display: none;
     position: fixed;
     top: 50%;
@@ -327,5 +323,13 @@
 .custom_scroll {
     max-height: calc(100vh - 100px); /* Adjust this value to change the modal height */
     overflow-y: auto;
+}
+
+.custom-event .fc-event-title-container {
+    cursor: pointer;
+}
+
+.custom-event .fc-event-title {
+    font-weight: bold;
 }
 </style>

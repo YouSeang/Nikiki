@@ -245,7 +245,7 @@
                     if (pageType === "personal") {
                         window.location.href = "./experienceMovingChoice";
                     } else if (pageType === "group") {
-                        window.location.href = "./groupExperienceMovingChoice"; // 필요에 따라 수정
+                        window.location.href = "./experienceGroupChoice"; // 필요에 따라 수정
                     }
                 });
             });

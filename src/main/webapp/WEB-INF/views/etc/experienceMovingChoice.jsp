@@ -11,7 +11,8 @@
     <meta http-equiv="content-language" content="kr" />
     <meta http-equiv="imagetoolbar" content="no" />
     <meta name="keywords" content="에이스침대" />
-    <meta name="description" content="에이스침대의 공식 홈페이지 입니다." />
+    <meta name="description" content="에이스침대의 
+    공식 홈페이지 입니다." />
     <!-- Include other meta tags and CSS files as required -->
     <link rel="stylesheet" href="https://www.acebed.com/common/css/common.css" />
     <link rel="stylesheet" href="https://www.acebed.com/common/css/acebed_style.css" />
