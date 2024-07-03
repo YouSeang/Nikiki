@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -123,15 +123,16 @@
         <script type="text/javascript" src="/common/js/selectivizr.js"></script>
         <![endif]-->
 <script type="text/javascript">
-        //<![CDATA[[
-			jQuery(document).ready(function(){
-				if (/((MSIE)|(Trident))/.test(navigator.userAgent) && cmmCtrl.getCookie("browserUpdate") != "false")
-				{
+	//<![CDATA[[
+	jQuery(document).ready(
+			function() {
+				if (/((MSIE)|(Trident))/.test(navigator.userAgent)
+						&& cmmCtrl.getCookie("browserUpdate") != "false") {
 					subScript.layerPop(".browser_pop");
 				}
-        	});
-        //]]>
-        </script>
+			});
+	//]]>
+</script>
 <script type="application/ld+json">
 			{
  				"@context": "http://schema.org",
@@ -149,38 +150,50 @@
 		</script>
 
 <script>
-				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
 
-				ga('create', 'UA-34811848-3', 'acebed.com');
-				ga('send', 'pageview');
-			</script>
+	ga('create', 'UA-34811848-3', 'acebed.com');
+	ga('send', 'pageview');
+</script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
-				if(!wcs_add) var wcs_add = {};
-				wcs_add["wa"] = "1276645a581ed94";
-				wcs_do();
-			</script>
+	if (!wcs_add)
+		var wcs_add = {};
+	wcs_add["wa"] = "1276645a581ed94";
+	wcs_do();
+</script>
 <script type="text/javascript">
-				if (!wcs_add) var wcs_add={};
-				wcs_add["wa"] = "s_49cc4fcb32e0";
-				if (!_nasa) var _nasa={};
-				wcs.inflow();
-				wcs_do(_nasa);
-			</script>
+	if (!wcs_add)
+		var wcs_add = {};
+	wcs_add["wa"] = "s_49cc4fcb32e0";
+	if (!_nasa)
+		var _nasa = {};
+	wcs.inflow();
+	wcs_do(_nasa);
+</script>
 
 <!-- Google tag (gtag.js) -->
 <script async
 	src="https://www.googletagmanager.com/gtag/js?id=G-9DZP1N4254"></script>
 <script>
-				window.dataLayer = window.dataLayer || [];
-				function gtag(){dataLayer.push(arguments);}
-				gtag('js', new Date());
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
 
-				gtag('config', 'G-9DZP1N4254');
-			</script>
+	gtag('config', 'G-9DZP1N4254');
+</script>
 </head>
 <jsp:include page="../header.jsp" />
 <div class="mypage_menu" data-swiftype-index="false">
@@ -236,85 +249,40 @@
 							</div>
 						</div>
 						<div class="list_type4 square motion_list type4xn listDiv">
-							<div class="list">
-								<a href="/product/bed/frame/view.do?detailsKey=180" class="img">
-									<span><img src="/image/2022/5/22053002564577142340.jpg"
-										alt=""></span> <strong class="value"> 프레임 </strong>
-								</a>
-								<div class="text_div">
-									<a href="javascript:" class="like on btnLike" data-seq="180"
-										data-type-cd="frame">찜하기</a>
-									<p class="tit">FOGLIA</p>
-								</div>
-								<div class="like_txt_div">
-									<!-- 찜하기 클릭 시 토스트 메세지 -->
 
-									<div class="dislike_txt">
-										<!-- 찜하기 해제 시 노출 -->
-										<p class="tit">
-											관심 제품에서<br> 제외합니다.
-										</p>
-									</div>
-								</div>
-							</div>
 							<div class="list">
-								<a href="/product/bed/frame/view.do?detailsKey=168" class="img">
-									<span><img src="/image/2024/1/24010503004570651565.jpg"
-										alt=""></span> <strong class="value"> 프레임 </strong>
-								</a>
-								<div class="text_div">
-									<a href="javascript:" class="like on btnLike" data-seq="168"
-										data-type-cd="frame">찜하기</a>
-									<p class="tit">LUCE-III</p>
-								</div>
-								<div class="like_txt_div">
-									<!-- 찜하기 클릭 시 토스트 메세지 -->
-									<div class="like_txt">
-										<!-- 찜하기 클릭 시 노출 -->
-										<p class="tit">
-											관심 제품으로<br> 찜 하였습니다.
-										</p>
-										<p class="txt">
-											마이페이지 관심 제품/매장<br> 메뉴에서 확인하실 수 있습니다.
-										</p>
-									</div>
-									<div class="dislike_txt">
-										<!-- 찜하기 해제 시 노출 -->
-										<p class="tit">
-											관심 제품에서<br> 제외합니다.
-										</p>
-									</div>
-								</div>
+								<c:if test="${not empty products}">
+									<c:forEach var="product" items="${products}">
+										<div class="product-card">
+											<form id="cartForm_${product.product_id}"
+												action="./deleteCart" method="post">
+												<input type="hidden" name="product_id"
+													value="${product.product_id}"> <img
+													src="<c:url value='./libraryUploadImg/${product.image_url}' />"
+													alt="${product.product_name}">
+												<div class="product-info">
+													<h3>${product.product_name}</h3>
+													<p>${product.description}</p>
+													<p>가격: ${product.price}원</p>
+													<button type="submit">장바구니에서 삭제</button>
+												</div>
+											</form>
+											<form id="orderForm_${product.product_id}"
+												action="./orderProduct" method="post">
+												<input type="hidden" name="product_id"
+													value="${product.product_id}">
+												<button type="submit">주문하기</button>
+											</form>
+										</div>
+									</c:forEach>
+
+								</c:if>
+
+								<c:if test="${empty products}">
+									<p>장바구니에 담긴 제품이 없습니다.</p>
+								</c:if>
 							</div>
-							<div class="list">
-								<a href="/product/bed/frame/view.do?detailsKey=219" class="img">
-									<span><img src="/image/2023/9/23092609124638149234.jpg"
-										alt=""></span> <strong class="value"> 프레임 </strong>
-								</a>
-								<div class="text_div">
-									<a href="javascript:" class="like on btnLike" data-seq="219"
-										data-type-cd="frame">찜하기</a>
-									<p class="tit">AMANDE</p>
-								</div>
-								<div class="like_txt_div">
-									<!-- 찜하기 클릭 시 토스트 메세지 -->
-									<div class="like_txt">
-										<!-- 찜하기 클릭 시 노출 -->
-										<p class="tit">
-											관심 제품으로<br> 찜 하였습니다.
-										</p>
-										<p class="txt">
-											마이페이지 관심 제품/매장<br> 메뉴에서 확인하실 수 있습니다.
-										</p>
-									</div>
-									<div class="dislike_txt">
-										<!-- 찜하기 해제 시 노출 -->
-										<p class="tit">
-											관심 제품에서<br> 제외합니다.
-										</p>
-									</div>
-								</div>
-							</div>
+
 						</div>
 						<!--list-->
 					</div>

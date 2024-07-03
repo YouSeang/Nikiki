@@ -209,19 +209,7 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-        $(document).ready(function() {
-            $('.acco1').click(function() {
-                var $accoCont = $(this).next('.acco_cont1');
-                $accoCont.slideToggle();
-                
-                // 스크롤 자동으로 올리기
-                var offsetTop = $accoCont.offset().top; // 원하는 위치로 조정
-                $('html, body').animate({ scrollTop: offsetTop }, 500);
-                return false; // 기본 이벤트 방지
-            });
-        });
-    </script>
+
 </head>
 <jsp:include page="../header.jsp" />
 
@@ -375,64 +363,36 @@
 						</div>
 						<div class="pro_content">
 							<div id="dataAreaY" style="">
-								<div class="list_type4 square motion_list " id="listArea">
-									<c:forEach var="product" items="${products}" varStatus="status">
-										<div class="product-item">
-											<a href="javascript:"
-												onclick="cmmCtrl.details('detailsKey', ${product.product_id}, './view?product_id=${product.product_id}')"
-												class="img" style="height: 284px;">
-												<div class="swiper swiper-container-horizontal"
-													id="swiper${product.product_id}"
-													data-seq="${product.product_id}"
-													seq="${product.product_id}">
-													<div class="swiper-wrapper"
-														style="transform: translate3d(0px, 0px, 0px);">
-														<div class="swiper-slide swiper-slide-active"
-															style="width: 284px; height: 284px; margin-right: 10px;">
-															<span class="frame_img"><img
-																src='./libraryUploadImg/${product.image_url}' alt=""
-																id="img${product.product_id}"></span>
-														</div>
-													</div>
-													<span class="swiper-notification" aria-live="assertive"
-														aria-atomic="true"></span>
-												</div>
-											</a>
-											<div class="text_div">
-												<a href="javascript:" class="like btnIntrsPrdct on"
-													data-intrs-prdct="frame_${product.product_id}"
-													data-action="insert">장바구니 담기</a>
-												<p class="tit">제품명: ${product.product_name}</p>
-												<p class="txt">제품설명: ${product.description}</p>
-												<p class="txt">가격: ${product.price}</p>
-												<div class="color_div">
-													<c:forEach var="attribute" items="${product.attributes}">
-														<c:if test="${attribute.attribute_name eq 'color'}">
-															<div class="color_chip">
-																<p class="color" href="javascript:">
-																	<span style="background: ${attribute.value}"></span>
-																</p>
-																<div class="info">
-																	<div>
-																		<p class="color"></p>
-																		<p class="txt">${attribute.value}</p>
-																	</div>
-																</div>
-															</div>
-														</c:if>
-													</c:forEach>
-												</div>
-												<div class="attribute_div">
-													<c:forEach var="attribute" items="${product.attributes}">
-														<c:if test="${attribute.attribute_name ne 'color'}">
-															<p class="attribute">${attribute.attribute_name}:
-																${attribute.value}</p>
-														</c:if>
-													</c:forEach>
-												</div>
-											</div>
-										</div>
-									</c:forEach>
+<div class="list_type4 square motion_list" id="listArea">
+    <c:forEach var="product" items="${products}" varStatus="status">
+        <div class="product-item">
+            <form action="./addCart" method="post">
+                <input type="hidden" name="product_id" value="${product.product_id}">
+                <input type="hidden" name="price" value="${product.price}">
+
+                <a href="./bedDetail?product_id=${product.product_id}" class="img" style="height: 284px;">
+                    <div class="swiper swiper-container-horizontal" id="swiper${product.product_id}" data-seq="${product.product_id}" seq="${product.product_id}">
+                        <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="swiper-slide swiper-slide-active" style="width: 284px; height: 284px; margin-right: 10px;">
+                                <span class="frame_img"><img src='./libraryUploadImg/${product.image_url}' alt="" id="img${product.product_id}"></span>
+                            </div>
+                        </div>
+                        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                    </div>
+                </a>
+
+                <div class="text_div">
+                    <p class="tit">제품명: ${product.product_name}</p>
+                    <p class="txt">제품설명: ${product.description}</p>
+                    <p class="txt">가격: ${product.price}</p>
+                    <input type="submit" value="🛒장바구니 담기">
+                </div>
+            </form>
+        </div>
+    </c:forEach>
+</div>
+
+
 									<div class="paging" id="pagination">
 										<div class="number">
 											<a class=" on" href="javascript:">1</a><a class=""
