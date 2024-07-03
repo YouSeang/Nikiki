@@ -22,6 +22,7 @@ public class ProductList implements ProductCommand {
 	public void execute(Model model) {
 		// TODO Auto-generated method stub
 		ProductDao dao=sqlSession.getMapper(ProductDao.class);
+		// 지훈 오빠 혼난다. . . .
 		List<AllProduct>dto=dao.getAllProduct();
 		model.addAttribute("products",dto);
 		

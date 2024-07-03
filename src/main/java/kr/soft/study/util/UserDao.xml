@@ -7,17 +7,41 @@
 
 	<!-- 회원가입 -->
 	<insert id="loginJoin">
-		insert into Users (name,birth_date,phone_number,email,password) values
-		(#{param1}, #{param2},#{param3},#{param4},#{param5})
+		insert into Users
+		(name,birth_date,phone_number,email,password) values
+		(#{param1},
+		#{param2},#{param3},#{param4},#{param5})
 	</insert>
 
 	<!-- 로그인 아이디랑 비밀번호 확인 -->
 	<select id="checkpw" resultType="kr.soft.study.dto.Users">
-		select * from Users where email=#{param1} and password=#{param2}
+		select * from Users where
+		email=#{param1} and password=#{param2}
 	</select>
 
-	<!-- 암호화된 비밀번호 확인 -->
+	<!-- 일반사용자 이메일 확인 및 이메일 중복확인 -->
 	<select id="isLogin" resultType="kr.soft.study.dto.Users">
 		select * from Users where email = #{param}
 	</select>
+
+	<!-- 관리자 회원 목록 -->
+	<select id="list" resultType="kr.soft.study.dto.Users">
+		select user_id,name,birth_date,phone_number,email from Users
+	</select>
+
+	<!-- 이메일 중복 확인 시 이메일로 사용자 조회 -->
+	<select id="isLoginByEmail" parameterType="string"
+		resultType="kr.soft.study.dto.Users">
+		SELECT * FROM Users WHERE email = #{email}
+	</select>
+
+	<!-- 회원정보수정 -->
+	<update id="updateUser" parameterType="kr.soft.study.dto.Users">
+		update Users set name = #{param1}, birth_date = #{param2}, phone_number = #{param3}, email = #{param4}
+		WHERE email = #{param6}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM Users WHERE email = #{paramo}
+	</delete>
 </mapper>
