@@ -1,5 +1,8 @@
 package kr.soft.study.command.user;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
@@ -28,7 +31,6 @@ public class Join implements UserCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		String name = request.getParameter("name");
-		
 		String birthYear = request.getParameter("birthYear");
 		String birthMonth = request.getParameter("birthMonth");
 		String birthDay = request.getParameter("birthDay");
@@ -56,6 +58,16 @@ public class Join implements UserCommand {
 		
 		 // 생년월일을 합쳐서 하나의 문자열로 변환
         String birth_date = birthYear + "-" + birthMonth + "-" + birthDay;
+        
+        // LocalDate로 변환
+        LocalDate birthDate = null;
+        try {
+            birthDate = LocalDate.parse(birth_date, DateTimeFormatter.ofPattern("yyyy-M-d"));
+            System.out.println("Birth Date (LocalDate): " + birthDate); // 변환된 LocalDate 출력
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+            // 예외 처리: 잘못된 날짜 형식
+        }
 
         // 비밀번호 암호화
         try {
