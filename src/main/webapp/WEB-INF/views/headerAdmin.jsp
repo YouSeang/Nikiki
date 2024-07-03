@@ -179,22 +179,13 @@
 </head>
 <body data-login-flag="N" data-device-type="web"
 	data-curt-dt="2024-06-28">
-	<div id="wrap">
 		<header data-swiftype-index="false">
 			<a href="/main/index.do" class="logo"><h1>ACE BED</h1></a>
 			<div class="utill_div">
 				<c:choose>
 					<c:when test="${not empty sessionScope.email}">
 						<a href="./logout">로그아웃</a>
-						<div class="my_page">
 							<a href="javascript:"><span>관리자페이지</span></a>
-							<div class="slc_div">
-								<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
-									href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
-									href="/my-page/product-store/index.do">관심상품/매장</a> <a
-									href="/my-page/counsel/index.do">상담내역</a> <a
-									href="/my-page/review/index.do">나의 후기</a>
-							</div>
 					</c:when>
 					<c:otherwise>
 						<a href="./loginView">로그인</a>
@@ -206,7 +197,7 @@
 				<div class="gnb_section gnb1">
 					<div class="one_dep">
 						<div>
-							<a href="/product/bed/frame/list.do"> <span class="one">MEMBER</span>
+							<a href="./memberView"> <span class="one">MEMBER</span>
 								<span>회원관리</span>
 							</a>
 						</div>
@@ -228,14 +219,6 @@
 						<div>
 							<a href="/product/sleep-care/main/index.do"> <span
 								class="one">REVIEW</span> <span>후기관리</span>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="gnb_section gnb2">
-					<div class="one_dep">
-						<div>
-							<a href="/bed-science/spring/index.do"> <span>침대과학</span>
 							</a>
 						</div>
 					</div>
@@ -278,7 +261,7 @@
 								</p>
 								<div>
 									<div class="one_d">
-										<a href="javascript:">MEMBER</a>
+										<a href="./memberView">MEMBER</a>
 									</div>
 								</div>
 							</div>
@@ -345,7 +328,7 @@
 						</div>
 						<div class="menu_list_div m_acco_menu">
 							<div class="menu">
-								<a href="javascript:" class="one_d">회원관리</a>
+								 <a href="./memberView" class="one_d">회원관리</a>
 							</div>
 							<div class="menu">
 								<a href="javascript:" class="one_d">재고 및 매출관리</a>
