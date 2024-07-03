@@ -28,13 +28,8 @@ public class ProductList implements ProductCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String category_name = request.getParameter("category_name");
 		ProductDao dao=sqlSession.getMapper(ProductDao.class);
-<<<<<<< HEAD
 		List<Product> dto=dao.getProductCategoty(category_name);
 		List<Map<String, String>> Adto=dao.getAttributeValues();
-=======
-		// 지훈 오빠 혼난다. . . .
-		List<AllProduct>dto=dao.getAllProduct();
->>>>>>> refs/heads/main
 		model.addAttribute("products",dto);
 		model.addAttribute("attributes",Adto);
 		
