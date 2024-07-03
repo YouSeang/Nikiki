@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -160,7 +160,6 @@
 	ga('create', 'UA-34811848-3', 'acebed.com');
 	ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
 	if (!wcs_add)
 		var wcs_add = {};
@@ -265,58 +264,53 @@ a.add-member {
 a.add-member:hover {
 	background-color: #005f5f;
 }
+
 .button-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
 </style>
 
 </head>
+<body>
 <jsp:include page="../headerAdmin.jsp" />
-<div id="content" data-swiftype-name="body" data-swiftype-type="text"
-	data-swiftype-index="true">
-	<div id="mainPage" class="mainCon"
-		data-controller="controller/fm/fma/FMAMainCtrl"
-		data-csrf-key="RZcOWpYpzpnovCucXNty">
-		<div class="section one swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<div class="container">
-						<h2>Member List</h2>
-						<br> <br> <br>
-						<table>
-							<tr>
-								<th>ID</th>
-								<th>Name</th>
-								<th>Birthday</th>
-								<th>phone_number</th>
-								<th>email</th>
-							</tr>
-							<c:forEach items="${list}" var="dto">
-							<tr>
-								<td>${dto.user_id }</td>
-								<td>${dto.name}</td>
-								<td>${dto.birth_date}</td>
-								<td>${dto.phone_number}</td>
-								<td>${dto.email}</td>
-							</tr>
-							</c:forEach>
-						</table>
-						<br> <br> <br>
-						<div class="button-container">
-							<form action="./add" method="get">
-								<input type="submit" value="Add New Member" class="add-member">
-							</form>
-							<form action="/change" method="get">
-								<input type="submit" value="Modify" class="add-member">
-							</form>
-							<form action="./delete" method="get">
-								<input type="submit" value="Delete" class="add-member">
-							</form>
-						</div>
-					</div>
+<div id="mainPage" class="mainCon"
+	data-controller="controller/fm/fma/FMAMainCtrl"
+	data-csrf-key="RZcOWpYpzpnovCucXNty">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<div class="container">
+				<h2>Member List</h2>
+				<br> <br> <br>
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Birthday</th>
+						<th>phone_number</th>
+						<th>email</th>
+					</tr>
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td>${dto.user_id }</td>
+							<td>${dto.name}</td>
+							<td>${dto.birth_date}</td>
+							<td>${dto.phone_number}</td>
+							<td><a href="memberUpdateView?email=${dto.email}">${dto.email}</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+				<br> <br> <br>
+				<div class="button-container">
+					<form action="./delete" method="get">
+						<input type="submit" value="Delete" class="add-member">
+					</form>
 				</div>
 			</div>
-
-			<jsp:include page="../footer.jsp" />
+		</div>
+	</div>
+</div>
+<jsp:include page="../footer.jsp" />
+</body>
+</html>

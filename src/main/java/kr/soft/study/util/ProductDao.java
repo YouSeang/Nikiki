@@ -19,7 +19,7 @@ public interface ProductDao {
     void deleteAttribute(int attribute_id);
     void deleteProductAttribute(int product_id);
     void deleteProduct(int product_id);
-    //지훈 오빠 혼난다.
+    //지훈 오빠 혼난다. 
 	List<AllProduct> getAllProduct();
 }
 

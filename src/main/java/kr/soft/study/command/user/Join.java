@@ -31,7 +31,6 @@ public class Join implements UserCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 
 		String name = request.getParameter("name");
-		
 		String birthYear = request.getParameter("birthYear");
 		String birthMonth = request.getParameter("birthMonth");
 		String birthDay = request.getParameter("birthDay");

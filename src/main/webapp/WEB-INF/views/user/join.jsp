@@ -1400,12 +1400,78 @@
 													<input type="text" id="email" name="email" title="이메일"
 														placeholder="" maxlength="50"> <input
 														type="hidden" class="notRequired" name="emailChkVal">
-													<a href="javascript:void(0);" class="input_btn emailChk" onclick="checkEmail()"><span>중복확인</span></a>
+													<a href="javascript:void(0);" class="input_btn emailChk"
+														onclick="checkEmail()"><span>중복확인</span></a>
 												</div>
 												<p class="vali_txt emailChkTxt" style="display: none;">입력한
 													이메일 주소로 가입된 정보가 있습니다.</p>
 											</dd>
 										</dl>
+										
+										<script>
+											function checkEmail() {
+												var email = document
+														.getElementById("email").value;
+												var emailChkTxt = document
+														.querySelector(".emailChkTxt");
+
+												if (email === "") {
+													alert("이메일을 입력하세요.");
+													return;
+												}
+
+												var xhr = new XMLHttpRequest();
+												xhr
+														.open(
+																"GET",
+																"checkEmail?email="
+																		+ encodeURIComponent(email),
+																true); // 상대 경로로 변경
+												xhr.onreadystatechange = function() {
+													if (xhr.readyState === 4) {
+														if (xhr.status === 200) {
+															try {
+																var response = JSON
+																		.parse(xhr.responseText);
+																console
+																		.log(response); // 디버깅 메시지
+																if (response.exists) {
+																	emailChkTxt.style.display = "block";
+																	alert("입력한 이메일 주소로 가입된 정보가 있습니다.");
+																} else {
+																	emailChkTxt.style.display = "none";
+																	alert("사용 가능한 이메일입니다.");
+																}
+															} catch (e) {
+																console
+																		.error("JSON 파싱 오류: "
+																				+ e); // JSON 파싱 오류 메시지
+															}
+														} else {
+															console
+																	.error("AJAX 요청 실패: "
+																			+ xhr.status); // 오류 메시지
+														}
+													}
+												};
+												xhr.onerror = function() {
+													console
+															.error("AJAX 요청 오류 발생"); // AJAX 요청 자체의 오류 메시지
+												};
+												xhr.send();
+											}
+
+											// 폼 제출 방지
+											document
+													.getElementById("emailForm")
+													.addEventListener(
+															"submit",
+															function(event) {
+																event
+																		.preventDefault();
+																checkEmail();
+															});
+										</script>
 										<dl>
 											<dt class="essen">
 												<p>비밀번호</p>
@@ -1582,19 +1648,5 @@
 		
 	</script>
 
-	<script type="text/javascript">
-		if (!wcs_add)
-			var wcs_add = {};
-
-		wcs_add["wa"] = "s_49cc4fcb32e0";
-
-		if (!_nasa)
-			var _nasa = {};
-
-		if (window.wcs) {
-			wcs.inflow("acebed.com");
-			wcs_do(_nasa);
-		}
-	</script>
 </body>
 </html>

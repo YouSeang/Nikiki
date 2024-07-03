@@ -8,7 +8,7 @@ public class Users {
 
 	private int user_id;
 	private String name;
-	private String  birth_date;
+	private String birth_date;
 	private String phone_number;
 	private String email;
 	private String password;

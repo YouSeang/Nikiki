@@ -160,7 +160,6 @@
 	ga('create', 'UA-34811848-3', 'acebed.com');
 	ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
 	if (!wcs_add)
 		var wcs_add = {};
@@ -193,7 +192,8 @@
 <style>
 body {
 	font-family: Arial, sans-serif;
-	background-color: #f2f2f2;
+	background-color: #f0f8ff;
+	color: #333;
 	margin: 0;
 	padding: 0;
 	display: flex;
@@ -202,94 +202,100 @@ body {
 	height: 100vh;
 }
 
-.form-container {
-	background-color: white;
+.container {
+	width: 50%;
+	background-color: #A9F5F2;
 	padding: 20px;
-	border-radius: 8px;
+	border-radius: 10px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	width: 600px;
-	max-width: 100%;
+}
+
+h2 {
+	color: #007B7F;
+	text-align: center;
 }
 
 table {
 	width: 100%;
+	margin: 20px 0;
 	border-collapse: collapse;
 }
 
-td {
+table, td {
 	padding: 10px;
+	text-align: left;
 }
 
 td:first-child {
 	text-align: right;
-	font-weight: bold;
-	background-color: #f9f9f9;
+	padding-right: 20px;
 }
 
-input[type="text"], textarea {
+input[type=text], input[type=password], input[type=date], input[type=email]
+	{
 	width: 100%;
-	padding: 8px;
+	padding: 10px;
+	margin: 5px 0;
+	box-sizing: border-box;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	border-radius: 5px;
 }
 
-input[type="submit"] {
-	background-color: #4CAF50;
+input[type=submit] {
+	background-color: #007B7F;
 	color: white;
 	border: none;
 	padding: 10px 20px;
 	cursor: pointer;
-	border-radius: 4px;
+	text-align: center;
+	border-radius: 5px;
+	width: 100%;
+	font-size: 16px;
 }
 
-input[type="submit"]:hover {
-	background-color: #45a049;
-}
-
-a {
-	color: #4CAF50;
-	text-decoration: none;
-	margin-left: 10px;
-}
-
-a:hover {
-	text-decoration: underline;
+input[type=submit]:hover {
+	background-color: #005f5f;
 }
 </style>
 
 </head>
-<jsp:include page="../headerAdmin.jsp" />
-<div id="content" data-swiftype-name="body" data-swiftype-type="text"
-	data-swiftype-index="true">
+<body>
+	<jsp:include page="../headerAdmin.jsp" />
 	<div id="mainPage" class="mainCon"
 		data-controller="controller/fm/fma/FMAMainCtrl"
 		data-csrf-key="RZcOWpYpzpnovCucXNty">
-		<div class="section one swiper-container">
-			<div class="swiper-wrapper">
-				<div class="swiper-slide">
-					<div class="form-container">
-						<table border="1">
-							<form action="write" method="post">
-								<tr>
-									<td>이름</td>
-									<td><input type="text" name="name" size="50"></td>
-								</tr>
-								<tr>
-									<td>제목</td>
-									<td><input type="text" name="bTitle" size="50"></td>
-								</tr>
-								<tr>
-									<td>내용</td>
-									<td><textarea name="bContent" rows="10"></textarea></td>
-								</tr>
-								<tr>
-									<td colspan="2" style="text-align: center;"><input
-										type="submit" value="입력"> <a href="list.do">목록보기</a></td>
-								</tr>
-							</form>
-						</table>
-					</div>
-				</div>
+		<div class="swiper-wrapper">
+			<div class="swiper-slide">
+				<h2>Update Member</h2>
+				<form action="./update" method="post">
+					<input type="hidden" name="oldEmail" value="${user.email}">
+					<table>
+						<tr>
+							<td>Name:</td>
+							<td><input type="text" name="name" value="${user.name}"
+								required></td>
+						</tr>
+						<tr>
+							<td>Birth Date:</td>
+							<td><input type="date" name="birthDate"
+								value="${user.birth_date}" required></td>
+						</tr>
+						<tr>
+							<td>Phone Number:</td>
+							<td><input type="text" name="phoneNumber"
+								value="${user.phone_number}" required></td>
+						</tr>
+						<tr>
+							<td>New Email:</td>
+							<td><input type="email" name="newEmail"
+								value="${user.email}" required></td>
+						</tr>
+					</table>
+					<input type="submit" value="Update">
+				</form>
 			</div>
-
-			<jsp:include page="../footer.jsp" />
+		</div>
+	</div>
+	<jsp:include page="../footer.jsp" />
+</body>
+</html>

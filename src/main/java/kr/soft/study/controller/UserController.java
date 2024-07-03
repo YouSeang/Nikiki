@@ -9,17 +9,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.google.gson.Gson;
 
 //import kr.soft.study.command.user.Join;
 import kr.soft.study.command.user.UserCommand;
+import kr.soft.study.command.user.UserList;
+import kr.soft.study.command.user.UserUpdate;
+import kr.soft.study.dto.Users;
 import kr.soft.study.util.UserDao;
 import kr.soft.study.command.user.Login;
+import kr.soft.study.command.user.CheckEmail;
 import kr.soft.study.command.user.Join;
 
 @Controller
 public class UserController {
 
 	private UserCommand command;
+	private CheckEmail checkEmailCommand;
+	private UserList userList;
+	private UserUpdate userUpdate;
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -48,7 +58,7 @@ public class UserController {
 		return "user/login";
 	}
 
-	// 관리자 홈화면이동
+	// 관리자 홈화면 이동
 	@RequestMapping("/admin")
 	public String admin(Model model) {
 
@@ -57,41 +67,63 @@ public class UserController {
 		return "admin";
 	}
 
-	// 관리자 회원목록 화면이동
+	// 관리자 회원목록
 	@RequestMapping("/memberView")
-	public String memberView(Model model) {
+	public String memberView(HttpSession session, HttpServletRequest request,Model model) {
 		System.out.println("memberView()");
-		
-		UserDao userDao = sqlSession.getMapper(UserDao.class);
-		model.addAttribute("list", userDao.list());
-		
-		return "user/memberView";
+		 model.addAttribute("request", request);
+
+	        userList  = new UserList(sqlSession);
+	        userList.execute(model);
+	        String path = (String) model.asMap().get("path");
+	        
+	        return path;
 	}
-	
-//	// 관리자 회원추가 화면이동
-//		@RequestMapping("/add")
-//		public String add(Model model) {
-//			System.out.println("add()");
-//			
-//			UserDao userDao = sqlSession.getMapper(UserDao.class);
-//			model.addAttribute("add", userDao.add());
-//			
-//			return "user/addNewMember";
-//		}
-	
-	
+
 	// 관리자 회원삭제 화면이동
 	@RequestMapping("/delete")
 	public String delete(HttpServletRequest request, Model model) {
 		System.out.println("delete()");
-		
+
 		String user_id = request.getParameter("user_id");
-		
+
 		UserDao dao = sqlSession.getMapper(UserDao.class);
 		dao.delete(user_id);
-		
+
 		return "redirect:memberView";
 	}
+	
+	// 관리자 회원수정화면 이동
+    @RequestMapping(value = "/memberUpdateView", method = RequestMethod.GET)
+    public String memberUpdateView(@RequestParam("email") String email, HttpSession session, HttpServletRequest request, Model model) {
+        System.out.println("memberUpdateView()");
+        model.addAttribute("request", request);
+        model.addAttribute("email", email);
+        
+     // 이메일을 통해 사용자 정보를 조회
+        UserDao userDao = sqlSession.getMapper(UserDao.class);
+        Users user = userDao.isLogin(email);
+        
+        if (user != null) {
+            model.addAttribute("user", user); // 사용자 정보를 모델에 추가
+            return "user/memberUpdateView"; // 회원 정보 수정 페이지로 이동
+        } else {
+            model.addAttribute("errorMessage", "사용자를 찾을 수 없습니다.");
+            return "errorPage"; // 에러 페이지로 이동
+        }
+    }
+    // 관리자 회원 정보 수정
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String update(HttpSession session, HttpServletRequest request, Model model) {
+        System.out.println("update()");
+        model.addAttribute("request", request);
+
+        userUpdate = new UserUpdate(sqlSession);
+        userUpdate.execute(model);
+        String path = (String) model.asMap().get("path");
+        
+        return path;
+    }
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, HttpServletRequest request, Model model) {
@@ -110,13 +142,10 @@ public class UserController {
 
 	// 회원가입
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(@RequestParam("name") String name, HttpSession Session, HttpServletRequest request,
-			Model model) {
+	public String join(HttpSession Session, HttpServletRequest request, Model model) {
 
 		System.out.println("join() 메서드 시작");
 		model.addAttribute("request", request);
-//		model.addAttribute("name", name);
-		System.out.println("name :" + name);
 		command = new Join(sqlSession);
 		command.execute(model);
 		String path = (String) model.asMap().get("path");
@@ -124,6 +153,32 @@ public class UserController {
 
 		return path;
 	}
+
+	// 이메일 중복 확인
+	@RequestMapping(value = "/checkEmail", method = RequestMethod.GET)
+	@ResponseBody
+	 public String checkEmail(@RequestParam("email") String email) {
+		System.out.println("checkEmail() 메서드 시작 - email: " + email);
+        checkEmailCommand = new CheckEmail(sqlSession);
+        boolean exists = checkEmailCommand.checkEmailExists(email);
+        System.out.println("이메일 존재 여부: " + exists); // 디버깅 메시지
+
+
+        Gson gson = new Gson();
+        return gson.toJson(new EmailCheckResponse(exists));
+    }
+
+    private static class EmailCheckResponse {
+        private boolean exists;
+
+        public EmailCheckResponse(boolean exists) {
+            this.exists = exists;
+        }
+
+        public boolean isExists() {
+            return exists;
+        }
+    }
 
 	// 로그아웃
 	@RequestMapping("/logout")
@@ -143,13 +198,5 @@ public class UserController {
 		System.out.println("joinView()");
 		return "user/join";
 	}
-	
-	@RequestMapping(value="/modify", method=RequestMethod.POST)
-		private void SYSOUT() {
-			// TODO Auto-generated method stub
-
-		}
-	
-	
 
 }
