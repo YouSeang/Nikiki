@@ -5,4 +5,18 @@
  <mapper namespace="kr.soft.study.util.ETCDao">
  <!-- 쿼리문 -->
  
+    <select id="getSchedules" resultType="map">
+        SELECT hopeDt AS start, name AS title FROM schedules
+    </select>
+
+    <insert id="insertSchedule">
+        INSERT INTO schedules (hopeDt, name, gender, hpNo, age, collectYn, thirdPartyYn)
+        VALUES (#{hopeDt}, #{name}, #{gender}, #{hpNo}, #{age}, #{collectYn}, #{thirdPartyYn})
+    </insert>
+    
+    <select id="getApplicationCounts" resultType="map">
+        SELECT hopeDt, COUNT(*) as application_count
+        FROM schedules
+        GROUP BY hopeDt
+    </select>
  </mapper>

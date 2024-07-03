@@ -30,7 +30,7 @@ public class ProductList implements ProductCommand {
 		ProductDao dao=sqlSession.getMapper(ProductDao.class);
 		List<Product> dto=dao.getProductCategoty(category_name);
 		List<Map<String, String>> Adto=dao.getAttributeValues();
-
+		
 		model.addAttribute("products",dto);
 		model.addAttribute("attributes",Adto);
 		

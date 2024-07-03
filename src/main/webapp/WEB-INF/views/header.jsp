@@ -296,7 +296,7 @@
 							<a href="/ace-story/sns/index.do"> <span>에이스 스토리</span>
 							</a>
 							<div class="two_dep">
-								<a href="/ace-story/sns/index.do" target="_self"><span>NOW
+								<a href="https://www.acebed.com/experience/ace-story/sns/index.do" target="_self"><span>NOW
 										SNS</span></a> <a href="/ace-story/review/list.do" target="_self"><span>고객후기</span></a>
 								<a href="/ace-story/news/list.do" target="_self"><span>뉴스룸</span></a>
 							</div>
@@ -304,12 +304,12 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="/experience/mattress/index.do"> <span>고객체험</span>
+							<a href="./experience"> <span>고객체험</span>
 							</a>
 							<div class="two_dep">
-								<a href="/experience/mattress/index.do" target="_self"><span>매트리스
-										체험존</span></a> <a href="/experience/move/index.do" target="_self"><span>이동수면공학
-										연구소</span></a> <a href="/experience/factory/index.do" target="_self"><span>공장
+								<a href="./experience" target="_self"><span>매트리스
+										체험존</span></a> <a href="./experienceMoving" target="_self"><span>이동수면공학
+										연구소</span></a> <a href="https://www.acebed.com/experience/factory/index.do" target="_self"><span>공장
 										견학 신청</span></a>
 							</div>
 						</div>
