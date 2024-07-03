@@ -44,15 +44,18 @@
 		= #{productId}
 	</select>
 	<!--카테고리별 관련된 제품 조회 -->
-	<select id="getProductCategoty"
-		resultMap="productResultMap">
-		SELECT p.product_id, p.product_name, p.category_name,
+	<select id="getProductCategoty" resultMap="productResultMap">
+		SELECT p.product_id,
+		p.product_name, p.category_name,
 		p.parent_category_name,
-		p.description, p.image_url, p.price,
+		p.description,
+		p.image_url, p.price,
 		pa.attribute_id, pa.attribute_name, pa.value
-		FROM Products p
+		FROM
+		Products p
 		LEFT JOIN
-		ProductAttributes pa ON p.product_id = pa.product_id
+		ProductAttributes pa ON p.product_id =
+		pa.product_id
 		WHERE p.category_name
 		= #{category_name}
 	</select>
@@ -89,23 +92,29 @@
 		DELETE FROM ProductAttributes WHERE attribute_id =
 		#{attribute_id}
 	</delete>
-		<delete id="deleteProductAttribute">
+	<delete id="deleteProductAttribute">
 		DELETE FROM ProductAttributes WHERE product_id =
 		#{product_id}
 	</delete>
-		<delete id="deleteProduct">
+	<delete id="deleteProduct">
 		DELETE FROM Products WHERE product_id =
 		#{product_id}
 	</delete>
-    <update id="updateProduct" parameterType="kr.soft.study.dto.Products">
-        UPDATE Products
-        SET 
-            product_name = #{product_name},
-            category_name = #{category_name},
-            parent_category_name = #{parent_category_name},
-            description = #{description},
-            image_url = #{image_url},
-            price = #{price}
-        WHERE product_id = #{product_id};
-    </update>
+	<update id="updateProduct"
+		parameterType="kr.soft.study.dto.Products">
+		UPDATE Products
+		SET
+		product_name = #{product_name},
+		category_name = #{category_name},
+		parent_category_name = #{parent_category_name},
+		description = #{description},
+		image_url = #{image_url},
+		price = #{price}
+		WHERE product_id = #{product_id};
+	</update>
+	<select id="getAttributeValues" resultType="map">
+		SELECT attribute_name, GROUP_CONCAT(DISTINCT value ORDER BY value) AS value
+		FROM ProductAttributes
+		GROUP BY attribute_name;
+	</select>
 </mapper>
