@@ -2,8 +2,6 @@ package kr.soft.study.util;
 
 import java.util.List;
 import java.util.Map;
-
-import kr.soft.study.dto.AllProduct;
 import kr.soft.study.dto.Product;
 import kr.soft.study.dto.ProductAttributes;
 import kr.soft.study.dto.Products;
@@ -23,5 +21,6 @@ public interface ProductDao {
     void deleteProduct(int product_id);
 
     List<Map<String, String>> getAttributeValues();
+
 }
 
