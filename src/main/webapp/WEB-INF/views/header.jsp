@@ -337,12 +337,12 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="/ace-story/sns/index.do"> <span>에이스 스토리</span>
+							<a href="./storyReview"> <span>에이스 스토리</span>
 							</a>
 							<div class="two_dep">
-								<a href="https://www.acebed.com/experience/ace-story/sns/index.do" target="_self"><span>NOW
-										SNS</span></a> <a href="/ace-story/review/list.do" target="_self"><span>고객후기</span></a>
-								<a href="/ace-story/news/list.do" target="_self"><span>뉴스룸</span></a>
+								<a href="https://www.acebed.com/ace-story/sns/index.do" target="_self"><span>NOW
+										SNS</span></a> <a href="./storyReview" target="_self"><span>고객후기</span></a>
+								<a href="https://www.acebed.com/ace-story/news/list.do" target="_self"><span>뉴스룸</span></a>
 							</div>
 						</div>
 					</div>
@@ -371,12 +371,12 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="/store/guide/index.do"> <span>매장안내</span>
+							<a href="./guide"> <span>매장안내</span>
 							</a>
 							<div class="two_dep">
-								<a href="/store/guide/index.do" target="_self"><span>매장찾기</span></a>
-								<a href="/store/square/index.do" target="_self"><span>에이스
-										스퀘어</span></a> <a href="/store/avenue/index.do" target="_self"><span>에이스
+								<a href="./guide" target="_self"><span>매장찾기</span></a>
+								<a href="https://www.acebed.com/store/square/index.do" target="_self"><span>에이스
+										스퀘어</span></a> <a href="https://www.acebed.com/store/avenue/index.do" target="_self"><span>에이스
 										에비뉴</span></a>
 							</div>
 						</div>

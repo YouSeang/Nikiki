@@ -1,42 +1,63 @@
 package kr.soft.study.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Reviews {
 
-	private int review_id;
-	private int product_id;
-	private int user_id;
-	private String title;
-	private String content;
-	private int rating;
-	private Timestamp created_at;
-	private int store_id;
-	
-	
-	public int getReview_id() {
-		return review_id;
+	private int reviewId;
+    private String rvwType;
+    private String buyType;
+    private String productId;
+    private String snsLinkUrl;
+    private int scope;
+    private String content;
+    private String createdAt;
+    private List<ReviewImages> images; // 이미지 목록 추가
+    
+    
+	public List<ReviewImages> getImages() {
+		return images;
 	}
-	public void setReview_id(int review_id) {
-		this.review_id = review_id;
+	public void setImages(List<ReviewImages> images) {
+		this.images = images;
 	}
-	public int getProduct_id() {
-		return product_id;
+
+	public int getReviewId() {
+		return reviewId;
 	}
-	public void setProduct_id(int product_id) {
-		this.product_id = product_id;
+	public void setReviewId(int reviewId) {
+		this.reviewId = reviewId;
 	}
-	public int getUser_id() {
-		return user_id;
+	public String getRvwType() {
+		return rvwType;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setRvwType(String rvwType) {
+		this.rvwType = rvwType;
 	}
-	public String getTitle() {
-		return title;
+	public String getBuyType() {
+		return buyType;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBuyType(String buyType) {
+		this.buyType = buyType;
+	}
+	public String getProductId() {
+		return productId;
+	}
+	public void setProductId(String productId) {
+		this.productId = productId;
+	}
+	public String getSnsLinkUrl() {
+		return snsLinkUrl;
+	}
+	public void setSnsLinkUrl(String snsLinkUrl) {
+		this.snsLinkUrl = snsLinkUrl;
+	}
+	public int getScope() {
+		return scope;
+	}
+	public void setScope(int scope) {
+		this.scope = scope;
 	}
 	public String getContent() {
 		return content;
@@ -44,24 +65,14 @@ public class Reviews {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getRating() {
-		return rating;
+	public String getCreatedAt() {
+		return createdAt;
 	}
-	public void setRating(int rating) {
-		this.rating = rating;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
-	public Timestamp getCreated_at() {
-		return created_at;
-	}
-	public void setCreated_at(Timestamp created_at) {
-		this.created_at = created_at;
-	}
-	public int getStore_id() {
-		return store_id;
-	}
-	public void setStore_id(int store_id) {
-		this.store_id = store_id;
-	}
+    
+    
 	
 	
 	
