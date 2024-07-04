@@ -31,6 +31,17 @@
 	</insert>
 
 	<!-- 하나의 제품과 관련된 모든 특성 조회 -->
+	<select id="getAllList"
+		resultMap="productResultMap">
+		SELECT p.product_id, p.product_name, p.category_name,
+		p.parent_category_name,
+		p.description, p.image_url, p.price,
+		pa.attribute_id, pa.attribute_name, pa.value
+		FROM Products p
+		LEFT JOIN
+		ProductAttributes pa ON p.product_id = pa.product_id
+	</select>
+	<!-- 하나의 제품과 관련된 모든 특성 조회 -->
 	<select id="getProductWithAttributes"
 		resultMap="productResultMap">
 		SELECT p.product_id, p.product_name, p.category_name,
@@ -106,15 +117,45 @@
 		SET
 		product_name = #{product_name},
 		category_name = #{category_name},
-		parent_category_name = #{parent_category_name},
+		parent_category_name =
+		#{parent_category_name},
 		description = #{description},
-		image_url = #{image_url},
+		image_url =
+		#{image_url},
 		price = #{price}
 		WHERE product_id = #{product_id};
 	</update>
 	<select id="getAttributeValues" resultType="map">
-		SELECT attribute_name, GROUP_CONCAT(DISTINCT value ORDER BY value) AS value
+		SELECT
+		attribute_name, GROUP_CONCAT(DISTINCT value ORDER BY value) AS value
 		FROM ProductAttributes
 		GROUP BY attribute_name;
 	</select>
+	<!-- 장바구니 담기 -->
+	<insert id="addToCart" parameterType="kr.soft.study.dto.CartDto">
+		INSERT INTO Cart (user_email, product_id, price)
+		VALUES (#{user_email}, #{product_id}, #{price})
+	</insert>
+	    <select id="getCartProducts" parameterType="string" resultType="kr.soft.study.dto.Products">
+        SELECT p.product_id, p.product_name, p.description, p.image_url, p.price
+        FROM Cart c
+        JOIN Products p ON c.product_id = p.product_id
+        WHERE c.user_email = #{userEmail}
+        ORDER BY c.created_at DESC
+    </select>
+    <delete id="deleteCartItem">
+    DELETE FROM Cart
+    WHERE user_email = #{param1}
+    AND product_id = #{param2}
+</delete>
+	<!-- 주문테이블 담기 -->
+    <insert id="insertOrder" parameterType="kr.soft.study.dto.Orders" useGeneratedKeys="true" keyProperty="order_id">
+        INSERT INTO Orders (user_email, total_price, status)
+        VALUES (#{user_email}, #{price}, 'pending')
+    </insert>
+    
+    <insert id="insertOrderItem" parameterType="kr.soft.study.dto.OrderItemsDto">
+        INSERT INTO OrderItems (order_id, product_id, attribute_id, price)
+        VALUES (#{order_id}, #{product_id}, #{attribute_id}, #{price})
+    </insert>
 </mapper>
