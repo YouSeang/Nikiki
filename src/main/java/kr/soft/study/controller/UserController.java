@@ -20,7 +20,11 @@ import kr.soft.study.command.user.UserUpdate;
 import kr.soft.study.dto.Users;
 import kr.soft.study.util.UserDao;
 import kr.soft.study.command.user.Login;
+import kr.soft.study.command.user.MyPage;
+import kr.soft.study.command.user.NumberUpdate;
 import kr.soft.study.command.user.CheckEmail;
+import kr.soft.study.command.user.Delete;
+import kr.soft.study.command.user.DropOut;
 import kr.soft.study.command.user.Join;
 
 @Controller
@@ -30,9 +34,12 @@ public class UserController {
 	private CheckEmail checkEmailCommand;
 	private UserList userList;
 	private UserUpdate userUpdate;
+	private NumberUpdate numberUpdate;
+
 
 	@Autowired
 	private SqlSession sqlSession;
+	private UserDao userDao;
 
 	// home
 	@RequestMapping("/")
@@ -69,61 +76,68 @@ public class UserController {
 
 	// 관리자 회원목록
 	@RequestMapping("/memberView")
-	public String memberView(HttpSession session, HttpServletRequest request,Model model) {
+	public String memberView(HttpSession session, HttpServletRequest request, Model model) {
 		System.out.println("memberView()");
-		 model.addAttribute("request", request);
+		model.addAttribute("request", request);
 
-	        userList  = new UserList(sqlSession);
-	        userList.execute(model);
-	        String path = (String) model.asMap().get("path");
-	        
-	        return path;
+		userList = new UserList(sqlSession);
+		userList.execute(model);
+		String path = (String) model.asMap().get("path");
+
+		return path;
 	}
 
 	// 관리자 회원삭제 화면이동
-	@RequestMapping("/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request, Model model) {
 		System.out.println("delete()");
+		String email = request.getParameter("email");
 
-		String user_id = request.getParameter("user_id");
+		System.out.println("Received email: " + email); // 로그 추가
 
-		UserDao dao = sqlSession.getMapper(UserDao.class);
-		dao.delete(user_id);
+		model.addAttribute("request", request);
 
-		return "redirect:memberView";
+		Delete deleteCommand = new Delete(sqlSession);
+		deleteCommand.execute(model);
+		String path = (String) model.asMap().get("path");
+
+		return path;
 	}
-	
-	// 관리자 회원수정화면 이동
-    @RequestMapping(value = "/memberUpdateView", method = RequestMethod.GET)
-    public String memberUpdateView(@RequestParam("email") String email, HttpSession session, HttpServletRequest request, Model model) {
-        System.out.println("memberUpdateView()");
-        model.addAttribute("request", request);
-        model.addAttribute("email", email);
-        
-     // 이메일을 통해 사용자 정보를 조회
-        UserDao userDao = sqlSession.getMapper(UserDao.class);
-        Users user = userDao.isLogin(email);
-        
-        if (user != null) {
-            model.addAttribute("user", user); // 사용자 정보를 모델에 추가
-            return "user/memberUpdateView"; // 회원 정보 수정 페이지로 이동
-        } else {
-            model.addAttribute("errorMessage", "사용자를 찾을 수 없습니다.");
-            return "errorPage"; // 에러 페이지로 이동
-        }
-    }
-    // 관리자 회원 정보 수정
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(HttpSession session, HttpServletRequest request, Model model) {
-        System.out.println("update()");
-        model.addAttribute("request", request);
 
-        userUpdate = new UserUpdate(sqlSession);
-        userUpdate.execute(model);
-        String path = (String) model.asMap().get("path");
-        
-        return path;
-    }
+	// 관리자 회원수정화면 이동
+	@RequestMapping(value = "/memberUpdateView", method = RequestMethod.GET)
+	public String memberUpdateView(@RequestParam("email") String email, HttpSession session, HttpServletRequest request,
+			Model model) {
+		System.out.println("memberUpdateView()");
+		model.addAttribute("request", request);
+		model.addAttribute("email", email);
+
+		// 이메일을 통해 사용자 정보를 조회
+		UserDao userDao = sqlSession.getMapper(UserDao.class);
+		Users user = userDao.isLogin(email);
+
+		if (user != null) {
+			model.addAttribute("user", user); // 사용자 정보를 모델에 추가
+			return "user/memberUpdateView"; // 회원 정보 수정 페이지로 이동
+		} else {
+			model.addAttribute("errorMessage", "사용자를 찾을 수 없습니다.");
+			return "errorPage"; // 에러 페이지로 이동
+		}
+	}
+
+	// 관리자 회원 정보 수정
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String update(HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("update()");
+		model.addAttribute("request", request);
+
+		userUpdate = new UserUpdate(sqlSession);
+		userUpdate.execute(model);
+		String path = (String) model.asMap().get("path");
+
+		return path;
+	}
+
 	// 로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, HttpServletRequest request, Model model) {
@@ -159,28 +173,27 @@ public class UserController {
 	// 이메일 중복 확인
 	@RequestMapping(value = "/checkEmail", method = RequestMethod.GET)
 	@ResponseBody
-	 public String checkEmail(@RequestParam("email") String email) {
+	public String checkEmail(@RequestParam("email") String email) {
 		System.out.println("checkEmail() 메서드 시작 - email: " + email);
-        checkEmailCommand = new CheckEmail(sqlSession);
-        boolean exists = checkEmailCommand.checkEmailExists(email);
-        System.out.println("이메일 존재 여부: " + exists); // 디버깅 메시지
+		checkEmailCommand = new CheckEmail(sqlSession);
+		boolean exists = checkEmailCommand.checkEmailExists(email);
+		System.out.println("이메일 존재 여부: " + exists); // 디버깅 메시지
 
+		Gson gson = new Gson();
+		return gson.toJson(new EmailCheckResponse(exists));
+	}
 
-        Gson gson = new Gson();
-        return gson.toJson(new EmailCheckResponse(exists));
-    }
+	private static class EmailCheckResponse {
+		private boolean exists;
 
-    private static class EmailCheckResponse {
-        private boolean exists;
+		public EmailCheckResponse(boolean exists) {
+			this.exists = exists;
+		}
 
-        public EmailCheckResponse(boolean exists) {
-            this.exists = exists;
-        }
-
-        public boolean isExists() {
-            return exists;
-        }
-    }
+		public boolean isExists() {
+			return exists;
+		}
+	}
 
 	// 로그아웃
 	@RequestMapping("/logout")
@@ -200,5 +213,45 @@ public class UserController {
 		System.out.println("joinView()");
 		return "user/join";
 	}
+
+	// 마이페이지 화면 이동
+	@RequestMapping("/myPage")
+	public String myPage(HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("myPage()");
+		model.addAttribute("request", request);
+		MyPage myPageCommand = new MyPage(sqlSession);
+		myPageCommand.execute(model);
+		return "user/myPage";
+	}
+
+	// 전화번호 변경 이동
+	@RequestMapping(value = "/numberUpdate", method = RequestMethod.POST)
+	public String numberUpdate(HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("numberUpdate()");
+		model.addAttribute("request", request);
+
+		numberUpdate = new NumberUpdate(sqlSession);
+		numberUpdate.execute(model);
+		String path = (String) model.asMap().get("path");
+
+		return path;
+	}
+
+	// 탈퇴하기
+	 @RequestMapping(value = "/dropOut", method = RequestMethod.POST)
+	    public String dropOut(HttpServletRequest request, Model model) {
+	        System.out.println("dropOut()");
+	        String email = request.getParameter("email");
+
+	        System.out.println("Received email: " + email); // 로그 추가
+
+	        model.addAttribute("request", request);
+
+	        DropOut dropOut = new DropOut(userDao);
+	        dropOut.execute(model);
+
+	        String path = (String) model.asMap().get("path");
+	        return path;
+	    }
 
 }

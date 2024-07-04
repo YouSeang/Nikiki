@@ -1,83 +1,128 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="../header.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>프레임 | BED | 에이스침대</title>
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,target-densitydpi=medium-dpi, initial-scale=1.0" />
+<meta http-equiv="content-language" content="kr" />
+<meta http-equiv="imagetoolbar" content="no" />
+<meta name="keywords" content="에이스침대" />
+<meta name="description" content="에이스침대의 공식 홈페이지 입니다." />
 
+
+<meta name="naver-site-verification"
+	content="0abd2f90b764c71f49a7d173c21347b1d78d447c" />
+
+<meta property="og:site_name" content="에이스침대" id="og-sitename-value" />
+<meta property="og:type" content="website" id="og-type-value" />
+<meta property="og:url"
+	content="http://www.acebed.com:80/product/bed/frame/list.do?pageIndex=1&listCnt=12&listType=1&ordType=&detailsKey=&q="
+	id="og-url-value" />
+<meta property="og:image"
+	content="http://www.acebed.com:80/common/images/sns-share-thumbnail.jpg"
+	id="og-image-value" />
+<meta property="og:title" content="프레임" id="og-title-value" />
+<meta property="og:description" content="에이스침대의 공식 홈페이지 입니다."
+	id="og-description-value" />
+
+<meta itemprop="url"
+	content="http://www.acebed.com:80/product/bed/frame/list.do?pageIndex=1&listCnt=12&listType=1&ordType=&detailsKey=&q="
+	id="schema-url-value" />
+<meta itemprop="name" content="에이스침대" id="schema-name-value" />
+<meta itemprop="description" content="에이스침대의 공식 홈페이지 입니다."
+	id="schema-discription-value" />
+
+<!-- //swiftype 검색 메타태그 -->
+<meta class="swiftype" name="top_menu" data-type="string" content="침대" />
+<meta class="swiftype" name="child_menu" data-type="string"
+	content="프레임" />
+<meta class="swiftype" name="title" data-type="string"
+	content="침대 > 프레임" />
+
+<meta class="swiftype" name="image" data-type="enum" content="" />
+<!-- swiftype 검색 메타태그// -->
+<link rel="shortcut icon"
+	href="https://www.acebed.com/common/images/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180"
+	href="https://www.acebed.com/common/images/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32"
+	href="https://www.acebed.com/common/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16"
+	href="https://www.acebed.com/common/images/favicon/favicon-16x16.png">
+<link rel="manifest"
+	href="https://www.acebed.com/common/images/favicon/site.webmanifest">
+<link rel="mask-icon"
+	href="https://www.acebed.com/common/images/favicon/safari-pinned-tab.svg"
+	color="#5bbad5">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-config"
+	content="https://www.acebed.com/common/images/favicon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/js/lib/jquery/jquery-ui.css" />
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/js/lib/datetimepicker/jquery.datetimepicker.css" />
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/css/swiper.min.css" />
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/css/jQuery.mCustomScrollbar.css" />
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/css/common.css" />
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/css/acebed_style.css" />
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/css/acebed_style2.css" />
+<link rel="stylesheet"
+	href="https://www.acebed.com/common/css/acebed_style3.css" />
+<link
+	rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" />
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/lib/jquery/jquery.1.12.4.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/lib/jquery/jquery-ui.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/jquery.mousewheel.min.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/swiper.min.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/gsap.min.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/ScrollTrigger.min.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/script.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/lib/datetimepicker/jquery.datetimepicker.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/lib/jquery/jquery.paging.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/lib/clipboard.min.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/controller/co/COCmmCtrl.js"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/controller/co/COMsgCtrl.js"></script>
+<script type="text/javascript"
+	src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript"
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript"
+	src="https://kit.fontawesome.com/7db9bc3ad6.js" crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="https://www.acebed.com/common/js/blowup.js"></script>
+</head>
+<jsp:include page="../header.jsp" />
 <body data-login-flag="N" data-device-type="web" data-kakao-key="6f6b5601b844d8e4d8835588b2da67f2" data-curt-dt="2024-06-28">
     <div id="wrap">
-        <header data-swiftype-index="false">
-            <a href="/main/index.do" class="logo"><h1>ACE BED</h1></a>
-            <div class="utill_div">
-                <a href="javascript:" onclick="cmmCtrl.loginPage()">로그인</a>
-                <a href="/member/join/index.do">회원가입</a>
-                <a href="/wedding-members/benefit/index.do" class="wedding wedding_2024">웨딩멤버스</a>
-                <a href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스 침대몰</a>
-            </div>
-            <nav>
-                <div class="gnb_section gnb1">
-                    <div class="one_dep">
-                        <div>
-                            <a href="/product/bed/frame/list.do">
-                                <span class="one">BED</span>
-                                <span>침대</span>
-                            </a>
-                            <div class="two_dep">
-                                <a href="/product/bed/frame/list.do" target="_self"><span>프레임</span></a>
-                                <a href="/product/bed/mattress/list.do" target="_self"><span>매트리스</span></a>
-                                <a href="/product/bed/new/list.do" target="_self"><span>신제품</span></a>
-                                <a href="/customer/prdct-manual/index.do?type=gnb" target="_self"><span>제품 매뉴얼</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 다른 네비게이션 항목들 추가 -->
-                </div>
-            </nav>
-            <div class="gnb_search">
-                <a href="javascript:" class="search_btn">검색하기</a>
-                <div class="search_div">
-                    <p class="search_input">
-                        <input type="text" name="searchTerm" title="검색어" placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50" autocomplete="off" />
-                        <a href="javascript:" class="search_btn btnIntgrSearch" onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
-                    </p>
-                    <div class="auto_complete" id="acTopPcArea"></div>
-                    <a href="javascript:" class="x_btn">닫기</a>
-                </div>
-                <p class="search_bg"></p>
-            </div>
-            <div class="all_menu_area">
-                <a href="javascript:" class="all_meun_btn">전체메뉴</a>
-                <a href="javascript:" class="m_all_meun_btn mh_btn">모바일전체메뉴</a>
-                <a href="javascript:" class="m_prod_meun_btn mh_btn">모바일제품메뉴</a>
-                <div class="all_menu_div">
-                    <p class="m_all_dim"></p>
-                    <div class="visual_menu">
-                        <p class="language">
-                            <a href="javascript:" class="on">KOR</a>
-                            <a href="http://eng.acebed.com">ENG</a>
-                        </p>
-                        <div class="pro_menu_list m_acco_menu">
-                            <div class="menu">
-                                <p class="img">
-                                    <img src="/common/images/all-menu-visual1.jpg" alt="" class="only_web" />
-                                    <img src="/common/images/m-all-menu-visual1.jpg" alt="" class="only_mob" />
-                                </p>
-                                <div>
-                                    <div class="one_d"><a href="javascript:">BED</a></div>
-                                    <div class="two_d">
-                                        <a href="/product/bed/frame/list.do" target="_self">프레임</a>
-                                        <a href="/product/bed/mattress/list.do" target="_self">매트리스</a>
-                                        <a href="/product/bed/new/list.do" target="_self">신제품</a>
-                                        <a href="/customer/prdct-manual/index.do?type=gnb" target="_self">제품 매뉴얼</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 다른 메뉴 항목들 추가 -->
-                        </div>
-                        <a href="javascript:" class="mh_x_btn">닫기</a>
-                    </div>
-                    <a href="javascript:" class="all_x_btn">닫기</a>
-                </div>
-            </div>
-        </header>
         <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
             <div class="subCon">
                 <input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />

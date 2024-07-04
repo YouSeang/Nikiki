@@ -205,4 +205,25 @@ public class ProductController {
 		
 		return "product/microcare";
 	}
+	@RequestMapping("/smart-sleeve")
+	public String smartSleeve(Model model) {
+		
+		return "product/smart-sleeve";
+	}
+	@RequestMapping("/microcare-coolingpad")
+	public String microcareCoolingpad(Model model) {
+		
+		return "product/microcare-coolingpad";
+	}
+	@RequestMapping("/coolingbodypillow")
+	public String coolingbodypillow(Model model) {
+		
+		return "product/coolingbodypillow";
+	}
+
+	@RequestMapping("/microguard-eco")
+	public String microguardEco(Model model) {
+		
+		return "product/microguard-eco";
+	}
 }

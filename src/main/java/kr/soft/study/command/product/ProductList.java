@@ -30,6 +30,7 @@ public class ProductList implements ProductCommand {
 		String parent_category_name=request.getParameter("parent_category_name");
 		System.out.println(parent_category_name);
 		ProductDao dao=sqlSession.getMapper(ProductDao.class);
+
 		List<Product> dto;
 		List<Map<String, String>> Adto;
 		if (category_name != null && !category_name.isEmpty()) {

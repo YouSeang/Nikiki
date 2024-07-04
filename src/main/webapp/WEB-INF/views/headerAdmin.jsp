@@ -204,7 +204,7 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="https://www.acebed.com/product/furnture/roomset/list.do">
+							<a href="./productAllList">
 								<span class="one">INVENTORY & SALES</span> <span>재고 및 매출관리</span>
 							</a>
 						</div>
