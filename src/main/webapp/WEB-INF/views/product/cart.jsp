@@ -194,6 +194,76 @@
 
 	gtag('config', 'G-9DZP1N4254');
 </script>
+<style>
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-left:100px;
+  }
+
+.product-card {
+    max-width: 300px; /* 예시로 최대 너비를 300px로 설정 */
+    width: calc(33.33% - 14px);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+     margin: 0 auto; 
+    box-sizing: border-box;
+}
+
+  .product-card img {
+    width: 100%;
+    height: 200px; /* 높이를 증가시켰습니다 */
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .product-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-info h3 {
+    margin-top: 0;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .product-info p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+
+  .price {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+form {
+	margin-top: auto;
+}
+
+@media ( max-width : 768px) {
+	.product-card {
+		width: calc(50% - 10px);
+	}
+}
+
+@media ( max-width : 480px) {
+	.product-card {
+		width: 100%;
+	}
+}
+</style>
 </head>
 <jsp:include page="../header.jsp" />
 <div class="mypage_menu" data-swiftype-index="false">
@@ -248,122 +318,117 @@
 								<a href="/product/bed/frame/list.do" class="btn btn3"><span>제품보기</span></a>
 							</div>
 						</div>
-						<div class="list_type4 square motion_list type4xn listDiv">
 
-							<div class="list">
-								<c:if test="${not empty products}">
-									<c:forEach var="product" items="${products}">
-										<div class="product-card">
+
+						<div class="product-list">
+							<c:if test="${not empty products}">
+								<c:forEach var="product" items="${products}">
+									<div class="product-card">
+										<img
+											src="<c:url value='./libraryUploadImg/${product.image_url}' />"
+											alt="${product.product_name}">
+										<div class="product-info">
+											<h3>${product.product_name}</h3>
+											<p>${product.description}</p>
+											<p class="price">가격: ${product.price}원</p>
 											<form id="cartForm_${product.product_id}"
 												action="./deleteCart" method="post">
 												<input type="hidden" name="product_id"
-													value="${product.product_id}"> <img
-													src="<c:url value='./libraryUploadImg/${product.image_url}' />"
-													alt="${product.product_name}">
-												<div class="product-info">
-													<h3>${product.product_name}</h3>
-													<p>${product.description}</p>
-													<p>가격: ${product.price}원</p>
-													<button type="submit">장바구니에서 삭제</button>
-												</div>
+													value="${product.product_id}">
+												<button type="submit">장바구니에서 삭제</button>
 											</form>
 											<form id="orderForm_${product.product_id}"
-												action="./orderProduct" method="post">
+												action="./bedDetail" method="post">
 												<input type="hidden" name="product_id"
 													value="${product.product_id}">
 												<button type="submit">주문하기</button>
 											</form>
 										</div>
-									</c:forEach>
-
-								</c:if>
-
-								<c:if test="${empty products}">
-									<p>장바구니에 담긴 제품이 없습니다.</p>
-								</c:if>
-							</div>
-
+									</div>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty products}">
+								<p>장바구니에 담긴 제품이 없습니다.</p>
+							</c:if>
 						</div>
-						<!--list-->
-					</div>
-					<!--pro_content-->
-				</div>
-				<div class="pro_detail_view">
-					<div class="more_view_swp_area scroll_motion">
-						<div class="inner">
-							<p class="titleH2">이런 침대는 어떠세요?</p>
-						</div>
-						<div class="more_view_swp5">
-							<div class="swiper-container inner more_con">
-								<div class="swiper-wrapper">
-									<div class="swiper-slide">
-										<a href="/product/bed/frame/view.do?detailsKey=219"
-											class="img"><span><img
-												src="/image/2023/9/23092609124638149234.jpg" alt=""></span></a>
-										<div class="text_div">
-											<p class="tit">AMANDE</p>
-											<p class="sub_txt">
-												간결한&nbsp;세미클래식&nbsp;라인이&nbsp;돋보이는&nbsp;헤드보드에&nbsp;
-												볼륨감을&nbsp;더한&nbsp;로맨틱한&nbsp;분위기의&nbsp;AMANDE</p>
-										</div>
-									</div>
-									<div class="swiper-slide">
-										<a href="/product/bed/frame/view.do?detailsKey=217"
-											class="img"><span><img
-												src="/image/2023/8/23082909421695459986.jpg" alt=""></span></a>
-										<div class="text_div">
-											<p class="tit">BACIO</p>
-											<p class="sub_txt">
-												원하는&nbsp;스타일로&nbsp;&nbsp;침대를&nbsp;자유롭게&nbsp;꾸밀&nbsp;수&nbsp;있는&nbsp;홈퍼니싱&nbsp;컨셉의&nbsp;싱글&nbsp;침대</p>
-										</div>
-									</div>
-									<div class="swiper-slide">
-										<a href="/product/bed/frame/view.do?detailsKey=214"
-											class="img"><span><img
-												src="/image/2023/7/23072712035725017992.jpg" alt=""></span></a>
-										<div class="text_div">
-											<p class="tit">ERICA</p>
-											<p class="sub_txt">
-												에스닉한&nbsp;수공예적&nbsp;감성을&nbsp;느낄&nbsp;수&nbsp;있는&nbsp;침대</p>
-										</div>
-									</div>
+						<!--pro_content-->
+
+						<div class="pro_detail_view">
+							<div class="more_view_swp_area scroll_motion">
+								<div class="inner">
+									<p class="titleH2">이런 침대는 어떠세요?</p>
 								</div>
-								<!-- 2020-11-25 추가 -->
-								<a href="/product/bed/new/list.do" class="more_btn">more</a>
-								<!-- 리뷰 5개 이상일때 더보기 버튼 노출 -->
-								<!-- //2020-11-25 추가 -->
-							</div>
-							<!-- Add Arrows -->
-							<a href="javascript:" class="swiper-button-prev shape1"> <svg>
+								<div class="more_view_swp5">
+									<div class="swiper-container inner more_con">
+										<div class="swiper-wrapper">
+											<div class="swiper-slide">
+												<a href="/product/bed/frame/view.do?detailsKey=219"
+													class="img"><span><img
+														src="https://www.acebed.com/image/2023/9/23092609124638149234.jpg" alt=""></span></a>
+												<div class="text_div">
+													<p class="tit">AMANDE</p>
+													<p class="sub_txt">
+														간결한&nbsp;세미클래식&nbsp;라인이&nbsp;돋보이는&nbsp;헤드보드에&nbsp;
+														볼륨감을&nbsp;더한&nbsp;로맨틱한&nbsp;분위기의&nbsp;AMANDE</p>
+												</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="/product/bed/frame/view.do?detailsKey=217"
+													class="img"><span><img
+														src="https://www.acebed.com/image/2023/8/23082909421695459986.jpg" alt=""></span></a>
+												<div class="text_div">
+													<p class="tit">BACIO</p>
+													<p class="sub_txt">
+														원하는&nbsp;스타일로&nbsp;&nbsp;침대를&nbsp;자유롭게&nbsp;꾸밀&nbsp;수&nbsp;있는&nbsp;홈퍼니싱&nbsp;컨셉의&nbsp;싱글&nbsp;침대</p>
+												</div>
+											</div>
+											<div class="swiper-slide">
+												<a href="/product/bed/frame/view.do?detailsKey=214"
+													class="img"><span><img
+														src="https://www.acebed.com/image/2023/7/23072712035725017992.jpg" alt=""></span></a>
+												<div class="text_div">
+													<p class="tit">ERICA</p>
+													<p class="sub_txt">
+														에스닉한&nbsp;수공예적&nbsp;감성을&nbsp;느낄&nbsp;수&nbsp;있는&nbsp;침대</p>
+												</div>
+											</div>
+										</div>
+										<!-- 2020-11-25 추가 -->
+										<a href="/product/bed/new/list.do" class="more_btn">more</a>
+										<!-- 리뷰 5개 이상일때 더보기 버튼 노출 -->
+										<!-- //2020-11-25 추가 -->
+									</div>
+									<!-- Add Arrows -->
+									<a href="javascript:" class="swiper-button-prev shape1"> <svg>
                                                 <path class="btn_prev"
-										d="M 40 10 Q 40 65 40 140"></path>
+												d="M 40 10 Q 40 65 40 140"></path>
                                             </svg>
-								<p>
-									<span>PREV</span>
-								</p>
-							</a> <a href="javascript:" class="swiper-button-next shape2"> <svg>
+										<p>
+											<span>PREV</span>
+										</p>
+									</a> <a href="javascript:" class="swiper-button-next shape2"> <svg>
                                                 <path class="btn_next"
-										d="M 10 10 Q 10 65 10 140"></path>
+												d="M 10 10 Q 10 65 10 140"></path>
                                             </svg>
-								<p>
-									<span>NEXT</span>
-								</p>
-							</a>
+										<p>
+											<span>NEXT</span>
+										</p>
+									</a>
+								</div>
+								<!-- <p class="info_txt">※ 매트리스의 파운데이션은 별도 구성 제품이며, 프레임 타입에 의해 변동될 수 있습니다.</p> 2020-11-13 삭제 -->
+							</div>
 						</div>
-						<!-- <p class="info_txt">※ 매트리스의 파운데이션은 별도 구성 제품이며, 프레임 타입에 의해 변동될 수 있습니다.</p> 2020-11-13 삭제 -->
 					</div>
 				</div>
 			</div>
+			<div class="side_dimd"></div>
+			<div class="side_bts" data-swiftype-index="false">
+				<a href="javascript:" class="tob_btn">TOP</a> <a href="javascript:"
+					onclick="cmmCtrl.getIntrsPrdct()" class="open_quick"><span></span></a>
+				<p class="toast_noti">
+					<span>내가 찜한 제품 바로보기</span>
+				</p>
+			</div>
 		</div>
-	</div>
-	<div class="side_dimd"></div>
-	<div class="side_bts" data-swiftype-index="false">
-		<a href="javascript:" class="tob_btn">TOP</a> <a href="javascript:"
-			onclick="cmmCtrl.getIntrsPrdct()" class="open_quick"><span></span></a>
-		<p class="toast_noti">
-			<span>내가 찜한 제품 바로보기</span>
-		</p>
-	</div>
-</div>
 
-<jsp:include page="../footer.jsp" />
+		<jsp:include page="../footer.jsp" />
