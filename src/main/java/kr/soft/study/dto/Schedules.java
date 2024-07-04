@@ -12,10 +12,19 @@ public class Schedules {
     private String age;
     private String collectYn;
     private String thirdPartyYn;
+    private boolean attending; // 추가된 필드
 
     // Getters and setters
 
-    public int getId() {
+    public boolean isAttending() {
+		return attending;
+	}
+
+	public void setAttending(boolean attending) {
+		this.attending = attending;
+	}
+
+	public int getId() {
         return id;
     }
 

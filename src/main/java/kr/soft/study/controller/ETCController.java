@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.soft.study.command.etc.AttendSchedules;
 import kr.soft.study.command.etc.DeleteReview;
 import kr.soft.study.command.etc.EtcCommand;
 import kr.soft.study.command.etc.GetReviewDetail;
@@ -84,32 +85,34 @@ public class ETCController {
 		return "etc/apply";
 	}
 
-	@RequestMapping("/getSchedules")
-	@ResponseBody
-	public List<Map<String, Object>> getSchedules(Model model) {
-		command = new GetSchedules(sqlSession);
-		model.addAttribute("sqlSession", sqlSession);
-		command.execute(model);
-		return (List<Map<String, Object>>) model.asMap().get("schedules");
-	}
+    @RequestMapping("/getSchedules")
+    @ResponseBody
+    public List<Map<String, Object>> getSchedules(Model model) {
+        command = new GetSchedules(sqlSession);
+        model.addAttribute("sqlSession", sqlSession);
+        command.execute(model);
+        return (List<Map<String, Object>>) model.asMap().get("schedules");
+    }
+    
+    // 사용안함...
+    @RequestMapping("/getApplicationCounts")
+    @ResponseBody
+    public List<Map<String, Object>> getApplicationCounts(Model model) {
+        List<Map<String, Object>> counts = sqlSession.selectList("kr.soft.study.util.ETCDao.getApplicationCounts");
+        System.out.println("Application Counts: " + counts); // 디버깅 로그
+        return counts;
+    }
 
-	@RequestMapping("/getApplicationCounts")
-	@ResponseBody
-	public List<Map<String, Object>> getApplicationCounts(Model model) {
-		List<Map<String, Object>> counts = sqlSession.selectList("kr.soft.study.util.ETCDao.getApplicationCounts");
-		System.out.println("Application Counts: " + counts); // 디버깅 로그
-		return counts;
-	}
+    @RequestMapping(value = "/updateSchedule", method = RequestMethod.POST)
+    public String updateSchedule(HttpServletRequest request, Model model) {
+        model.addAttribute("request", request);
+        command = new AttendSchedules(sqlSession);
+        command.execute(model);
+        return "redirect:/storyAdminReview";
+    }
+    
 
-	@RequestMapping("/submitSchedule")
-	public String submitSchedule(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
-		command = new SubmitSchedule(sqlSession);
-		command.execute(model);
-
-		return "redirect:/experienceMovingChoice";
-	}
-
+    
 	@RequestMapping("/experienceGroupChoice")
 	public String experienceGroupChoice(Model model) {
 		System.out.println("experienceGroupChoice()");
