@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -153,18 +154,18 @@
                             <div class="part2">
                                 <p class="float">
                                     <strong>작성일</strong>
-                                    <span data-swiftype-name="write_date" data-swiftype-type="string"><c:out value="${review.createdAt}" /></span>
+                                    <span><c:out value="${review.createdAt}" /></span>
                                 </p>
                                 <p>
                                     <strong>작성자</strong>
-                                    <span data-swiftype-name="member_name" data-swiftype-type="string"><c:out value="${sessionScope.name}" /></span>
+                                    <span><c:out value="${review.userName}" /></span>
                                 </p>
                             </div>
                             <div class="part4" data-swiftype-name="content" data-swiftype-type="text">
                                 <c:out value="${review.content}" />
                                 <c:forEach var="image" items="${review.images}">
                                     <p class="img">
-                                        <img src="<c:out value="${image.imageUrl}" />" alt="리뷰 이미지" />
+                                        <img src="<c:out value="./libraryUploadImg2/${image.imageUrl}" />" alt="리뷰 이미지" />
                                     </p>
                                 </c:forEach>
                             </div>

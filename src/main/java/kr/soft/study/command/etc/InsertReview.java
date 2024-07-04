@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,6 +28,7 @@ public class InsertReview implements EtcCommand {
     @Override
     public void execute(Model model) {
         HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
+        HttpSession session = request.getSession();
         List<MultipartFile> files = (List<MultipartFile>) model.asMap().get("files");
 
         String rvwType = request.getParameter("rvwType");
@@ -34,6 +37,7 @@ public class InsertReview implements EtcCommand {
         String snsLinkUrl = request.getParameter("snsLinkUrl");
         int scope = Integer.parseInt(request.getParameter("scope"));
         String content = request.getParameter("cntn");
+        String email = (String) session.getAttribute("email"); // 세션에서 이메일 가져오기
 
         // 리뷰 객체 생성 및 데이터 설정
         Reviews reviews = new Reviews();
@@ -43,6 +47,7 @@ public class InsertReview implements EtcCommand {
         reviews.setSnsLinkUrl(snsLinkUrl);
         reviews.setScope(scope);
         reviews.setContent(content);
+        reviews.setEmail(email); // 이메일 설정
 
         // 리뷰 삽입
         sqlSession.insert("kr.soft.study.util.ETCDao.insertReview", reviews);
@@ -76,6 +81,9 @@ public class InsertReview implements EtcCommand {
                         imageParam.put("reviewId", reviewId);
                         imageParam.put("imageUrl", storedFilename); // 파일명만 저장
                         sqlSession.insert("kr.soft.study.util.ETCDao.insertReviewImage", imageParam);
+                        
+                        // 디버그 메세지
+                        System.out.println("Stored image: " + storedFilename);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
