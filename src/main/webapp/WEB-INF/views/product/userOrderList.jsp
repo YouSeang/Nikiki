@@ -194,6 +194,83 @@
 
 	gtag('config', 'G-9DZP1N4254');
 </script>
+    <style>
+.table-container {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.table-container th,
+.table-container td {
+    padding: 10px 15px;
+    text-align: left;
+}
+
+.table-container th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+}
+
+.table-container td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* 색상 및 서식 */
+.table-container tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.table-container tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-container .order-id {
+    color: #007BFF;
+    font-weight: bold;
+}
+
+.table-container .order-status {
+    padding: 3px 10px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 0.85em;
+}
+
+.order-status.pending {
+    background-color: #FFC107;
+}
+
+.order-status.processing {
+    background-color: #17A2B8;
+}
+
+.order-status.shipped {
+    background-color: #007BFF;
+}
+
+.order-status.delivered {
+    background-color: #28A745;
+}
+
+.order-status.cancelled {
+    background-color: #DC3545;
+}
+
+/* 내역 스타일 */
+.order-details {
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    margin-bottom: 20px;
+}
+
+.order-details h4 {
+    margin-top: 0;
+}
+    </style>
 </head>
 <jsp:include page="../header.jsp" />
 <div class="mypage_menu" data-swiftype-index="false">
@@ -250,11 +327,12 @@
 						</div>
 						<div class="list_type4 square motion_list type4xn listDiv">
 
-							<div class="list">
+			
 <c:if test="${not empty error}">
         <p>${error}</p>
     </c:if>
     <c:if test="${not empty orders}">
+ <div class="table-container">
         <table>
             <thead>
                 <tr>
@@ -263,110 +341,52 @@
                     <th>Total Price</th>
                     <th>Order Date</th>
                     <th>Status</th>
-                    <th>Order Items</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="order" items="${orders}">
                     <tr>
-                        <td>${order.order_id}</td>
+                        <td class="order-id">${order.order_id}</td>
                         <td>${order.user_email}</td>
                         <td>${order.total_price}</td>
                         <td>${order.order_date}</td>
-                        <td>${order.status}</td>
                         <td>
-                            <c:forEach var="item" items="${order.orderItems}">
-                                <p>Product: ${item.product_name}</p>
-                                <p>Attribute: ${item.attribute_name} - ${item.attribute_value}</p>
-                                <p>Quantity: ${item.quantity}</p>
-                                <p>Price: ${item.price}</p>
-                            </c:forEach>
+                            <span class="order-status ${order.status}">
+                                ${order.status}
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5">
+                            <div class="order-details">
+                                <h4>Order Items:</h4>
+                                <ul>
+                                    <c:forEach var="item" items="${order.orderItemsDto}">
+                                        <li>
+                                            <strong>Product Name:</strong> ${item.product_name}<br>
+                                            <strong>Attribute:</strong> ${item.attribute_name} - ${item.attribute_value}<br>
+                                            <strong>Quantity:</strong> ${item.quantity}<br>
+                                            <strong>Price:</strong> ${item.price}
+                                        </li>
+                                    </c:forEach>
+                                </ul>
+                            </div>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
+    </div>
     </c:if>
 						<!--list-->
-					</div>
+					
 					<!--pro_content-->
 				</div>
-				<div class="pro_detail_view">
-					<div class="more_view_swp_area scroll_motion">
-						<div class="inner">
-							<p class="titleH2">이런 침대는 어떠세요?</p>
-						</div>
-						<div class="more_view_swp5">
-							<div class="swiper-container inner more_con">
-								<div class="swiper-wrapper">
-									<div class="swiper-slide">
-										<a href="/product/bed/frame/view.do?detailsKey=219"
-											class="img"><span><img
-												src="/image/2023/9/23092609124638149234.jpg" alt=""></span></a>
-										<div class="text_div">
-											<p class="tit">AMANDE</p>
-											<p class="sub_txt">
-												간결한&nbsp;세미클래식&nbsp;라인이&nbsp;돋보이는&nbsp;헤드보드에&nbsp;
-												볼륨감을&nbsp;더한&nbsp;로맨틱한&nbsp;분위기의&nbsp;AMANDE</p>
-										</div>
-									</div>
-									<div class="swiper-slide">
-										<a href="/product/bed/frame/view.do?detailsKey=217"
-											class="img"><span><img
-												src="/image/2023/8/23082909421695459986.jpg" alt=""></span></a>
-										<div class="text_div">
-											<p class="tit">BACIO</p>
-											<p class="sub_txt">
-												원하는&nbsp;스타일로&nbsp;&nbsp;침대를&nbsp;자유롭게&nbsp;꾸밀&nbsp;수&nbsp;있는&nbsp;홈퍼니싱&nbsp;컨셉의&nbsp;싱글&nbsp;침대</p>
-										</div>
-									</div>
-									<div class="swiper-slide">
-										<a href="/product/bed/frame/view.do?detailsKey=214"
-											class="img"><span><img
-												src="/image/2023/7/23072712035725017992.jpg" alt=""></span></a>
-										<div class="text_div">
-											<p class="tit">ERICA</p>
-											<p class="sub_txt">
-												에스닉한&nbsp;수공예적&nbsp;감성을&nbsp;느낄&nbsp;수&nbsp;있는&nbsp;침대</p>
-										</div>
-									</div>
-								</div>
-								<!-- 2020-11-25 추가 -->
-								<a href="/product/bed/new/list.do" class="more_btn">more</a>
-								<!-- 리뷰 5개 이상일때 더보기 버튼 노출 -->
-								<!-- //2020-11-25 추가 -->
-							</div>
-							<!-- Add Arrows -->
-							<a href="javascript:" class="swiper-button-prev shape1"> <svg>
-                                                <path class="btn_prev"
-										d="M 40 10 Q 40 65 40 140"></path>
-                                            </svg>
-								<p>
-									<span>PREV</span>
-								</p>
-							</a> <a href="javascript:" class="swiper-button-next shape2"> <svg>
-                                                <path class="btn_next"
-										d="M 10 10 Q 10 65 10 140"></path>
-                                            </svg>
-								<p>
-									<span>NEXT</span>
-								</p>
-							</a>
-						</div>
-						<!-- <p class="info_txt">※ 매트리스의 파운데이션은 별도 구성 제품이며, 프레임 타입에 의해 변동될 수 있습니다.</p> 2020-11-13 삭제 -->
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
-	<div class="side_dimd"></div>
-	<div class="side_bts" data-swiftype-index="false">
-		<a href="javascript:" class="tob_btn">TOP</a> <a href="javascript:"
-			onclick="cmmCtrl.getIntrsPrdct()" class="open_quick"><span></span></a>
-		<p class="toast_noti">
-			<span>내가 찜한 제품 바로보기</span>
-		</p>
-	</div>
+
 </div>
 
 <jsp:include page="../footer.jsp" />

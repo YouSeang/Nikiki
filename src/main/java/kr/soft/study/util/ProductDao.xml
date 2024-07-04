@@ -211,7 +211,7 @@
         WHERE 
             o.user_email = #{user_email}
         ORDER BY 
-            o.order_date DESC
+            o.order_date ASC
     </select>
 
     <!-- Result Map -->
@@ -221,7 +221,7 @@
         <result property="total_price" column="total_price" />
         <result property="order_date" column="order_date" />
         <result property="status" column="status" />
-        <collection property="orderItems" ofType="kr.soft.study.dto.OrderItemsDto">
+        <collection property="orderItemsDto" ofType="kr.soft.study.dto.OrderItemsDto">
             <id property="order_item_id" column="order_item_id" />
             <result property="product_id" column="product_id" />
             <result property="attribute_id" column="attribute_id" />

@@ -191,8 +191,7 @@ public class ProductController {
 		model.addAttribute("request",request);
 		productCommand= new OrderList(sqlSession);
 		productCommand.execute(model);
-		Map<String, Object> map = model.asMap();
-		int product_id=(Integer) map.get("product_id");
+
 		return "product/userOrderList";
 	}
 	@RequestMapping("/recently")
