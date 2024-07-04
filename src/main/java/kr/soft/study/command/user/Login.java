@@ -27,6 +27,7 @@ public class Login implements UserCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		String name = request.getParameter("name");
 		boolean usercheck = false;
 		String path = "";
 
@@ -37,6 +38,7 @@ public class Login implements UserCommand {
 			// 관리자 로그인
 			model.addAttribute("path", "admin");
 			model.addAttribute("email", email);
+			model.addAttribute("name", name);
 			System.out.println("Admin login successful");
 		} else {
 			// 일반 사용자 로그인
@@ -50,6 +52,7 @@ public class Login implements UserCommand {
 				if (BCrypt.checkpw(password, encryptedPassword)) {
 					model.addAttribute("path", "main");
 					model.addAttribute("email", email);
+					model.addAttribute("name", name);
 					System.out.println("User login successful");
 				} else {
 					// 로그인 실패한 경우

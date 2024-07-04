@@ -236,7 +236,7 @@
 							<a href="javascript:" class="mypage-link"><span>마이페이지</span></a>
 							<div class="slc_div1">
 								<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
-									href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
+									href="/my-page/buy-auth/index.do">구매내역</a> <a
 									href="./cart">장바구니</a> <a
 									href="/my-page/counsel/index.do">상담내역</a> <a
 									href="/my-page/review/index.do">나의 후기</a>
@@ -258,13 +258,13 @@
 				<div class="gnb_section gnb1">
 					<div class="one_dep">
 						<div>
-							<a href="./bed?category_name=프레임"> <span class="one">BED</span>
+							<a href="./bed?parent_category_name=베드"> <span class="one">BED</span>
 								<span>침대</span>
 							</a>
 							<div class="two_dep">
-								<a href="./bed?category_name=프레임"
+								<a href="./bed?category_name=프레임&parent_category_name=베드"
 									target="_self"><span>프레임</span></a> <a
-									href="./bed?category_name=매트리스"
+									href="./bed?category_name=매트리스&parent_category_name=베드"
 									target="_self"><span>매트리스</span></a> <a
 									href="./recently"
 									target="_self"><span>신제품</span></a> <a
@@ -275,14 +275,14 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="https://www.acebed.com/product/furnture/roomset/list.do">
+							<a href="./bed?parent_category_name=가구">
 								<span class="one">FURNITURE</span> <span>가구</span>
 							</a>
 							<div class="two_dep">
 								<a
-									href="https://www.acebed.com/product/furnture/roomset/list.do"
+									href="./bed?category_name=룸&parent_category_name=가구"
 									target="_self"><span>룸 세트</span></a> <a
-									href="https://www.acebed.com/product/furnture/living/list.do"
+									href="./bed?category_name=리빙&parent_category_name=가구"
 									target="_self"><span>리빙가구</span></a>
 							</div>
 						</div>

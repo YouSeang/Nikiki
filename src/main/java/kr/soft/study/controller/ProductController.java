@@ -19,6 +19,7 @@ import kr.soft.study.command.product.DeleteProduct;
 import kr.soft.study.command.product.InsertAttributes;
 import kr.soft.study.command.product.InsertOrder;
 import kr.soft.study.command.product.ModifyProduct;
+import kr.soft.study.command.product.OrderList;
 import kr.soft.study.command.product.ProductAllList;
 import kr.soft.study.command.product.ProductCommand;
 import kr.soft.study.command.product.ProductDetail;
@@ -177,6 +178,18 @@ public class ProductController {
 		model.addAttribute("user_email",email);
 		model.addAttribute("request",request);
 		productCommand= new InsertOrder(sqlSession);
+		productCommand.execute(model);
+		Map<String, Object> map = model.asMap();
+		int product_id=(Integer) map.get("product_id");
+		return "redirect:/bedDetail?product_id="+product_id;
+	}
+	//주문내역-사용자
+	@RequestMapping("/userOrderList")
+	public String userOrderList(HttpSession session,HttpServletRequest request,Model model) {
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("user_email",email);
+		model.addAttribute("request",request);
+		productCommand= new OrderList(sqlSession);
 		productCommand.execute(model);
 		Map<String, Object> map = model.asMap();
 		int product_id=(Integer) map.get("product_id");
