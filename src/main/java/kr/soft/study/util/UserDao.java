@@ -33,7 +33,7 @@ public interface UserDao {
 	// 마이페이지 번호 변경
 	public void updatePhoneNumber(String newPhoneNumber,String email);
 	// 비밀번호 찾기
-	public String findEmailByNameAndPhone(String name, String phone);
+	public String findEmailByNameAndPhone(String user_email, String phone);
 
 
 }

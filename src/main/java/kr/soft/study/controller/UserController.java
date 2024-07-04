@@ -66,11 +66,13 @@ public class UserController {
 
 	// 관리자 홈화면 이동
 	@RequestMapping("/admin")
-	public String admin(Model model) {
-
-		System.out.println("admin()");
-
-		return "admin";
+	public String admin(HttpSession session, Model model) {
+	    String role = (String) session.getAttribute("email");
+	    if (role == null || !role.equals("admin")) {
+	        return "redirect:/main"; // 메인 페이지로 리다이렉트
+	    }
+	    System.out.println("admin()");
+	    return "admin";
 	}
 
 	// 관리자 회원목록
@@ -255,18 +257,9 @@ public class UserController {
 		
 		model.addAttribute("request", request);
 
-		// 추가 로그: execute() 메서드 호출 전
-		System.out.println("Executing passwordRecoveryCommand...");
-
-		passwordRecovery.execute(model);
-
-		// 추가 로그: execute() 메서드 호출 후
-		System.out.println("passwordRecoveryCommand executed");
-
+		command=new PasswordRecovery(sqlSession);
+		command.execute(model);
 		String path = (String) model.asMap().get("path");
-
-		// 추가 로그: path 값 확인
-		System.out.println("Path after execution: " + path);
 
 		return path;
 	}

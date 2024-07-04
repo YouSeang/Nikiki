@@ -207,7 +207,7 @@
 							<form id="passwordResetForm" action="./findPassword"
 								method="post">
 								<div class="member_form searchForm">
-									<input type="text" name="name" title="이름" placeholder="이름"
+									<input type="text" name="email" title="이메일" placeholder="이메일"
 										required> <input type="text" class="mobileChk"
 										name="phone" title="휴대전화 번호"
 										placeholder="휴대전화 번호를 - 없이 입력해주세요." maxlength="13" required>
