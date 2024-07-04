@@ -179,184 +179,183 @@
 </head>
 <body data-login-flag="N" data-device-type="web"
 	data-curt-dt="2024-06-28">
-		<header data-swiftype-index="false">
-			<a href="./main" class="logo"><h1>ACE BED</h1></a>
-			<div class="utill_div">
-				<c:choose>
-					<c:when test="${not empty sessionScope.email}">
-						<a href="./logout">로그아웃</a>
-							<a href="javascript:"><span>관리자페이지</span></a>
-					</c:when>
-					<c:otherwise>
-						<a href="./loginView">로그인</a>
-						<a href="./mypage">마이페이지</a>
-					</c:otherwise>
-				</c:choose>
-			</div>
-			<nav>
-				<div class="gnb_section gnb1">
-					<div class="one_dep">
-						<div>
-							<a href="./memberView"> <span class="one">MEMBER</span>
-								<span>회원관리</span>
-							</a>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="./productAllList">
-								<span class="one">INVENTORY & SALES</span> <span>재고 및 매출관리</span>
-							</a>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="./memberOrder"> <span class="one">ORDER</span> <span>주문관리</span>
-							</a>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="/product/sleep-care/main/index.do"> <span
-								class="one">REVIEW</span> <span>후기관리</span>
-							</a>
-						</div>
+	<header data-swiftype-index="false">
+		<a href="./admin" class="logo"><h1>ACE BED</h1></a>
+		<div class="utill_div">
+			<c:choose>
+				<c:when test="${not empty sessionScope.email}">
+					<a href="./logout">로그아웃</a>
+					<a href="javascript:"><span>관리자페이지</span></a>
+				</c:when>
+				<c:otherwise>
+					<a href="./loginView">로그인</a>
+					<a href="./mypage">마이페이지</a>
+				</c:otherwise>
+			</c:choose>
+		</div>
+		<nav>
+			<div class="gnb_section gnb1">
+				<div class="one_dep">
+					<div>
+						<a href="./memberView"> <span class="one">MEMBER</span> <span>회원관리</span>
+						</a>
 					</div>
 				</div>
-			</nav>
-			<div class="gnb_search">
-				<a href="javascript:" class="search_btn">검색하기</a>
-				<div class="search_div">
-					<p class="search_input">
-						<input type="text" name="searchTerm" title="검색어"
-							placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
-							autocomplete="off" /> <a href="javascript:"
-							class="search_btn btnIntgrSearch"
-							onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
+				<div class="one_dep">
+					<div>
+						<a href="./productAllList"> <span class="one">INVENTORY
+								& SALES</span> <span>재고 및 매출관리</span>
+						</a>
+					</div>
+				</div>
+				<div class="one_dep">
+					<div>
+						<a href="./memberOrder"> <span class="one">ORDER</span> <span>주문관리</span>
+						</a>
+					</div>
+				</div>
+				<div class="one_dep">
+					<div>
+						<a href="/product/sleep-care/main/index.do"> <span class="one">REVIEW</span>
+							<span>후기관리</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<div class="gnb_search">
+			<a href="javascript:" class="search_btn">검색하기</a>
+			<div class="search_div">
+				<p class="search_input">
+					<input type="text" name="searchTerm" title="검색어"
+						placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
+						autocomplete="off" /> <a href="javascript:"
+						class="search_btn btnIntgrSearch"
+						onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
+				</p>
+				<div class="auto_complete" id="acTopPcArea"></div>
+				<a href="javascript:" class="x_btn">닫기</a>
+			</div>
+			<p class="search_bg"></p>
+		</div>
+		<div class="all_menu_area">
+			<a href="javascript:" class="all_meun_btn">전체메뉴</a> <a
+				href="javascript:" class="m_all_meun_btn mh_btn">모바일전체메뉴</a> <a
+				href="javascript:" class="m_prod_meun_btn mh_btn">모바일제품메뉴</a>
+			<div class="all_menu_div">
+				<p class="m_all_dim"></p>
+				<div class="visual_menu">
+					<p class="language">
+						<a href="javascript:" class="on">KOR</a> <a
+							href="http://eng.acebed.com">ENG</a>
 					</p>
-					<div class="auto_complete" id="acTopPcArea"></div>
-					<a href="javascript:" class="x_btn">닫기</a>
-				</div>
-				<p class="search_bg"></p>
-			</div>
-			<div class="all_menu_area">
-				<a href="javascript:" class="all_meun_btn">전체메뉴</a> <a
-					href="javascript:" class="m_all_meun_btn mh_btn">모바일전체메뉴</a> <a
-					href="javascript:" class="m_prod_meun_btn mh_btn">모바일제품메뉴</a>
-				<div class="all_menu_div">
-					<p class="m_all_dim"></p>
-					<div class="visual_menu">
-						<p class="language">
-							<a href="javascript:" class="on">KOR</a> <a
-								href="http://eng.acebed.com">ENG</a>
-						</p>
-						<div class="pro_menu_list m_acco_menu">
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual1.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual1.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="./memberView">MEMBER</a>
-									</div>
-								</div>
-							</div>
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual2.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual2.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="javascript:">INVENTORY & SALES</a>
-									</div>
-								</div>
-							</div>
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual3.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual3.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="./memberOrder">ORDER</a>
-									</div>
-								</div>
-							</div>
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual4.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual4.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="javascript:">REVIEW</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<a href="javascript:" class="mh_x_btn">닫기</a>
-					</div>
-					<div class="all_menu">
-						<div class="m_utill_div">
-							<a href="./loginView">로그인</a> <a href="./join">회원가입</a> <a
-								href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스
-								침대몰</a>
-						</div>
-						<div class="search_div">
-							<p class="search_input">
-								<input type="text" name="searchTerm" title="검색어"
-									placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
-									autocomplete="off" /> <a href="javascript:"
-									class="search_btn btnIntgrSearch"
-									onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
+					<div class="pro_menu_list m_acco_menu">
+						<div class="menu">
+							<p class="img">
+								<img
+									src="https://www.acebed.com/common/images/all-menu-visual1.jpg"
+									alt="" class="only_web" /> <img
+									src="https://www.acebed.com/common/images/m-all-menu-visual1.jpg"
+									alt="" class="only_mob" />
 							</p>
-							<div class="auto_complete" id="acTopMblArea"></div>
-						</div>
-						<div class="menu_list_div m_acco_menu">
-							<div class="menu">
-								 <a href="./memberView" class="one_d">회원관리</a>
-							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">재고 및 매출관리</a>
-							</div>
-							<div class="menu">
-								<a href="./memberOrder" class="one_d">주문관리</a>
-							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">후기관리</a>
+							<div>
+								<div class="one_d">
+									<a href="./memberView">MEMBER</a>
+								</div>
 							</div>
 						</div>
-						<p class="m_language">
-							<a href="javascript:" class="on">KOR</a> <a
-								href="http://eng.acebed.com">ENG</a>
-						</p>
-						<div class="m_f_site">
-							<select title="에이스침대 패밀리 사이트 바로가기 : 새창열림"
-								onchange="if (this.value) window.open(this.value)">
-								<option value="">FAMILY SITE</option>
-								<option value="https://acebedmall.co.kr">에이스 침대몰</option>
-								<option value="http://www.aceheritz.com">에이스 헤리츠</option>
-								<option value="http://www.aceavenue.co.kr">에이스 에비뉴</option>
-								<option value="http://eng.acebed.com">ENGLISH</option>
-							</select>
+						<div class="menu">
+							<p class="img">
+								<img
+									src="https://www.acebed.com/common/images/all-menu-visual2.jpg"
+									alt="" class="only_web" /> <img
+									src="https://www.acebed.com/common/images/m-all-menu-visual2.jpg"
+									alt="" class="only_mob" />
+							</p>
+							<div>
+								<div class="one_d">
+									<a href="javascript:">INVENTORY & SALES</a>
+								</div>
+							</div>
 						</div>
-						<a href="javascript:" class="mh_x_btn">닫기</a>
+						<div class="menu">
+							<p class="img">
+								<img
+									src="https://www.acebed.com/common/images/all-menu-visual3.jpg"
+									alt="" class="only_web" /> <img
+									src="https://www.acebed.com/common/images/m-all-menu-visual3.jpg"
+									alt="" class="only_mob" />
+							</p>
+							<div>
+								<div class="one_d">
+									<a href="./memberOrder">ORDER</a>
+								</div>
+							</div>
+						</div>
+						<div class="menu">
+							<p class="img">
+								<img
+									src="https://www.acebed.com/common/images/all-menu-visual4.jpg"
+									alt="" class="only_web" /> <img
+									src="https://www.acebed.com/common/images/m-all-menu-visual4.jpg"
+									alt="" class="only_mob" />
+							</p>
+							<div>
+								<div class="one_d">
+									<a href="javascript:">REVIEW</a>
+								</div>
+							</div>
+						</div>
 					</div>
-					<a href="javascript:" class="all_x_btn">닫기</a>
+					<a href="javascript:" class="mh_x_btn">닫기</a>
 				</div>
+				<div class="all_menu">
+					<div class="m_utill_div">
+						<a href="./loginView">로그인</a> <a href="./join">회원가입</a> <a
+							href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스
+							침대몰</a>
+					</div>
+					<div class="search_div">
+						<p class="search_input">
+							<input type="text" name="searchTerm" title="검색어"
+								placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
+								autocomplete="off" /> <a href="javascript:"
+								class="search_btn btnIntgrSearch"
+								onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
+						</p>
+						<div class="auto_complete" id="acTopMblArea"></div>
+					</div>
+					<div class="menu_list_div m_acco_menu">
+						<div class="menu">
+							<a href="./memberView" class="one_d">회원관리</a>
+						</div>
+						<div class="menu">
+							<a href="javascript:" class="one_d">재고 및 매출관리</a>
+						</div>
+						<div class="menu">
+							<a href="./memberOrder" class="one_d">주문관리</a>
+						</div>
+						<div class="menu">
+							<a href="javascript:" class="one_d">후기관리</a>
+						</div>
+					</div>
+					<p class="m_language">
+						<a href="javascript:" class="on">KOR</a> <a
+							href="http://eng.acebed.com">ENG</a>
+					</p>
+					<div class="m_f_site">
+						<select title="에이스침대 패밀리 사이트 바로가기 : 새창열림"
+							onchange="if (this.value) window.open(this.value)">
+							<option value="">FAMILY SITE</option>
+							<option value="https://acebedmall.co.kr">에이스 침대몰</option>
+							<option value="http://www.aceheritz.com">에이스 헤리츠</option>
+							<option value="http://www.aceavenue.co.kr">에이스 에비뉴</option>
+							<option value="http://eng.acebed.com">ENGLISH</option>
+						</select>
+					</div>
+					<a href="javascript:" class="mh_x_btn">닫기</a>
+				</div>
+				<a href="javascript:" class="all_x_btn">닫기</a>
 			</div>
-		</header>
+		</div>
+	</header>
