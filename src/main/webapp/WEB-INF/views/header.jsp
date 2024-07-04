@@ -175,7 +175,51 @@
             gtag('js', new Date());
 
             gtag('config', 'G-9DZP1N4254');
+            
+            $(document).ready(function() {
+                // 마이페이지 메뉴를 클릭하면 슬라이드 토글
+                $('.mypage-link').click(function(e) {
+                    e.preventDefault();
+                    $('.slc_div1').slideToggle();
+                });
+
+                // 다른 곳을 클릭하면 슬라이드 닫기
+                $(document).on('click', function(event) {
+                    if (!$(event.target).closest('.mypage-link').length) {
+                        $('.slc_div').slideUp();
+                    }
+                });
+            });
         </script>
+ <style type="text/css">
+ .mypage1-menu {
+    position: relative;
+}
+
+.slc_div1 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    min-width: 150px; /* 필요에 따라 조정 */
+}
+
+.slc_div1 a {
+    display: block;
+    padding: 8px 12px;
+    color: black;
+    text-decoration: none;
+}
+
+.slc_div1 a:hover {
+    background-color: #f0f0f0;
+}
+ </style>
 </head>
 <body data-login-flag="N" data-device-type="web"
 	data-curt-dt="2024-06-28">
@@ -189,11 +233,16 @@
 					<c:when test="${not empty sessionScope.email}">
 						<a href="./logout">로그아웃</a>
 						<div class="my_page">
+<<<<<<< HEAD
 							<a href="./myPage"><span>마이페이지</span></a>
 							<div class="slc_div">
+=======
+							<a href="javascript:" class="mypage-link"><span>마이페이지</span></a>
+							<div class="slc_div1">
+>>>>>>> refs/heads/main
 								<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
 									href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
-									href="/my-page/product-store/index.do">관심상품/매장</a> <a
+									href="./cart">장바구니</a> <a
 									href="/my-page/counsel/index.do">상담내역</a> <a
 									href="/my-page/review/index.do">나의 후기</a>
 							</div>
@@ -292,12 +341,12 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="/ace-story/sns/index.do"> <span>에이스 스토리</span>
+							<a href="./storyReview"> <span>에이스 스토리</span>
 							</a>
 							<div class="two_dep">
-								<a href="https://www.acebed.com/experience/ace-story/sns/index.do" target="_self"><span>NOW
-										SNS</span></a> <a href="/ace-story/review/list.do" target="_self"><span>고객후기</span></a>
-								<a href="/ace-story/news/list.do" target="_self"><span>뉴스룸</span></a>
+								<a href="https://www.acebed.com/ace-story/sns/index.do" target="_self"><span>NOW
+										SNS</span></a> <a href="./storyReview" target="_self"><span>고객후기</span></a>
+								<a href="https://www.acebed.com/ace-story/news/list.do" target="_self"><span>뉴스룸</span></a>
 							</div>
 						</div>
 					</div>
@@ -326,12 +375,12 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="/store/guide/index.do"> <span>매장안내</span>
+							<a href="./guide"> <span>매장안내</span>
 							</a>
 							<div class="two_dep">
-								<a href="/store/guide/index.do" target="_self"><span>매장찾기</span></a>
-								<a href="/store/square/index.do" target="_self"><span>에이스
-										스퀘어</span></a> <a href="/store/avenue/index.do" target="_self"><span>에이스
+								<a href="./guide" target="_self"><span>매장찾기</span></a>
+								<a href="https://www.acebed.com/store/square/index.do" target="_self"><span>에이스
+										스퀘어</span></a> <a href="https://www.acebed.com/store/avenue/index.do" target="_self"><span>에이스
 										에비뉴</span></a>
 							</div>
 						</div>

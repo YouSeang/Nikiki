@@ -4,19 +4,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.soft.study.command.etc.EtcCommand;
+import kr.soft.study.command.etc.GetReviewDetail;
 import kr.soft.study.command.etc.GetSchedules;
+import kr.soft.study.command.etc.InsertReview;
+import kr.soft.study.command.etc.ListReview;
 import kr.soft.study.command.etc.SubmitSchedule;
+import kr.soft.study.dto.Reviews;
+import kr.soft.study.util.ETCDao;
 
 @Controller
 public class ETCController {
@@ -25,7 +34,15 @@ public class ETCController {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	private ServletContext context;
 	
+	@Autowired
+    public ETCController(SqlSession sqlSession, ServletContext context) {
+        this.sqlSession = sqlSession;
+        this.context = context;
+    }
+	
+	// 매트릭스 체험존
 	@RequestMapping("/experience")
 	public String experience(Model model) {
 		System.out.println("experience()");
@@ -44,6 +61,7 @@ public class ETCController {
 		return "etc/experienceResult";
 	}
 	
+	// 이동수면공학 연구소
 	@RequestMapping("/experienceMoving")
 	public String experienceMoving(Model model) {
 		System.out.println("experienceMoving()");
@@ -93,6 +111,56 @@ public class ETCController {
 		System.out.println("experienceGroupChoice()");
 		return "etc/experienceGroupChoice";
 	}
+	
+	// 고객후기리스트 이동
+    @RequestMapping("/storyReview")
+    public String storyReview(Model model) {
+        ETCDao dao = sqlSession.getMapper(ETCDao.class);
+        List<Reviews> reviews = dao.getReviewsWithImages();
+        model.addAttribute("reviews", reviews);
+        return "etc/storyReview";
+    }
+	
+	@RequestMapping("/storyReviewWrite")
+	public String storyReviewWrite(HttpServletRequest request, HttpSession session, Model model) {
+	    String email = (String) session.getAttribute("email");
+
+	    if (email == null) {
+	        model.addAttribute("errorMessage", "로그인이 필요합니다. 로그인 후 이용해주세요.");
+	        return "redirect:/login";
+	    }
+
+	    System.out.println("storyReviewWrite()");
+	    return "etc/storyReviewWrite";
+	}
+	
+	// 고객후기작성 이동
+	@RequestMapping(value = "/write", method = RequestMethod.POST)
+	public String write(@RequestParam("atchFile") List<MultipartFile> files, HttpServletRequest request, Model model) {
+	    model.addAttribute("files", files);
+	    model.addAttribute("request", request);
+	    InsertReview command = new InsertReview(sqlSession, context);
+	    command.execute(model);
+	    return "redirect:/storyReview"; // 원하는 경로로 리다이렉트
+	}
+	
+	// 고객후기상세 이동
+	@RequestMapping("/storyReviewDetail")
+	public String storyReviewDetail(@RequestParam("reviewId") int reviewId, Model model) {
+	    model.addAttribute("reviewId", reviewId);
+	    GetReviewDetail command = new GetReviewDetail(sqlSession);
+	    command.execute(model);
+	    return "etc/storyReviewDetail";
+	}
+	
+	// 매장안내-매장찾기 이동
+		@RequestMapping("/guide")
+		public String guide(Model model) {
+			System.out.println("guide()");
+			return "etc/guide";
+		}
+	
+	
 
 
 }
