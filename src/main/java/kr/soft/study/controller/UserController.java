@@ -36,7 +36,6 @@ public class UserController {
 	private UserUpdate userUpdate;
 	private NumberUpdate numberUpdate;
 
-
 	@Autowired
 	private SqlSession sqlSession;
 	private UserDao userDao;
@@ -238,20 +237,31 @@ public class UserController {
 	}
 
 	// 탈퇴하기
-	 @RequestMapping(value = "/dropOut", method = RequestMethod.POST)
-	    public String dropOut(HttpServletRequest request, Model model) {
-	        System.out.println("dropOut()");
-	        String email = request.getParameter("email");
+	@RequestMapping(value = "/dropOut", method = RequestMethod.POST)
+	public String dropOut(HttpServletRequest request, Model model) {
+		System.out.println("dropOut()");
+		String email = request.getParameter("email");
 
-	        System.out.println("Received email: " + email); // 로그 추가
+		System.out.println("Received email: " + email); // 로그 추가
 
-	        model.addAttribute("request", request);
+		model.addAttribute("request", request);
 
-	        DropOut dropOut = new DropOut(userDao);
-	        dropOut.execute(model);
+		DropOut dropOut = new DropOut(userDao);
+		dropOut.execute(model);
 
-	        String path = (String) model.asMap().get("path");
-	        return path;
-	    }
+		String path = (String) model.asMap().get("path");
+		return path;
+	}
+
+	// 관리자 회원주문목록
+	@RequestMapping("/memberOrder")
+	public String memberOrder(HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("memberView()");
+		model.addAttribute("request", request);
+
+		userList = new UserList(sqlSession);
+		userList.execute(model);
+		return "user/memberOrder";
+	}
 
 }

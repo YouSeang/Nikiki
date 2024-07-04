@@ -26,6 +26,9 @@ public class DeleteProduct implements ProductCommand {
         ProductDao productDao = sqlSession.getMapper(ProductDao.class);
         
         int product_id=Integer.parseInt(request.getParameter("product_id"));
+        productDao.deleteOrderItemsByProductId(product_id);
+        productDao.updateOrderStatusToCancelled(product_id);
+        productDao.deleteCart(product_id);
         productDao.deleteProductAttribute(product_id);
         productDao.deleteProduct(product_id);
        

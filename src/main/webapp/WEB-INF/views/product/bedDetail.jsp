@@ -203,6 +203,24 @@
     .attribute-option {
         display: flex;
         align-items: center;
+        white-space: nowrap;
+    }
+        .button-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .button-container input[type="submit"] {
+        padding: 10px 20px;
+        background-color: lightgray;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .button-container input[type="submit"]:hover {
+        background-color: gray;
     }
 </style>
     <script>
@@ -214,9 +232,7 @@
         }
     </script>			
 </head>
-<body data-login-flag="N" data-device-type="web"
-	data-kakao-key="6f6b5601b844d8e4d8835588b2da67f2"
-	data-curt-dt="2024-07-02">
+<body>
 	<div id="wrap">
 		<jsp:include page="../header.jsp" />
 		<div id="content" data-swiftype-name="body" data-swiftype-type="text"
@@ -330,12 +346,12 @@
 									-->
 
 
-<form id="orderForm" action="./insertOrder" method="po">
+<form id="orderForm" action="./insertOrder" method="post">
     <input type="hidden" name="product_id" value="${products.product_id}">
     <input type="hidden" name="price" value="${products.price}">
     <div class="attributes-container">
         <c:forEach items="${products.attributes}" var="attribute">
-            <c:if test="${fn:contains(attribute.attribute_name, '속성') || attribute.attribute_name == '컬러'}">
+            <c:if test="${fn:contains(attribute.attribute_name, '사이즈') || attribute.attribute_name == '컬러'}">
                 <c:if test="${empty processedAttributes[attribute.attribute_name]}">
                     <div class="attribute-group">
                         <div class="info frame size_info">
@@ -369,7 +385,9 @@
         </c:forEach>
     </div>
     <!-- <button type="button" onclick="orderProduct()">주문하기</button> -->
-    <input type="submit" onclick="openPopup()" value="주문하기"/>
+        <div class="button-container">
+        <input type="submit" onclick="openPopup()" value="주문하기"/>
+    </div>
 </form>
 
 
@@ -815,127 +833,10 @@ function orderProduct() {
 
 		<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 s-->
 		<!-- 2022-08-02 플로팅 배너 s -->
-		<div class="floating_banner">
-			<button type="button" class="close_btn">닫기</button>
-			<a href="https://www.acebed.com/board/event/view.do?detailsKey=30">
-				<img
-				src="https://www.acebed.com/common/images/m_floating_banner_img1.png"
-				alt="" />
-			</a> <a href="https://www.acebed.com/wedding-members/benefit/index.do">
-				<img
-				src="https://www.acebed.com/common/images/m_floating_banner_img2.png"
-				alt="" />
-			</a>
-		</div>
+
 		<!-- 2022-08-26 플로팅 배너 프레임, 매트리스만 노출 e-->
 		<jsp:include page="../footer.jsp" />
 
-		<div class="black_bg" id="dimdBg" data-swiftype-index="false"></div>
-		<!-- 2022-12-26 웨딩멤버스 레이어 팝업 s-->
-		<!-- 2022-12-26 웨딩멤버스 레이어 팝업 e-->
-		<div class="loading_div" style="display: none"
-			data-swiftype-index="false">
-			<div class="loading_icon">
-				<p class="img">
-					<img src="https://www.acebed.com/common/images/loading.gif" alt="" />
-				</p>
-			</div>
-		</div>
-
-		<div class="quick_area" data-swiftype-index="false">
-			<div class="quick_con">
-				<div class="like_div" style="display: none">
-					<p class="tit">고객님의 관심 제품입니다.</p>
-					<form action="" data-csrf-key="VrdzKh5gha4pKoKHrszr">
-						<div class="like_list more_view_swp" id="footerIntrsPrdctArea">
-
-						</div>
-					</form>
-					<a
-						href="javascript:cmmCtrl.loginCheckPage('/my-page/product-store/index.do')"
-						class="more_btn">more</a>
-				</div>
-				<div class="catalogue">
-					<p>
-						에이스침대의 다양한 <br /> 제품을 카탈로그를 통해 <br /> 만나보세요
-					</p>
-					<a href="/customer/prdct-manual/index.do" class="txt_btn t2"><span>카탈로그
-							다운로드</span></a>
-				</div>
-				<div class="menu_link">
-					<a href="/experience/mattress/index.do" class="find_prod"><span>나에게
-							맞는 <br />매트리스 찾기
-					</span></a> <a href="/store/guide/index.do" class="info_store"><span>매장
-							안내</span></a> <a href="https://acebedmall.co.kr" target="_blank"
-						class="ace_mall"><span>에이스몰 <strong>바로가기</strong></span></a>
-				</div>
-			</div>
-			<a href="javascript:" class="quick_x_btn"></a>
-		</div>
-
-		<div class="layer_pop browser_pop w500" style="display: none;">
-			<div class="pop_title">브라우저 업데이트 안내</div>
-			<div class="pop_cont">
-				<div class="inner_box">
-					<div class="txt_box pa_t ta_c">
-						<p>
-							에이스침대 홈페이지에서는 <br /> EDGE 및 크롬 브라우저에서 정상 작동합니다. <br /> 본 홈페이지를
-							이용하기 위해서는 <span class="fw_l">보안과 속도가 강화된 <br />브라우저로
-								업그레이드
-							</span> 하기를 권장합니다.
-						</p>
-					</div>
-					<div class="square_btn">
-						<div>
-							<a href="https://www.microsoft.com/ko-kr/edge" target="_blank">
-								<img src="https://www.acebed.com/common/images/browser-ie.jpg"
-								alt="" />
-							</a>
-							<p>Microsoft Edge</p>
-						</div>
-						<div>
-							<a href="https://www.google.com/intl/ko/chrome/" target="_blank">
-								<img
-								src="https://www.acebed.com/common/images/browser-chrome.jpg"
-								alt="" />
-							</a>
-							<p>Google Chrome</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="pop_bottom">
-				<p class="chk_txt">
-					<input type="checkbox" class="all_chk_btn todayClose"
-						id="browserUpdate" title="오늘 하루 보지 않기" /> <label
-						for="browserUpdate" class="chk1 fw_m">오늘 하루 보지 않기</label>
-				</p>
-				<a href="javascript:" class="text_btn x_btn">닫기</a>
-			</div>
-			<a href="javascript:" class="x_btn">닫기</a>
-		</div>
-
-		<!-- 구매후기 작성유도 팝업 -->
-		<!-- 메인 팝업 -->
-	</div>
-	<script type="text/javascript"
-		src="https://www.acebed.com/common/js/lib/require.js"
-		data-main="/common/js/site"></script>
-
-	<!-- 공통 적용 스크립트 , 모든 페이지에 노출되도록 설치. 단 전환페이지 설정값보다 항상 하단에 위치해야함 -->
-	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"> </script>
-
-	<script type="text/javascript">
-		if (!wcs_add) var wcs_add={};
-
-		wcs_add["wa"] = "s_49cc4fcb32e0";
-
-		if (!_nasa) var _nasa={};
-
-		if(window.wcs){
-			wcs.inflow("acebed.com");
-			wcs_do(_nasa);
-		}
-		</script>
+		
 </body>
 </html>

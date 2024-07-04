@@ -206,6 +206,18 @@
 .custom_scroll {
 	padding: 10px; /* 스크롤 영역 패딩 추가 */
 }
+
+    .frame_img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* 이미지를 컨테이너 크기에 맞추고 비율을 유지하면서 자름 */
+    }
+
+    .swiper-slide {
+        width: 284px; /* 이미지 슬라이드의 너비 설정 */
+        height: 284px; /* 이미지 슬라이드의 높이 설정 */
+    }
+
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -221,7 +233,7 @@
 		<div class="head_div visual">
 			<p class="vs vs1"></p>
 			<!-- 비주얼 이미지마다 클래스 다르게 붙음 (vs1, vs2 ...)  -->
-			<h2 class="titleH1">프레임</h2>
+			<h2 class="titleH1">${empty category_name ? '전체' : category_name}</h2>
 		</div>
 		<div class="content_div"
 			data-controller="controller/ps/PSProductListCtrl" id="trgtTop">
@@ -383,7 +395,6 @@
 
                 <div class="text_div">
                     <p class="tit">제품명: ${product.product_name}</p>
-                    <p class="txt">제품설명: ${product.description}</p>
                     <p class="txt">가격: ${product.price}</p>
                     <input type="submit" value="🛒장바구니 담기">
                 </div>

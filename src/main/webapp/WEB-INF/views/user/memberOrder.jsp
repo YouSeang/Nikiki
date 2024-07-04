@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="java.sql.*, java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>프레임 | BED | 에이스침대</title>
+<title>에이스침대</title>
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,target-densitydpi=medium-dpi, initial-scale=1.0" />
 <meta http-equiv="content-language" content="kr" />
@@ -20,31 +22,26 @@
 
 <meta property="og:site_name" content="에이스침대" id="og-sitename-value" />
 <meta property="og:type" content="website" id="og-type-value" />
-<meta property="og:url"
-	content="http://www.acebed.com:80/product/bed/frame/list.do?pageIndex=1&listCnt=12&listType=1&ordType=&detailsKey=&q="
+<meta property="og:url" content="http://www.acebed.com:80/main/index.do"
 	id="og-url-value" />
 <meta property="og:image"
 	content="http://www.acebed.com:80/common/images/sns-share-thumbnail.jpg"
 	id="og-image-value" />
-<meta property="og:title" content="프레임" id="og-title-value" />
+<meta property="og:title" content="에이스침대" id="og-title-value" />
 <meta property="og:description" content="에이스침대의 공식 홈페이지 입니다."
 	id="og-description-value" />
 
-<meta itemprop="url"
-	content="http://www.acebed.com:80/product/bed/frame/list.do?pageIndex=1&listCnt=12&listType=1&ordType=&detailsKey=&q="
+<meta itemprop="url" content="http://www.acebed.com:80/main/index.do"
 	id="schema-url-value" />
 <meta itemprop="name" content="에이스침대" id="schema-name-value" />
 <meta itemprop="description" content="에이스침대의 공식 홈페이지 입니다."
 	id="schema-discription-value" />
 
 <!-- //swiftype 검색 메타태그 -->
-<meta class="swiftype" name="top_menu" data-type="string" content="침대" />
-<meta class="swiftype" name="child_menu" data-type="string"
-	content="프레임" />
-<meta class="swiftype" name="title" data-type="string"
-	content="침대 > 프레임" />
+<meta class="swiftype" name="top_menu" data-type="string" content="" />
+<meta class="swiftype" name="child_menu" data-type="string" content="" />
+<meta class="swiftype" name="title" data-type="string" content="" />
 
-<meta class="swiftype" name="image" data-type="enum" content="" />
 <!-- swiftype 검색 메타태그// -->
 <link rel="shortcut icon"
 	href="https://www.acebed.com/common/images/favicon.ico">
@@ -110,8 +107,6 @@
 <script type="text/javascript"
 	src="https://www.acebed.com/common/js/controller/co/COMsgCtrl.js"></script>
 <script type="text/javascript"
-	src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
-<script type="text/javascript"
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript"
 	src="https://kit.fontawesome.com/7db9bc3ad6.js" crossorigin="anonymous"></script>
@@ -165,7 +160,6 @@
 	ga('create', 'UA-34811848-3', 'acebed.com');
 	ga('send', 'pageview');
 </script>
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
 	if (!wcs_add)
 		var wcs_add = {};
@@ -194,212 +188,129 @@
 
 	gtag('config', 'G-9DZP1N4254');
 </script>
+
 <style>
-.table-container {
-	width: 80%;
-	margin: 20px auto;
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f8ff;
+	color: #333;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 90%;
+	margin: 0 auto;
+	padding: 20px;
+}
+.maincon {
+margin-top: 500px; /* 헤더와 콘텐츠 사이에 더 많은 여백 추가 */
+}
+h2 {
+	color: #d2cab6;
+	text-align: center;
+	font-size: 24px; /* 제목 글씨 크기 조정 */
+}
+
+table {
+	width: 100%;
+	margin: 20px 0;
 	border-collapse: collapse;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	background-color: #dddbce;
+	text-align: center;
 }
 
-.table-container th, .table-container td {
-	padding: 10px 15px;
-	text-align: left;
+table, th, td {
+	border: 1px solid #fefcf5;
 }
 
-.table-container th {
-	background-color: #f4f4f4;
-	font-weight: bold;
-	border-bottom: 2px solid #ddd;
+th, td {
+	padding: 20px;
+	font-size: 20px;
+	height: 60px; /* 테이블 셀 높이 설정 */
 }
 
-.table-container td {
-	border-bottom: 1px solid #ddd;
+th {
+	background-color: #a29f84;
+	color: white;
 }
 
-/* 색상 및 서식 */
-.table-container tr:nth-child(even) {
-	background-color: #f9f9f9;
+td form {
+	display: inline;
 }
 
-.table-container tr:hover {
-	background-color: #f1f1f1;
+input[type=submit] {
+	background-color:#a29f84;
+	color: white;
+	border: none;
+	padding: 5px 10px;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 5px;
+	margin-right: 5px;
 }
 
-.table-container .order-id {
-	color: #007BFF;
-	font-weight: bold;
+input[type=submit]:hover {
+	background-color: #a29f84;
 }
 
-.table-container .order-status {
-	padding: 3px 10px;
-	border-radius: 12px;
-	color: #fff;
-	font-size: 0.85em;
-}
-
-.order-status.pending {
-	background-color: #FFC107;
-}
-
-.order-status.processing {
-	background-color: #17A2B8;
-}
-
-.order-status.shipped {
-	background-color: #007BFF;
-}
-
-.order-status.delivered {
-	background-color: #28A745;
-}
-
-.order-status.cancelled {
-	background-color: #DC3545;
-}
-
-/* 내역 스타일 */
-.order-details {
-	padding: 10px;
-	border: 1px solid #ddd;
-	background-color: #f9f9f9;
-	margin-bottom: 20px;
-}
-
-.order-details h4 {
-	margin-top: 0;
-	text_align: center;
-}
-
-.return-button {
-	background-color: lightgray;
-	border: lightgray; /* 테두리 스타일 추가 */
-	color: black;
-	padding: 8px 16px;
+a.add-member {
+	display: block;
+	width: 150px;
+	margin: 20px auto;
+	padding: 10px 20px;
+	background-color: #007B7F;
+	color: white;
 	text-align: center;
 	text-decoration: none;
-	display: inline-block;
-	font-size: 14px;
-	cursor: pointer;
-	border-radius: 4px;
+	border-radius: 5px;
 }
 
-.return-button:hover {
-	background-color: gray;
-	border-color: #0056b3; /* 호버 시 테두리 색상 변경 */
+a.add-member:hover {
+	background-color: #005f5f;
+}
+
+.button-container {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
 }
 </style>
+
 </head>
-<jsp:include page="../header.jsp" />
-
-<div id="content" data-swiftype-name="body" data-swiftype-type="text"
-	data-swiftype-index="true">
-	<div class="subCon">
-		<input type="text" id="input-clipboard"
-			style="position: absolute; top: -9999px; left: -9999px; z-index: -1" />
-		<div class="head_div">
-			<h2 class="titleH1">구매내역</h2>
-		</div>
-		<div class="content_div pb_0"
-			data-controller="controller/mp/mpa/MPAProductStoreIndexCtrl">
-			<input type="hidden" class="notRequired" id="prdctLen"
-				name="prdctLen" value="3"> <input type="hidden"
-				class="notRequired" id="csrfKey" name="csrfKey"
-				value="G34pdA67QhUPKSzjEGkK" />
-			<div class="mypage_area">
-				<div class="user_menu_area">
-					<div class="inner">
-						<div class="menu">
-							<div class="round_btn_div">
-								<a href="/store/guide/index.do?type=like" class="btn">관심 매장
-									보기</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="product_area">
-					<div class="pro_content">
-						<div class="none_div noDataDiv" style="display: none;">
-							회원님께서 관심을 갖고 있는 제품이 없습니다.<br> 에이스침대의 제품들을 둘러보세요
-							<div class="btn_div">
-								<a href="/product/bed/frame/list.do" class="btn btn3"><span>제품보기</span></a>
-							</div>
-						</div>
-						<div class="list_type4 square motion_list type4xn listDiv">
-
-
-							<c:if test="${not empty error}">
-								<p>${error}</p>
-							</c:if>
-							<c:if test="${not empty orders}">
-								<div class="table-container">
-									<table>
-										<thead>
-											<tr>
-												<th>Order ID</th>
-												<th>User Email</th>
-												<th>Total Price</th>
-												<th>Order Date</th>
-												<th colspan="2" style="text-align: center;">Status</th>
-											</tr>
-										</thead>
-										<tbody>
-											<c:forEach var="order" items="${orders}">
-												<tr>
-													<td class="order-id">${order.order_id}</td>
-													<td>${order.user_email}</td>
-													<td>${order.total_price}</td>
-													<td>${order.order_date}</td>
-													<td><span class="order-status ${order.status}">
-															${order.status} </span></td>
-													<td>
-														<form action="./cancelledOrder" method="post">
-															<input type="hidden" name="order_id"
-																value="${order.order_id}">
-															<button type="submit" class="return-button">주문취소</button>
-														</form>
-													</td>
-												</tr>
-												<tr>
-													<td colspan="6">
-														<div class="order-details">
-															<h4>주문상세내역</h4>
-															<br>
-															<ul>
-																<c:set var="previousProductId" value="" />
-																<c:forEach var="item" items="${order.orderItemsDto}">
-																	<li><c:if
-																			test="${item.product_id != previousProductId}">
-																			<strong>Product Name:</strong> ${item.product_name}<br>
-																			<br>
-																			<strong>Quantity:</strong> ${item.quantity}<br>
-																			<br>
-																			<strong>Price:</strong> ${item.price}<br>
-																			<br>
-																			<c:set var="previousProductId"
-																				value="${item.product_id}" />
-																		</c:if> <strong>${item.attribute_name}</strong> -
-																		${item.attribute_value}<br>
-																	<br></li>
-																</c:forEach>
-															</ul>
-														</div>
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</c:if>
-							<!--list-->
-
-							<!--pro_content-->
-						</div>
-
-					</div>
-				</div>
+<body>
+<jsp:include page="../headerAdmin.jsp" />
+<div id="mainPage" class="mainCon"
+	data-controller="controller/fm/fma/FMAMainCtrl"
+	data-csrf-key="RZcOWpYpzpnovCucXNty">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide">
+			<div class="container">
+				<h2>사용별 주문관리</h2>
+				<br> <br> <br>
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Birthday</th>
+						<th>phone_number</th>
+						<th>email</th>
+					</tr>
+					<c:forEach items="${list}" var="dto">
+						<tr>
+							<td>${dto.user_id }</td>
+							<td>${dto.name}</td>
+							<td>${dto.birth_date}</td>
+							<td>${dto.phone_number}</td>
+							<td><a href="adminOrderList?email=${dto.email}">${dto.email}</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+				
 			</div>
-
 		</div>
-
-		<jsp:include page="../footer.jsp" />
+	</div>
+</div>
+<jsp:include page="../footer.jsp" />
+</body>
+</html>
