@@ -5,23 +5,22 @@ import java.sql.Timestamp;
 public class CartDto {
 
 	private int cart_id;
-	private int user_id;
+	private String user_email;
 	private int product_id;
 	private int attribute_id;
 	private int price;
-	private int quantity;
-	private Timestamp created_at;
+	private String created_at;
 	public int getCart_id() {
 		return cart_id;
 	}
 	public void setCart_id(int cart_id) {
 		this.cart_id = cart_id;
 	}
-	public int getUser_id() {
-		return user_id;
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 	public int getProduct_id() {
 		return product_id;
@@ -41,17 +40,13 @@ public class CartDto {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public Timestamp getCreated_at() {
+	public String getCreated_at() {
 		return created_at;
 	}
-	public void setCreated_at(Timestamp created_at) {
+	public void setCreated_at(String created_at) {
 		this.created_at = created_at;
 	}
+	
+	
 	
 }

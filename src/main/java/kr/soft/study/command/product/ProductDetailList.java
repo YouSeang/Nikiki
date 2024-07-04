@@ -1,6 +1,5 @@
 package kr.soft.study.command.product;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +11,12 @@ import org.springframework.ui.Model;
 import kr.soft.study.dto.Product;
 import kr.soft.study.util.ProductDao;
 
-public class ProductList implements ProductCommand {
-	
+public class ProductDetailList implements ProductCommand{
+
 	SqlSession sqlSession;
 	
 	@Autowired
-	public ProductList(SqlSession sqlSession) {
+	public ProductDetailList(SqlSession sqlSession) {
 		this.sqlSession = sqlSession;
 	}
 	
@@ -26,21 +25,11 @@ public class ProductList implements ProductCommand {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		String category_name = request.getParameter("category_name");
 		ProductDao dao=sqlSession.getMapper(ProductDao.class);
-		List<Product> dto;
-		List<Map<String, String>> Adto;
-		if (category_name != null && !category_name.isEmpty()) {
-		    dto = dao.getProductCategoty(category_name);
-		} else {
-		    dto = dao.getAllList(); // 전체 상품 목록을 가져오는 메서드명이 getAllList라 가정합니다.
-		}
-
-		Adto=dao.getAttributeValues();
-		
+		int product_id =Integer.parseInt(request.getParameter("product_id"));
+		Product dto=new Product();
+		dto=dao.getProductWithAttributes(product_id);
 		model.addAttribute("products",dto);
-		model.addAttribute("attributes",Adto);
-		
 	}
 
 }

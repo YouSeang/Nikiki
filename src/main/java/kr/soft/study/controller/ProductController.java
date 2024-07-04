@@ -1,6 +1,9 @@
 package kr.soft.study.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +12,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.soft.study.command.product.AddCart;
 import kr.soft.study.command.product.DeleteAttribute;
+import kr.soft.study.command.product.DeleteCart;
 import kr.soft.study.command.product.DeleteProduct;
 import kr.soft.study.command.product.InsertAttributes;
+import kr.soft.study.command.product.InsertOrder;
 import kr.soft.study.command.product.ModifyProduct;
 import kr.soft.study.command.product.ProductAllList;
 import kr.soft.study.command.product.ProductCommand;
 import kr.soft.study.command.product.ProductDetail;
+import kr.soft.study.command.product.ProductDetailList;
 import kr.soft.study.command.product.ProductList;
 import kr.soft.study.command.product.ProductManage;
+import kr.soft.study.command.product.UserCartList;
 
 @Controller
 public class ProductController {
@@ -124,15 +132,55 @@ public class ProductController {
 		productCommand.execute(model);
 		return "product/bed";
 	}
-    //제품 등록 화면 
+    //제품 세부화면 
     @RequestMapping("/bedDetail")
     public String bedDetail(HttpServletRequest request, Model model) {
+    	model.addAttribute("request",request);
+		productCommand= new ProductDetailList(sqlSession);
+		productCommand.execute(model);
     	return "product/bedDetail";
     }
+    //장바구니 화면
 	@RequestMapping("/cart")
-	public String cart(Model model) {
-		
+	public String cart(HttpSession session,Model model) {
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("user_email",email);
+		productCommand= new UserCartList(sqlSession);
+		productCommand.execute(model);
 		return "product/cart";
+	}
+	//장바구니 담기
+	@RequestMapping("/addCart")
+	public String addCart(HttpSession session,HttpServletRequest request,Model model) {
+		System.out.println("들어오니?");
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("user_email",email);
+		model.addAttribute("request",request);
+		productCommand= new AddCart(sqlSession);
+		productCommand.execute(model);
+		return "redirect:/bed";
+	}
+	//장바구니 삭제
+	@RequestMapping("/deleteCart")
+	public String deleteCart(HttpSession session,HttpServletRequest request,Model model) {
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("user_email",email);
+		model.addAttribute("request",request);
+		productCommand= new DeleteCart(sqlSession);
+		productCommand.execute(model);
+		return "redirect:/cart";
+	}
+	//주문하기
+	@RequestMapping("/insertOrder")
+	public String insertOrder(HttpSession session,HttpServletRequest request,Model model) {
+		String email = (String) session.getAttribute("email");
+		model.addAttribute("user_email",email);
+		model.addAttribute("request",request);
+		productCommand= new InsertOrder(sqlSession);
+		productCommand.execute(model);
+		Map<String, Object> map = model.asMap();
+		int product_id=(Integer) map.get("product_id");
+		return "redirect:/bedDetail?product_id="+product_id;
 	}
 	@RequestMapping("/recently")
 	public String recently(Model model) {

@@ -5,23 +5,31 @@ import java.sql.Timestamp;
 public class Orders {
 
 	private int order_id;
-	private int user_id;
+	private String user_email;
 	private int total_price;
+	private int price;
 	private Timestamp order_date;
 	private String status;
 	
 	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getOrder_id() {
 		return order_id;
 	}
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-	public int getUser_id() {
-		return user_id;
+	
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 	public int getTotal_price() {
 		return total_price;
