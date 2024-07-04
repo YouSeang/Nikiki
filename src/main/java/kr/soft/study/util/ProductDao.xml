@@ -31,15 +31,18 @@
 	</insert>
 
 	<!-- 하나의 제품과 관련된 모든 특성 조회 -->
-	<select id="getAllList"
-		resultMap="productResultMap">
-		SELECT p.product_id, p.product_name, p.category_name,
+	<select id="getAllList" resultMap="productResultMap">
+		SELECT p.product_id,
+		p.product_name, p.category_name,
 		p.parent_category_name,
-		p.description, p.image_url, p.price,
+		p.description,
+		p.image_url, p.price,
 		pa.attribute_id, pa.attribute_name, pa.value
-		FROM Products p
+		FROM
+		Products p
 		LEFT JOIN
-		ProductAttributes pa ON p.product_id = pa.product_id
+		ProductAttributes pa ON p.product_id =
+		pa.product_id
 	</select>
 	<!-- 하나의 제품과 관련된 모든 특성 조회 -->
 	<select id="getProductWithAttributes"
@@ -68,7 +71,25 @@
 		ProductAttributes pa ON p.product_id =
 		pa.product_id
 		WHERE p.category_name
-		= #{category_name}
+		= #{param1} and
+		p.parent_category_name=#{param2}
+	</select>
+	<!--부모카테고리별 관련된 제품 조회 -->
+	<select id="getProductParentCategoty"
+		resultMap="productResultMap">
+		SELECT p.product_id,
+		p.product_name, p.category_name,
+		p.parent_category_name,
+		p.description,
+		p.image_url, p.price,
+		pa.attribute_id, pa.attribute_name, pa.value
+		FROM
+		Products p
+		LEFT JOIN
+		ProductAttributes pa ON p.product_id =
+		pa.product_id
+		WHERE
+		p.parent_category_name=#{parent_category_name}
 	</select>
 	<resultMap id="productResultMap"
 		type="kr.soft.study.dto.Product">
@@ -133,29 +154,82 @@
 	</select>
 	<!-- 장바구니 담기 -->
 	<insert id="addToCart" parameterType="kr.soft.study.dto.CartDto">
-		INSERT INTO Cart (user_email, product_id, price)
-		VALUES (#{user_email}, #{product_id}, #{price})
+		INSERT INTO Cart
+		(user_email, product_id, price)
+		VALUES (#{user_email}, #{product_id},
+		#{price})
 	</insert>
-	    <select id="getCartProducts" parameterType="string" resultType="kr.soft.study.dto.Products">
-        SELECT p.product_id, p.product_name, p.description, p.image_url, p.price
-        FROM Cart c
-        JOIN Products p ON c.product_id = p.product_id
-        WHERE c.user_email = #{userEmail}
-        ORDER BY c.created_at DESC
-    </select>
-    <delete id="deleteCartItem">
-    DELETE FROM Cart
-    WHERE user_email = #{param1}
-    AND product_id = #{param2}
-</delete>
+	<select id="getCartProducts" parameterType="string"
+		resultType="kr.soft.study.dto.Products">
+		SELECT p.product_id, p.product_name, p.description, p.image_url, p.price
+		FROM Cart c
+		JOIN Products p ON c.product_id = p.product_id
+		WHERE c.user_email = #{userEmail}
+		ORDER BY c.created_at DESC
+	</select>
+	<delete id="deleteCartItem">
+		DELETE FROM Cart
+		WHERE user_email = #{param1}
+		AND product_id = #{param2}
+	</delete>
 	<!-- 주문테이블 담기 -->
-    <insert id="insertOrder" parameterType="kr.soft.study.dto.Orders" useGeneratedKeys="true" keyProperty="order_id">
-        INSERT INTO Orders (user_email, total_price, status)
-        VALUES (#{user_email}, #{price}, 'pending')
-    </insert>
-    
-    <insert id="insertOrderItem" parameterType="kr.soft.study.dto.OrderItemsDto">
-        INSERT INTO OrderItems (order_id, product_id, attribute_id, price)
-        VALUES (#{order_id}, #{product_id}, #{attribute_id}, #{price})
-    </insert>
+	<insert id="insertOrder"
+		parameterType="kr.soft.study.dto.Orders" useGeneratedKeys="true"
+		keyProperty="order_id">
+		INSERT INTO Orders (user_email, total_price, status)
+		VALUES (#{user_email}, #{price}, 'pending')
+	</insert>
+
+	<insert id="insertOrderItem"
+		parameterType="kr.soft.study.dto.OrderItemsDto">
+		INSERT INTO OrderItems (order_id, product_id, attribute_id, price)
+		VALUES (#{order_id}, #{product_id}, #{attribute_id}, #{price})
+	</insert>
+	 <select id="getOrderListByEmail" resultMap="orderResultMap" parameterType="String">
+        SELECT 
+            o.order_id,
+            o.user_email,
+            o.total_price,
+            o.order_date,
+            o.status,
+            oi.order_item_id,
+            oi.product_id,
+            oi.attribute_id,
+            oi.quantity,
+            oi.price AS item_price,
+            p.product_name,
+            pa.attribute_name,
+            pa.value AS attribute_value
+        FROM 
+            Orders o
+        LEFT JOIN 
+            OrderItems oi ON o.order_id = oi.order_id
+        LEFT JOIN 
+            Products p ON oi.product_id = p.product_id
+        LEFT JOIN 
+            ProductAttributes pa ON oi.attribute_id = pa.attribute_id
+        WHERE 
+            o.user_email = #{user_email}
+        ORDER BY 
+            o.order_date ASC
+    </select>
+
+    <!-- Result Map -->
+    <resultMap id="orderResultMap" type="kr.soft.study.dto.Orders">
+        <id property="order_id" column="order_id" />
+        <result property="user_email" column="user_email" />
+        <result property="total_price" column="total_price" />
+        <result property="order_date" column="order_date" />
+        <result property="status" column="status" />
+        <collection property="orderItemsDto" ofType="kr.soft.study.dto.OrderItemsDto">
+            <id property="order_item_id" column="order_item_id" />
+            <result property="product_id" column="product_id" />
+            <result property="attribute_id" column="attribute_id" />
+            <result property="quantity" column="quantity" />
+            <result property="price" column="item_price" />
+            <result property="product_name" column="product_name" />
+            <result property="attribute_name" column="attribute_name" />
+            <result property="attribute_value" column="attribute_value" />
+        </collection>
+    </resultMap>
 </mapper>

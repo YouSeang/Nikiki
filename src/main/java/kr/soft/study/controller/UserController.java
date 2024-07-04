@@ -146,8 +146,10 @@ public class UserController {
 		command.execute(model);
 		String path = (String) model.asMap().get("path");
 		String email = (String) model.asMap().get("email");
+		String name = (String) model.asMap().get("name");
 
 		session.setAttribute("email", email);
+		session.setAttribute("name", name);
 		return path;
 	}
 
