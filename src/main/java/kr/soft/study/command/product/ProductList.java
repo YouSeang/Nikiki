@@ -43,6 +43,7 @@ public class ProductList implements ProductCommand {
 		
 		model.addAttribute("products",dto);
 		model.addAttribute("attributes",Adto);
+		model.addAttribute("category_name",category_name);
 		
 	}
 

@@ -37,6 +37,7 @@ public class UserController {
 	private NumberUpdate numberUpdate;
 	private PasswordRecovery passwordRecovery;
 
+
 	@Autowired
 	private SqlSession sqlSession;
 
@@ -243,6 +244,13 @@ public class UserController {
 		return "user/passwordReset";
 	}
 
+	// 탈퇴하기
+	@RequestMapping(value = "/dropOut", method = RequestMethod.POST)
+	public String dropOut(HttpServletRequest request, Model model) {
+		System.out.println("dropOut()");
+		String email = request.getParameter("email");
+	}
+	
 	// 비밀번호 찾기
 	@RequestMapping(value = "/findPassword", method = RequestMethod.POST)
 	public String findPassword(HttpServletRequest request, Model model) {
@@ -250,13 +258,20 @@ public class UserController {
 		String name = request.getParameter("name");
 		String phone = request.getParameter("phone");
 
+		System.out.println("Received email: " + email); // 로그 추가
+
+
 		System.out.println("Received name: " + name);
 		System.out.println("Received phone: " + phone);
 		
 		model.addAttribute("request", request);
 
+
 		// 추가 로그: execute() 메서드 호출 전
 		System.out.println("Executing passwordRecoveryCommand...");
+
+		DropOut dropOut = new DropOut(userDao);
+		dropOut.execute(model);
 
 		passwordRecovery.execute(model);
 
@@ -276,6 +291,20 @@ public class UserController {
 		String email = request.getParameter("email");
 		model.addAttribute("email", email);
 		return "user/passwordResetConfirm";
+
+		String path = (String) model.asMap().get("path");
+		return path;
+	}
+
+	// 관리자 회원주문목록
+	@RequestMapping("/memberOrder")
+	public String memberOrder(HttpSession session, HttpServletRequest request, Model model) {
+		System.out.println("memberView()");
+		model.addAttribute("request", request);
+
+		userList = new UserList(sqlSession);
+		userList.execute(model);
+		return "user/memberOrder";
 	}
 
 }

@@ -27,13 +27,16 @@ public interface ProductDao {
     void deleteAttribute(int attribute_id);
     void deleteProductAttribute(int product_id);
     void deleteProduct(int product_id);
-
+    void cancelledOrder(int order_id);
     List<Map<String, String>> getAttributeValues();
     void addToCart(CartDto cartDto);
     void deleteCartItem(String user_email,int product_id);
+    void deleteCart(int product_id);
+    void deleteOrderItemsByProductId(int product_id);
+    void updateOrderStatusToCancelled(int product_id);
     void insertOrder(Orders orders);
     void insertOrderItem(OrderItemsDto orderItemDto);
     List<Orders> getOrderListByEmail(String user_email);
-
+    void updateOrderStatus(int order_id, String status);
 }
 
