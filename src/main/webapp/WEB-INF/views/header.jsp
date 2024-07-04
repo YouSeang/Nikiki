@@ -250,8 +250,13 @@
 								<div class="slc_div1">
 									<a href="./myPage">회원정보수정</a> <a
 										href="./userOrderList">구매내역</a> <a
+<<<<<<< HEAD
 										href="./cart">장바구니</a> <a href="/my-page/counsel/index.do">상담내역</a>
 									<a href="./storyMyReview">나의 후기</a>
+=======
+										href="./cart">장바구니</a>
+									<a href="/my-page/review/index.do">나의 후기</a>
+>>>>>>> main
 								</div>
 							</div>
 						</c:when>

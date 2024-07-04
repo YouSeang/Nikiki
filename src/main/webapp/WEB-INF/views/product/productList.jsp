@@ -7,111 +7,80 @@
 <meta charset="UTF-8">
 <title>Products List</title>
 <style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f0f8ff;
-	color: #b1a55d;
-	margin: 0;
-	padding: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
 
-.container {
-	width: 90%;
-	margin: 20px auto;
-	background-color:#e6e7e3;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-	margin-top: 150px; /* 헤더와 콘텐츠 사이에 여백 추가 */
-}
+    .main-container {
+        padding-top: 80px; /* 헤더와의 간격을 조정합니다 */
+        margin-top:150px;
+        display: flex;
+        justify-content: center;
+    }
 
-h2 {
-	color: #8b8a50;
-	text-align: left;
-	font-size: 24px;
-}
+    .container {
+        padding: 20px;
+        max-width: 1200px;
+        width: 100%;
+        box-sizing: border-box;
+    }
 
-.search-container {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 20px;
-}
+    .search-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-.search-container input[type="text"] {
-	width: 300px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	color: #dedd86;
-}
+    .product-register-link {
+        padding: 10px 20px;
+        background-color: lightgray;
+        color: black;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
 
-.filters {
-	margin-right: 20px;
-}
+    .product-register-link:hover {
+        background-color: gray;
+    }
 
-.filters p {
-	font-size: 14px;
-	color: #dedd86;
-	cursor: pointer;
-	margin: 10px 0;
-}
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
 
-.filters button {
-	background-color: #007B7F;
-	color: white;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-}
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: box-shadow 0.3s ease;
+        cursor: pointer;
+        background-color: white;
+    }
 
-.filters button:hover {
-	background-color: #005f5f;
-}
+    .card:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-.card-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
+    .card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
 
-.card {
-	background-color: #fff;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-	margin: 20px;
-	padding: 20px;
-	width: 30%;
-	text-align: center;
-	transition: transform 0.2s;
-	cursor: pointer;
-}
+    .card h4 {
+        margin-top: 10px;
+        font-size: 1.2em;
+    }
 
-.card:hover {
-	transform: scale(1.05);
-}
-
-.card img {
-	width: 100%;
-	height: auto;
-	border-radius: 10px 10px 0 0;
-}
-
-.card h4 {
-	font-size: 20px;
-	margin: 10px 0;
-	color:#9e9537;
-}
-
-.card p {
-	font-size: 14px;
-	color: #b4b291;
-}
+    .card p {
+        margin: 5px 0;
+    }
 </style>
 <script>
         function redirectToProductDetails(product_id) {
@@ -122,29 +91,29 @@ h2 {
 <body>
 	<jsp:include page="../headerAdmin.jsp" />
 
-	<div class="container">
-		<div class="search-container">
-			<div>
-				<h2>총 ${products.size()}개의 제품이 있습니다.</h2>
-			</div>
-			<div>
-				<input type="text" placeholder="검색어를 입력하세요">
-			</div>
-		</div>
-		<div class="card-container">
-			<c:forEach var="product" items="${products}">
-				<div class="card"
-					onclick="redirectToProductDetails(${product.product_id})">
-					<img src="./libraryUploadImg/${product.image_url}"
-						alt="${product.product_name}">
-					<h4>${product.product_name}</h4>
-					<p>Category: ${product.category_name}</p>
-					<p>Description: ${product.description}</p>
-					<p>Price: ${product.price}</p>
-				</div>
-			</c:forEach>
-		</div>
-	</div>
+<div class="main-container">
+    <div class="container">
+        <div class="search-container">
+            <div>
+                <h2>총 ${products.size()}개의 제품이 있습니다.</h2>
+            </div>
+            <div>
+                <a href="./productmanage1" class="product-register-link">제품등록</a>
+            </div>
+        </div>
+        <div class="card-container">
+            <c:forEach var="product" items="${products}">
+                <div class="card" onclick="redirectToProductDetails(${product.product_id})">
+                    <img src="./libraryUploadImg/${product.image_url}" alt="${product.product_name}">
+                    <h4>${product.product_name}</h4>
+                    <p>Category: ${product.category_name}</p>
+                    <p>Description: ${product.description}</p>
+                    <p>Price: ${product.price}</p>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+</div>
 	<jsp:include page="../footer.jsp" />
 </body>
 </html>

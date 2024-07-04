@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.soft.study.command.product.AddCart;
+import kr.soft.study.command.product.AdminOrderList;
+import kr.soft.study.command.product.CancelledOrder;
 import kr.soft.study.command.product.DeleteAttribute;
 import kr.soft.study.command.product.DeleteCart;
 import kr.soft.study.command.product.DeleteProduct;
@@ -26,6 +28,7 @@ import kr.soft.study.command.product.ProductDetail;
 import kr.soft.study.command.product.ProductDetailList;
 import kr.soft.study.command.product.ProductList;
 import kr.soft.study.command.product.ProductManage;
+import kr.soft.study.command.product.UpdateOrderAdmin;
 import kr.soft.study.command.product.UserCartList;
 
 @Controller
@@ -99,7 +102,6 @@ public class ProductController {
     @RequestMapping("/insertAttributeView")
     public String insertAttributeView(@RequestParam("product_id") String productId, Model model) {
         int product_id = Integer.parseInt(productId);
-        System.out.println("넘어가니?" + product_id);
         model.addAttribute("product_id", product_id);
         return "product/insertAttribute";
     }
@@ -153,7 +155,6 @@ public class ProductController {
 	//장바구니 담기
 	@RequestMapping("/addCart")
 	public String addCart(HttpSession session,HttpServletRequest request,Model model) {
-		System.out.println("들어오니?");
 		String email = (String) session.getAttribute("email");
 		model.addAttribute("user_email",email);
 		model.addAttribute("request",request);
@@ -193,6 +194,33 @@ public class ProductController {
 		productCommand.execute(model);
 
 		return "product/userOrderList";
+	}
+	//주문내역-관리자
+	@RequestMapping("/adminOrderList")
+	public String adminOrderList(HttpSession session,HttpServletRequest request,Model model) {
+		model.addAttribute("request",request);
+		productCommand= new AdminOrderList(sqlSession);
+		productCommand.execute(model);
+		
+		return "product/userOrderListAdmin";
+	}
+	//반품하기-사용자
+	@RequestMapping("/cancelledOrder")
+	public String cancelledOrder(HttpServletRequest request,Model model) {
+		model.addAttribute("request",request);
+		productCommand= new CancelledOrder(sqlSession);
+		productCommand.execute(model);
+		
+		return "redirect:/userOrderList";
+	}
+	//주문관리-관리자
+	@RequestMapping("/updateOrderAdmin")
+	public String updateOrderAdmin(HttpServletRequest request,Model model) {
+		model.addAttribute("request",request);
+		productCommand= new UpdateOrderAdmin(sqlSession);
+		productCommand.execute(model);
+		
+		return "redirect:/adminOrderList";
 	}
 	@RequestMapping("/recently")
 	public String recently(Model model) {
