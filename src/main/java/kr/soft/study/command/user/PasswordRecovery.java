@@ -27,20 +27,20 @@ public class PasswordRecovery implements UserCommand {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
-		String name = request.getParameter("name");
+		String uesr_email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 
-		System.out.println("Searching for email with name: " + name + ", phone: " + phone);
+		System.out.println("Searching for email with name: " + uesr_email + ", phone: " + phone);
 
 		UserDao dao = sqlSession.getMapper(UserDao.class);
-		String email = dao.findEmailByNameAndPhone(name, phone);
+		String email = dao.findEmailByNameAndPhone(uesr_email, phone);
 
 		if (email != null) {
 			System.out.println("Email found: " + email);
 			model.addAttribute("email", email);
-			model.addAttribute("path", "redirect:/passwordResetConfirm?email=" + email);
+			model.addAttribute("path", "redirect:/passwordResetConfirm");
 		} else {
-			System.out.println("No email found for name: " + name + " and phone: " + phone);
+			System.out.println("No email found for name: " + email + " and phone: " + phone);
 			model.addAttribute("path", "errorPage");
 		}
 

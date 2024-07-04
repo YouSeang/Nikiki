@@ -370,10 +370,10 @@
 						</div>
 						<div class="one_dep">
 							<div>
-								<a href="/board/event/list.do"> <span>이벤트</span>
+								<a href="./event"> <span>이벤트</span>
 								</a>
 								<div class="two_dep">
-									<a href="/board/event/list.do" target="_self"><span>이벤트</span></a>
+									<a href="./event" target="_self"><span>이벤트</span></a>
 								</div>
 							</div>
 						</div>
@@ -552,9 +552,9 @@
 									</div>
 								</div>
 								<div class="menu">
-									<a href="javascript:" class="one_d">이벤트</a>
+									<a href="./event" class="one_d">이벤트</a>
 									<div class="two_d">
-										<a href="/board/event/list.do" target="_self">이벤트</a> 
+										<a href="./event" target="_self">이벤트</a> 
 									</div>
 								</div>
 								<div class="menu">

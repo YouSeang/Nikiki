@@ -260,5 +260,11 @@ public class ETCController {
 		System.out.println("research()");
 		return "etc/etc.etc/research";
 	}
+	// 이벤트
+	@RequestMapping("/event")
+	public String event(Model model) {
+		System.out.println("event()");
+		return "etc/event";
+	}
 
 }
