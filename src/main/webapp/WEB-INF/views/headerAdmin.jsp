@@ -216,7 +216,7 @@
 				</div>
 				<div class="one_dep">
 					<div>
-						<a href="/product/sleep-care/main/index.do"> <span class="one">REVIEW</span>
+						<a href="./storyAdminReview"> <span class="one">REVIEW</span>
 							<span>후기관리</span>
 						</a>
 					</div>
@@ -336,7 +336,7 @@
 							<a href="./memberOrder" class="one_d">주문관리</a>
 						</div>
 						<div class="menu">
-							<a href="javascript:" class="one_d">후기관리</a>
+							<a href="./storyAdminReview" class="one_d">후기관리</a>
 						</div>
 					</div>
 					<p class="m_language">

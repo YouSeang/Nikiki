@@ -204,18 +204,16 @@
         justify-content: space-between;
     }
     .card {
-        border: 1px solid #ccc;
         border-radius: 5px;
         padding: 20px;
         margin: 10px;
-        width: 30%; /* 3개씩 배치하기 위해 30%로 설정 */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: calc(33.333% - 20px); /* 3개씩 배치하기 위해 33.333%에서 마진을 뺀 값 */
         text-align: center;
     }
     .card img {
         width: 100%;
-        height: auto;
-        border-bottom: 1px solid #ccc;
+        height: 334px; /* 이미지 높이 고정 */
+        object-fit: cover; /* 이미지가 박스에 맞게 잘림 */
         margin-bottom: 10px;
     }
     .card h3 {
@@ -223,6 +221,16 @@
     }
     .card p {
         margin: 10px 0;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2; /* 줄 수 제한 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .card .date {
+        color: #666;
+        text-align: left;
+        margin-top: 23px;
     }
 </style>
 </head>
@@ -526,6 +534,7 @@
 								<option value="3">최신순</option>
 							</select>
 						</p>
+						
 						<a href="javascript:void(0);" id="goWriteBtn"
 							onclick="if (checkLogin()) { window.location.href='./storyReviewWrite'; }"><span>후기작성</span></a>
 
@@ -539,6 +548,7 @@
 										<img src="./libraryUploadImg2/${review.images[0].imageUrl}" alt="리뷰 이미지">
 									</c:if>
 								<p>${review.content}</p>
+								<p class="date">${review.createdAt}</p>
 							</div>
 						</c:forEach>
 					</div>
