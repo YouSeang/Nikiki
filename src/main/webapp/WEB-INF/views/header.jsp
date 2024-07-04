@@ -246,10 +246,10 @@
 						<c:when test="${not empty sessionScope.email}">
 							<a href="./logout">로그아웃</a>
 							<div class="my_page">
-								<a href="./myPage"><span>마이페이지</span></a>
-								<div class="slc_div">
-									<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
-										href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
+								<a href="javascript:" class="mypage-link"><span>마이페이지</span></a>
+								<div class="slc_div1">
+									<a href="./myPage">회원정보수정</a> <a
+										href="./userOrderList">구매내역</a> <a
 										href="./cart">장바구니</a> <a href="/my-page/counsel/index.do">상담내역</a>
 									<a href="/my-page/review/index.do">나의 후기</a>
 								</div>

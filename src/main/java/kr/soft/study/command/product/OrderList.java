@@ -27,8 +27,13 @@ public class OrderList implements ProductCommand {
 		HttpServletRequest request=(HttpServletRequest) map.get("request");
 		String user_email=(String)map.get("user_email");
 		ProductDao productDao = sqlSession.getMapper(ProductDao.class);
-		List<Orders> dto=productDao.getOrderListByEmail(user_email);
-		model.addAttribute("Orders",dto);
+		
+        if (user_email != null) {
+        	List<Orders> dto=productDao.getOrderListByEmail(user_email);
+            model.addAttribute("orders", dto);
+        } else {
+            model.addAttribute("error", "로그인이 필요합니다.");
+        }
 	}
 
 }

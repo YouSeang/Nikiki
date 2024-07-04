@@ -251,39 +251,42 @@
 						<div class="list_type4 square motion_list type4xn listDiv">
 
 							<div class="list">
-								<c:if test="${not empty products}">
-									<c:forEach var="product" items="${products}">
-										<div class="product-card">
-											<form id="cartForm_${product.product_id}"
-												action="./deleteCart" method="post">
-												<input type="hidden" name="product_id"
-													value="${product.product_id}"> <img
-													src="<c:url value='./libraryUploadImg/${product.image_url}' />"
-													alt="${product.product_name}">
-												<div class="product-info">
-													<h3>${product.product_name}</h3>
-													<p>${product.description}</p>
-													<p>가격: ${product.price}원</p>
-													<button type="submit">장바구니에서 삭제</button>
-												</div>
-											</form>
-											<form id="orderForm_${product.product_id}"
-												action="./orderProduct" method="post">
-												<input type="hidden" name="product_id"
-													value="${product.product_id}">
-												<button type="submit">주문하기</button>
-											</form>
-										</div>
-									</c:forEach>
-
-								</c:if>
-
-								<c:if test="${empty products}">
-									<p>장바구니에 담긴 제품이 없습니다.</p>
-								</c:if>
-							</div>
-
-						</div>
+<c:if test="${not empty error}">
+        <p>${error}</p>
+    </c:if>
+    <c:if test="${not empty orders}">
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User Email</th>
+                    <th>Total Price</th>
+                    <th>Order Date</th>
+                    <th>Status</th>
+                    <th>Order Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="order" items="${orders}">
+                    <tr>
+                        <td>${order.order_id}</td>
+                        <td>${order.user_email}</td>
+                        <td>${order.total_price}</td>
+                        <td>${order.order_date}</td>
+                        <td>${order.status}</td>
+                        <td>
+                            <c:forEach var="item" items="${order.orderItems}">
+                                <p>Product: ${item.product_name}</p>
+                                <p>Attribute: ${item.attribute_name} - ${item.attribute_value}</p>
+                                <p>Quantity: ${item.quantity}</p>
+                                <p>Price: ${item.price}</p>
+                            </c:forEach>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </c:if>
 						<!--list-->
 					</div>
 					<!--pro_content-->

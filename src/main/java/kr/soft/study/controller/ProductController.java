@@ -193,7 +193,7 @@ public class ProductController {
 		productCommand.execute(model);
 		Map<String, Object> map = model.asMap();
 		int product_id=(Integer) map.get("product_id");
-		return "redirect:/bedDetail?product_id="+product_id;
+		return "product/userOrderList";
 	}
 	@RequestMapping("/recently")
 	public String recently(Model model) {
