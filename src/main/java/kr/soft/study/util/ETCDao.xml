@@ -71,5 +71,19 @@
     <select id="getUserByEmail" parameterType="String" resultType="kr.soft.study.dto.Users">
         SELECT * FROM Users WHERE email = #{email}
     </select>
+
+<!-- getMyReviews 쿼리 수정 -->
+<select id="getMyReviews" parameterType="string" resultType="kr.soft.study.dto.Reviews">
+    SELECT r.review_id AS reviewId, r.content, r.created_at AS createdAt
+    FROM Reviews r
+    WHERE r.email = #{email}
+</select>
+    
+    <!-- 모든 리뷰를 가져오는 쿼리 (관리자용) -->
+<select id="getAllReviewsWithImages" resultType="kr.soft.study.dto.Reviews">
+    SELECT r.*, ri.image_url
+    FROM Reviews r
+    LEFT JOIN ReviewImages ri ON r.review_id = ri.review_id
+</select>
  
 </mapper>

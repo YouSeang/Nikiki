@@ -22,7 +22,9 @@ import kr.soft.study.command.etc.EtcCommand;
 import kr.soft.study.command.etc.GetReviewDetail;
 import kr.soft.study.command.etc.GetSchedules;
 import kr.soft.study.command.etc.InsertReview;
+import kr.soft.study.command.etc.ListMyReview;
 import kr.soft.study.command.etc.ListReview;
+import kr.soft.study.command.etc.ListAdminReview;
 import kr.soft.study.command.etc.SubmitSchedule;
 import kr.soft.study.dto.Reviews;
 import kr.soft.study.util.ETCDao;
@@ -159,14 +161,56 @@ public class ETCController {
 	    return "etc/storyReviewDetail";
 	}
 	
+	// 나의후기 관리이동
+    @RequestMapping("/storyMyReview")
+    public String storyMyReview(HttpSession session, Model model) {
+        String email = (String) session.getAttribute("email");
+
+        if (email == null) {
+            model.addAttribute("errorMessage", "로그인이 필요합니다. 로그인 후 이용해주세요.");
+            return "redirect:/login";
+        }
+
+        ListMyReview command = new ListMyReview(sqlSession);
+        model.addAttribute("email", email);
+        command.execute(model);
+        
+     // 디버깅 로그 추가
+        List<Reviews> reviews = (List<Reviews>) model.asMap().get("reviews");
+        if (reviews != null) {
+            for (Reviews review : reviews) {
+                System.out.println("Review: " + review.getContent());
+            }
+        } else {
+            System.out.println("No reviews found");
+        }
+        
+        return "etc/storyMyReview";
+    }
+    
+    // 관리자 후기관리
+    @RequestMapping("/storyAdminReview")
+    public String storyAdminReview(HttpSession session, Model model) {
+        // 관리자 체크 로직 (예: session에서 사용자 역할 확인)
+        String role = (String) session.getAttribute("email");
+        if (role == null || !role.equals("admin")) {
+            model.addAttribute("errorMessage", "관리자 권한이 필요합니다.");
+            return "redirect:/login";
+        }
+
+        ListAdminReview command = new ListAdminReview(sqlSession);
+        command.execute(model);
+        return "etc/storyAdminReview";
+    }
+
 	// 매장안내-매장찾기 이동
-		@RequestMapping("/guide")
-		public String guide(Model model) {
-			System.out.println("guide()");
-			return "etc/guide";
-		}
+	@RequestMapping("/guide")
+	public String guide(Model model) {
+		System.out.println("guide()");
+		return "etc/guide";
+	}
 	
-	
+		
 
 
 }
