@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.soft.study.command.etc.AttendSchedules;
 import kr.soft.study.command.etc.DeleteReview;
 import kr.soft.study.command.etc.EtcCommand;
 import kr.soft.study.command.etc.GetReviewDetail;
@@ -93,6 +94,7 @@ public class ETCController {
         return (List<Map<String, Object>>) model.asMap().get("schedules");
     }
     
+    // 사용안함...
     @RequestMapping("/getApplicationCounts")
     @ResponseBody
     public List<Map<String, Object>> getApplicationCounts(Model model) {
@@ -109,6 +111,16 @@ public class ETCController {
         
         return "redirect:/experienceMovingChoice";
     }
+    
+    @RequestMapping(value = "/updateSchedule", method = RequestMethod.POST)
+    public String updateSchedule(HttpServletRequest request, Model model) {
+        model.addAttribute("request", request);
+        command = new AttendSchedules(sqlSession);
+        command.execute(model);
+        return "redirect:/storyAdminReview";
+    }
+    
+
     
 	@RequestMapping("/experienceGroupChoice")
 	public String experienceGroupChoice(Model model) {

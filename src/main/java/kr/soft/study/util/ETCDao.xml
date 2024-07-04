@@ -5,10 +5,23 @@
 <mapper namespace="kr.soft.study.util.ETCDao">
 	<!-- 쿼리문 -->
 
-	<select id="getSchedules" resultType="map">
-		SELECT hopeDt AS start,
-		name AS title FROM schedules
-	</select>
+    <select id="getSchedules" resultType="kr.soft.study.dto.Schedules">
+        SELECT id, name, hopeDt, hpNo, attending
+        FROM schedules
+        ORDER BY hopeDt ASC
+    </select>
+    	
+    	<!-- 견학 참석여부 확인 -->
+    <update id="updateAttendance">
+        UPDATE schedules
+        SET attending = #{attending}
+        WHERE id = #{id}
+    </update>
+    
+    <delete id="deleteSchedule">
+        DELETE FROM schedules
+        WHERE id = #{id}
+    </delete>
 
 	<insert id="insertSchedule">
 		INSERT INTO schedules (hopeDt, name, gender, hpNo,

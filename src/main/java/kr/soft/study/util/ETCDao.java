@@ -13,6 +13,8 @@ public interface ETCDao {
     List<Schedules> getSchedules();
     void insertSchedule(Schedules schedule);
     void insertReview(Reviews review);
+    void updateAttendance(Schedules schedule);
+    void deleteSchedule(Schedules schedule);
     void insertReviewImage(Map<String, Object> param);
     List<Reviews> getReviews();
     List<Reviews> getReviewsWithImages(); // 새로운 메소드 추가

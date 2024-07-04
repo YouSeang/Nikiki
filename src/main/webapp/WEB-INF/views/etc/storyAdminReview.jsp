@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -13,7 +13,6 @@
     <meta http-equiv="imagetoolbar" content="no">
     <meta name="keywords" content="에이스침대">
     <meta name="description" content="에이스침대의 공식 홈페이지 입니다.">
-
     <meta name="naver-site-verification" content="0abd2f90b764c71f49a7d173c21347b1d78d447c">
     <meta property="og:site_name" content="에이스침대" id="og-sitename-value">
     <meta property="og:type" content="website" id="og-type-value">
@@ -21,7 +20,6 @@
     <meta property="og:image" content="http://www.acebed.com:80/common/images/sns-share-thumbnail.jpg" id="og-image-value">
     <meta property="og:title" content="에이스침대" id="og-title-value">
     <meta property="og:description" content="에이스침대의 공식 홈페이지 입니다." id="og-description-value">
-
     <meta itemprop="url" content="http://www.acebed.com:80/my-page/review/index.do?type=prdct" id="schema-url-value">
     <meta itemprop="name" content="에이스침대" id="schema-name-value">
     <meta itemprop="description" content="에이스침대의 공식 홈페이지 입니다." id="schema-discription-value">
@@ -62,89 +60,83 @@
     <script type="text/javascript" src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="text/javascript" src="https://kit.fontawesome.com/7db9bc3ad6.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.acebed.com//common/js/blowup.js"></script>
-    <script type="text/javascript">
-        //<![CDATA[
-        jQuery(document).ready(function(){
-            if (/((MSIE)|(Trident))/.test(navigator.userAgent) && cmmCtrl.getCookie("browserUpdate") != "false")
-            {
-                subScript.layerPop(".browser_pop");
-            }
-        });
-        //]]>
-    </script>
-    <script type="application/ld+json">
-        {
-            "@context": "http://schema.org",
-            "@type": "Person",
-            "name": "acebed",
-            "url": "https://www.acebed.com",
-            "sameAs": [
-                "https://www.instagram.com/acebed_official",
-                "https://blog.naver.com/good_jam",
-                "https://www.facebook.com/ace.bed.kr",
-                "https://post.naver.com/my.nhn?memberNo=9008145",
-                "https://brand.naver.com/acebedmall"
-            ]
-        }
-    </script>
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+<script>
+    function toggleAttendance(button, id) {
+        const attending = !button.classList.contains('attending');
+        button.classList.toggle('attending');
 
-        ga('create', 'UA-34811848-3', 'acebed.com');
-        ga('send', 'pageview');
-    </script>
-    <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-    <script type="text/javascript">
-        if(!wcs_add) var wcs_add = {};
-        wcs_add["wa"] = "1276645a581ed94";
-        wcs_do();
-    </script>
-    <script type="text/javascript">
-        if (!wcs_add) var wcs_add={};
-        wcs_add["wa"] = "s_49cc4fcb32e0";
-        if (!_nasa) var _nasa={};
-        wcs.inflow();
-        wcs_do(_nasa);
-    </script>
+        // 참석 상태를 서버로 전송
+        const formData = new FormData();
+        formData.append('action', 'updateAttendance');
+        formData.append('id', id);
+        formData.append('attending', attending);
+
+        fetch('./updateSchedule', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                console.log('Attendance updated successfully');
+            } else {
+                console.error('Failed to update attendance');
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+</script>
     <style>
         .review-table {
             width: 100%;
             border-collapse: collapse;
         }
+
         .review-table th, .review-table td {
             border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
+
         .review-table th {
             background-color: #f2f2f2;
+        }
+
+        .btn-attend {
+            background-color: #f0f0f0; /* 기본 버튼 색상 */
+            border: 1px solid #ccc;
+            color: #333;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .btn-attend.attending {
+            background-color: #4CAF50; /* 참석 버튼 색상 */
+            color: white;
+            border: 1px solid #4CAF50;
         }
     </style>
 </head>
 <body>
     <jsp:include page="../headerAdmin.jsp" />
-    
+
     <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
         <div class="subCon">
-            <input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />
+            <input type="text" id="input-clipboard" style="position: absolute; top: -9999px; left: -9999px; z-index: -1" />
             <div class="head_div">
                 <h2 class="titleH1">Admin</h2>
             </div>
             <div class="content_div" data-controller="controller/mp/mpa/MPAMyReviewCtrl">
                 <form id="frmSearch" name="frmSearch" method="get" action="">
-                    <input type="hidden" class="notRequired" name="detailsKey" id="detailsKey" value=""/>
-                    <input type="hidden" class="notRequired" name="type" id="type" value="${type}"/>
+                    <input type="hidden" class="notRequired" name="detailsKey" id="detailsKey" value="" />
+                    <input type="hidden" class="notRequired" name="type" id="type" value="${type}" />
                     <div class="tap_style_div">
                         <a href="javascript:" class="top_btn tabType prdct ${type == 'prdct' ? 'on' : ''}" data-type="prdct">고객 후기</a>
                         <a href="javascript:" class="top_btn tabType fctr ${type == 'fctr' ? 'on' : ''}" data-type="fctr">이동수면공학 연구소 신청현황</a>
                     </div>
-                    
+
                     <c:choose>
                         <c:when test="${type == 'prdct'}">
-                            <div class="table_list_wrap prdctRvwArea">                        
+                            <div class="table_list_wrap prdctRvwArea">
                                 <table class="review-table">
                                     <thead>
                                         <tr>
@@ -160,9 +152,7 @@
                                                 <td>${review.userName}</td>
                                                 <td><a href="./storyReviewDetail?reviewId=${review.reviewId}">${review.content}</a></td>
                                                 <td>${review.createdAt}</td>
-                                                <td>
-                                                    <a href="./deleteReview?reviewId=${review.reviewId}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
-                                                </td>
+                                                <td><a href="./deleteReview?reviewId=${review.reviewId}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -170,24 +160,34 @@
                             </div>
                         </c:when>
                         <c:when test="${type == 'fctr'}">
-                            <div class="table_list_wrap fctrArea">                        
+                            <div class="table_list_wrap fctrArea">
                                 <table class="review-table">
                                     <thead>
                                         <tr>
                                             <th>신청자</th>
                                             <th>신청일</th>
-                                            <th>상태</th>
-                                            <th>관리</th>
+                                            <th>전화번호</th>
+                                            <th>참석</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="schedule" items="${schedules}">
                                             <tr>
-                                                <td>${schedule.userName}</td>
+                                                <td>${schedule.name}</td>
                                                 <td>${schedule.hopeDt}</td>
-                                                <td>${schedule.status}</td>
+                                                <td>${schedule.hpNo}</td>
                                                 <td>
-                                                    <a href="./deleteSchedule?scheduleId=${schedule.scheduleId}" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</a>
+                                                    <button class="btn-attend ${schedule.attending ? 'attending' : ''}" onclick="toggleAttendance(this, ${schedule.id})">
+                                                        참석
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <form action="./updateSchedule" method="post" style="display: inline;">
+                                                        <input type="hidden" name="action" value="delete">
+                                                        <input type="hidden" name="id" value="${schedule.id}">
+                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('정말 삭제하시겠습니까?');">삭제</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         </c:forEach>
@@ -233,14 +233,14 @@
         </div>
     </footer>
     <div class="black_bg" id="dimdBg" data-swiftype-index="false"></div>
-    <div class="loading_div" style="display:none" data-swiftype-index="false">
+    <div class="loading_div" style="display: none" data-swiftype-index="false">
         <div class="loading_icon">
             <p class="img"><img src="https://www.acebed.com//common/images/loading.gif" alt=""></p>
         </div>
     </div>
     <div class="quick_area" data-swiftype-index="false">
         <div class="quick_con">
-            <div class="like_div" style="display:none">
+            <div class="like_div" style="display: none">
                 <p class="tit">고객님의 관심 제품입니다.</p>
                 <form action="" data-csrf-key="PbFB6WfPFgUzrSMNwBGN">
                     <div class="like_list more_view_swp" id="footerIntrsPrdctArea">
@@ -260,7 +260,7 @@
         </div>
         <a href="javascript:" class="quick_x_btn"></a>
     </div>
-    <div class="layer_pop browser_pop w500" style="display:none;">
+    <div class="layer_pop browser_pop w500" style="display: none;">
         <div class="pop_title">브라우저 업데이트 안내</div>
         <div class="pop_cont">
             <div class="inner_box">
