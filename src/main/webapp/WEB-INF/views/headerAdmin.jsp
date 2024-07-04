@@ -302,7 +302,7 @@
 							</p>
 							<div>
 								<div class="one_d">
-									<a href="javascript:">REVIEW</a>
+									<a href="./storyAdminReview">REVIEW</a>
 								</div>
 							</div>
 						</div>
