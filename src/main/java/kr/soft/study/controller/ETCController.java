@@ -162,8 +162,6 @@ public class ETCController {
 		command.execute(model);
 		return "etc/storyReviewDetail";
 	}
-<<<<<<< HEAD
-=======
 	
 	// 나의후기 관리이동
     @RequestMapping("/storyMyReview")
@@ -224,17 +222,6 @@ public class ETCController {
         return "etc/storyAdminReview";
     }
     
-    
-
-	// 매장안내-매장찾기 이동
-	@RequestMapping("/guide")
-	public String guide(Model model) {
-		System.out.println("guide()");
-		return "etc/guide";
-	}
-	
-		
->>>>>>> refs/heads/main
 
 	// 매장안내-매장찾기 이동
 	@RequestMapping("/guide")
