@@ -35,132 +35,132 @@ import kr.soft.study.util.ETCDao;
 public class ETCController {
 
 	private EtcCommand command;
-	
+
 	@Autowired
 	private SqlSession sqlSession;
 	private ServletContext context;
-	
+
 	@Autowired
-    public ETCController(SqlSession sqlSession, ServletContext context) {
-        this.sqlSession = sqlSession;
-        this.context = context;
-    }
-	
+	public ETCController(SqlSession sqlSession, ServletContext context) {
+		this.sqlSession = sqlSession;
+		this.context = context;
+	}
+
 	// 매트릭스 체험존
 	@RequestMapping("/experience")
 	public String experience(Model model) {
 		System.out.println("experience()");
 		return "etc/experience";
 	}
-	
+
 	@RequestMapping("/experienceStep")
 	public String experienceStep1(Model model) {
 		System.out.println("experienceStep()");
 		return "etc/experienceStep";
 	}
-	
+
 	@RequestMapping("/experienceResult")
 	public String experienceResult(Model model) {
 		System.out.println("experienceResult()");
 		return "etc/experienceResult";
 	}
-	
+
 	// 이동수면공학 연구소
 	@RequestMapping("/experienceMoving")
 	public String experienceMoving(Model model) {
 		System.out.println("experienceMoving()");
 		return "etc/experienceMoving";
 	}
-	
+
 	@RequestMapping("/experienceMovingChoice")
 	public String experienceMovingChoice(Model model) {
 		System.out.println("experienceMovingChoice()");
 		return "etc/experienceMovingChoice";
 	}
-	
+
 	@RequestMapping("/apply")
 	public String apply(Model model) {
 		System.out.println("apply()");
 		return "etc/apply";
 	}
 
-    @RequestMapping("/getSchedules")
-    @ResponseBody
-    public List<Map<String, Object>> getSchedules(Model model) {
-        command = new GetSchedules(sqlSession);
-        model.addAttribute("sqlSession", sqlSession);
-        command.execute(model);
-        return (List<Map<String, Object>>) model.asMap().get("schedules");
-    }
-    
-    @RequestMapping("/getApplicationCounts")
-    @ResponseBody
-    public List<Map<String, Object>> getApplicationCounts(Model model) {
-        List<Map<String, Object>> counts = sqlSession.selectList("kr.soft.study.util.ETCDao.getApplicationCounts");
-        System.out.println("Application Counts: " + counts); // 디버깅 로그
-        return counts;
-    }
+	@RequestMapping("/getSchedules")
+	@ResponseBody
+	public List<Map<String, Object>> getSchedules(Model model) {
+		command = new GetSchedules(sqlSession);
+		model.addAttribute("sqlSession", sqlSession);
+		command.execute(model);
+		return (List<Map<String, Object>>) model.asMap().get("schedules");
+	}
 
-    @RequestMapping("/submitSchedule")
-    public String submitSchedule(HttpServletRequest request, Model model) {
-        model.addAttribute("request", request);
-        command = new SubmitSchedule(sqlSession);
-        command.execute(model);
-        
-        return "redirect:/experienceMovingChoice";
-    }
-    
+	@RequestMapping("/getApplicationCounts")
+	@ResponseBody
+	public List<Map<String, Object>> getApplicationCounts(Model model) {
+		List<Map<String, Object>> counts = sqlSession.selectList("kr.soft.study.util.ETCDao.getApplicationCounts");
+		System.out.println("Application Counts: " + counts); // 디버깅 로그
+		return counts;
+	}
+
+	@RequestMapping("/submitSchedule")
+	public String submitSchedule(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		command = new SubmitSchedule(sqlSession);
+		command.execute(model);
+
+		return "redirect:/experienceMovingChoice";
+	}
+
 	@RequestMapping("/experienceGroupChoice")
 	public String experienceGroupChoice(Model model) {
 		System.out.println("experienceGroupChoice()");
 		return "etc/experienceGroupChoice";
 	}
-	
+
 	// 고객후기리스트 이동
-    @RequestMapping("/storyReview")
-    public String storyReview(Model model) {
-        ETCDao dao = sqlSession.getMapper(ETCDao.class);
-        List<Reviews> reviews = dao.getReviewsWithImages();
-        model.addAttribute("reviews", reviews);
-        return "etc/storyReview";
-    }
-	
+	@RequestMapping("/storyReview")
+	public String storyReview(Model model) {
+		ETCDao dao = sqlSession.getMapper(ETCDao.class);
+		List<Reviews> reviews = dao.getReviewsWithImages();
+		model.addAttribute("reviews", reviews);
+		return "etc/storyReview";
+	}
+
 	@RequestMapping("/storyReviewWrite")
 	public String storyReviewWrite(HttpServletRequest request, HttpSession session, Model model) {
-	    String email = (String) session.getAttribute("email");
+		String email = (String) session.getAttribute("email");
 
-	    if (email == null) {
-	        model.addAttribute("errorMessage", "로그인이 필요합니다. 로그인 후 이용해주세요.");
-	        return "redirect:/login";
-	    }
+		if (email == null) {
+			model.addAttribute("errorMessage", "로그인이 필요합니다. 로그인 후 이용해주세요.");
+			return "redirect:/login";
+		}
 
-	    System.out.println("storyReviewWrite()");
-	    return "etc/storyReviewWrite";
+		System.out.println("storyReviewWrite()");
+		return "etc/storyReviewWrite";
 	}
-	
+
 	// 고객후기작성 이동
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 	public String write(@RequestParam("atchFile") List<MultipartFile> files, HttpServletRequest request, Model model) {
-	    model.addAttribute("files", files);
-	    model.addAttribute("request", request);
-	    
-	 // 디버그 출력
-	    for (MultipartFile file : files) {
-	        System.out.println("Received file: " + file.getOriginalFilename());
-	    }
-	    
-	    InsertReview command = new InsertReview(sqlSession, context);
-	    command.execute(model);
-	    return "redirect:/storyReview"; // 원하는 경로로 리다이렉트
+		model.addAttribute("files", files);
+		model.addAttribute("request", request);
+
+		// 디버그 출력
+		for (MultipartFile file : files) {
+			System.out.println("Received file: " + file.getOriginalFilename());
+		}
+
+		InsertReview command = new InsertReview(sqlSession, context);
+		command.execute(model);
+		return "redirect:/storyReview"; // 원하는 경로로 리다이렉트
 	}
-	
+
 	// 고객후기상세 이동
 	@RequestMapping("/storyReviewDetail")
 	public String storyReviewDetail(@RequestParam("reviewId") int reviewId, Model model) {
-	    model.addAttribute("reviewId", reviewId);
-	    GetReviewDetail command = new GetReviewDetail(sqlSession);
-	    command.execute(model);
-	    return "etc/storyReviewDetail";
+		model.addAttribute("reviewId", reviewId);
+		GetReviewDetail command = new GetReviewDetail(sqlSession);
+		command.execute(model);
+		return "etc/storyReviewDetail";
 	}
 	
 	// 나의후기 관리이동
@@ -222,7 +222,6 @@ public class ETCController {
         return "etc/storyAdminReview";
     }
     
-    
 
 	// 매장안내-매장찾기 이동
 	@RequestMapping("/guide")
@@ -230,10 +229,33 @@ public class ETCController {
 		System.out.println("guide()");
 		return "etc/guide";
 	}
-	
-		
 
+	// 침대과학 - 스프링 이동
+	@RequestMapping("/science")
+	public String science(Model model) {
+		System.out.println("science()");
+		return "etc/etc.etc/science";
+	}
+
+	// 침대과학 - 기술력 이동
+	@RequestMapping("/technic")
+	public String technic(Model model) {
+		System.out.println("technic()");
+		return "etc/etc.etc/technic";
+	}
+
+	// 침대과학 - 특허 및 수상내역 이동
+	@RequestMapping("/patentAward")
+	public String patentAward(Model model) {
+		System.out.println("patentAward()");
+		return "etc/etc.etc/patentAward";
+	}
+
+	// 침대과학 - 침대공학연구소 이동
+	@RequestMapping("/research")
+	public String research(Model model) {
+		System.out.println("research()");
+		return "etc/etc.etc/research";
+	}
 
 }
-
-

@@ -59,11 +59,14 @@
 
 	<!-- 전화번호 변경 -->
 	<update id="updatePhoneNumber" parameterType="map">
-		UPDATE Users SET phone_number = #{param1} WHERE email = #{param2}
+		UPDATE Users SET
+		phone_number = #{param1} WHERE email = #{param2}
 	</update>
-
-	<!-- 마이페이지 탈퇴 -->
-	<delete id="deleteUserByEmail" parameterType="string">
-		DELETE FROM Users WHERE email = #{param}
-	</delete>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findEmailByNameAndPhone" parameterType="map"
+		resultType="string">
+		SELECT email FROM users WHERE name = #{param1} AND phone = #{param2}
+	</select>
+	
 </mapper>
