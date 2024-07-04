@@ -21,12 +21,14 @@
 
 	<!-- 일반사용자 이메일 확인 및 이메일 중복확인 -->
 	<select id="isLogin" resultType="kr.soft.study.dto.Users">
-		select * from Users where email = #{param}
+		select * from Users where email
+		= #{param}
 	</select>
 
 	<!-- 관리자 회원 목록 -->
 	<select id="list" resultType="kr.soft.study.dto.Users">
-		select user_id,name,birth_date,phone_number,email from Users
+		select
+		user_id,name,birth_date,phone_number,email from Users
 	</select>
 
 	<!-- 이메일 중복 확인 시 이메일로 사용자 조회 -->
@@ -37,11 +39,31 @@
 
 	<!-- 회원정보수정 -->
 	<update id="updateUser" parameterType="kr.soft.study.dto.Users">
-		update Users set name = #{param1}, birth_date = #{param2}, phone_number = #{param3}, email = #{param4}
-		WHERE email = #{param6}
+		update Users set name =
+		#{param1}, birth_date = #{param2}, phone_number = #{param3}, email =
+		#{param4}
+		WHERE email = #{param5}
 	</update>
 
-	<delete id="delete">
-		DELETE FROM Users WHERE email = #{paramo}
+	<!-- 회원정보삭제 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM Users WHERE email
+		= #{param}
+	</delete>
+
+	<!-- 마이 페이지 조회 -->
+	<select id="getUserByEmail" resultType="kr.soft.study.dto.Users">
+		SELECT * FROM Users WHERE
+		email = #{param}
+	</select>
+
+	<!-- 전화번호 변경 -->
+	<update id="updatePhoneNumber" parameterType="map">
+		UPDATE Users SET phone_number = #{param1} WHERE email = #{param2}
+	</update>
+
+	<!-- 마이페이지 탈퇴 -->
+	<delete id="deleteUserByEmail" parameterType="string">
+		DELETE FROM Users WHERE email = #{param}
 	</delete>
 </mapper>

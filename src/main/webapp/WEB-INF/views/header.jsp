@@ -118,15 +118,16 @@
         <script type="text/javascript" src="/common/js/selectivizr.js"></script>
         <![endif]-->
 <script type="text/javascript">
-        //<![CDATA[[
-            jQuery(document).ready(function(){
-                if (/((MSIE)|(Trident))/.test(navigator.userAgent) && cmmCtrl.getCookie("browserUpdate") != "false")
-                {
-                    subScript.layerPop(".browser_pop");
-                }
-            });
-        //]]>
-        </script>
+	//<![CDATA[[
+	jQuery(document).ready(
+			function() {
+				if (/((MSIE)|(Trident))/.test(navigator.userAgent)
+						&& cmmCtrl.getCookie("browserUpdate") != "false") {
+					subScript.layerPop(".browser_pop");
+				}
+			});
+	//]]>
+</script>
 <script type="application/ld+json">
             {
                 "@context": "http://schema.org",
@@ -144,493 +145,502 @@
         </script>
 
 <script>
-                (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-                })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', '//www.google-analytics.com/analytics.js',
+			'ga');
 
-                ga('create', 'UA-34811848-3', 'acebed.com');
-                ga('send', 'pageview');
-            </script>
+	ga('create', 'UA-34811848-3', 'acebed.com');
+	ga('send', 'pageview');
+</script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <script type="text/javascript">
-                if(!wcs_add) var wcs_add = {};
-                wcs_add["wa"] = "1276645a581ed94";
-                wcs_do();
-            </script>
+	if (!wcs_add)
+		var wcs_add = {};
+	wcs_add["wa"] = "1276645a581ed94";
+	wcs_do();
+</script>
 <script type="text/javascript">
-                if (!wcs_add) var wcs_add={};
-                wcs_add["wa"] = "s_49cc4fcb32e0";
-                if (!_nasa) var _nasa={};
-                wcs.inflow();
-                wcs_do(_nasa);
-            </script>
+	if (!wcs_add)
+		var wcs_add = {};
+	wcs_add["wa"] = "s_49cc4fcb32e0";
+	if (!_nasa)
+		var _nasa = {};
+	wcs.inflow();
+	wcs_do(_nasa);
+</script>
 
 <!-- Google tag (gtag.js) -->
 <script async
 	src="https://www.googletagmanager.com/gtag/js?id=G-9DZP1N4254"></script>
 <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
+	window.dataLayer = window.dataLayer || [];
+	function gtag() {
+		dataLayer.push(arguments);
+	}
+	gtag('js', new Date());
 
-            gtag('config', 'G-9DZP1N4254');
-            
-            $(document).ready(function() {
-                // 마이페이지 메뉴를 클릭하면 슬라이드 토글
-                $('.mypage-link').click(function(e) {
-                    e.preventDefault();
-                    $('.slc_div1').slideToggle();
-                });
+	gtag('config', 'G-9DZP1N4254');
 
-                // 다른 곳을 클릭하면 슬라이드 닫기
-                $(document).on('click', function(event) {
-                    if (!$(event.target).closest('.mypage-link').length) {
-                        $('.slc_div').slideUp();
-                    }
-                });
-            });
-        </script>
- <style type="text/css">
- .mypage1-menu {
-    position: relative;
+	$(document).ready(function() {
+		// 마이페이지 메뉴를 클릭하면 슬라이드 토글
+		$('.mypage-link').click(function(e) {
+			e.preventDefault();
+			$('.slc_div1').slideToggle();
+		});
+
+		// 다른 곳을 클릭하면 슬라이드 닫기
+		$(document).on('click', function(event) {
+			if (!$(event.target).closest('.mypage-link').length) {
+				$('.slc_div').slideUp();
+			}
+		});
+	});
+</script>
+<style type="text/css">
+.mypage1-menu {
+	position: relative;
 }
 
 .slc_div1 {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    min-width: 150px; /* 필요에 따라 조정 */
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	padding: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	min-width: 150px; /* 필요에 따라 조정 */
 }
 
 .slc_div1 a {
-    display: block;
-    padding: 8px 12px;
-    color: black;
-    text-decoration: none;
+	display: block;
+	padding: 8px 12px;
+	color: black;
+	text-decoration: none;
 }
 
 .slc_div1 a:hover {
-    background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
- </style>
+</style>
 </head>
 <body data-login-flag="N" data-device-type="web"
 	data-curt-dt="2024-06-28">
 	<div id="content" data-swiftype-name="body" data-swiftype-type="text"
-	data-swiftype-index="true">
-	<div id="wrap">
-		<header data-swiftype-index="false">
-			<a href="./main" class="logo"><h1>ACE BED</h1></a>
-			<div class="utill_div">
-				<c:choose>
-					<c:when test="${not empty sessionScope.email}">
-						<a href="./logout">로그아웃</a>
-						<div class="my_page">
-							<a href="javascript:" class="mypage-link"><span>마이페이지</span></a>
-							<div class="slc_div1">
-								<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
-									href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
-									href="./cart">장바구니</a> <a
-									href="/my-page/counsel/index.do">상담내역</a> <a
-									href="/my-page/review/index.do">나의 후기</a>
+		data-swiftype-index="true">
+		<div id="wrap">
+			<header data-swiftype-index="false">
+				<a href="./main" class="logo"><h1>ACE BED</h1></a>
+				<div class="utill_div">
+					<c:choose>
+						<c:when test="${not empty sessionScope.email}">
+							<a href="./logout">로그아웃</a>
+							<div class="my_page">
+								<a href="./myPage"><span>마이페이지</span></a>
+								<div class="slc_div">
+									<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
+										href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
+										href="./cart">장바구니</a> <a href="/my-page/counsel/index.do">상담내역</a>
+									<a href="/my-page/review/index.do">나의 후기</a>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<a href="./loginView">로그인</a>
+							<a href="./joinView">회원가입</a>
+						</c:otherwise>
+					</c:choose>
+					<a href="/wedding-members/benefit/index.do"
+						class="wedding wedding_2024">웨딩멤버스</a>
+					<!-- 2022-12-26 wedding_2023 클래스 추가 2023-12-29 클래스 수정 -->
+					<a href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스
+						침대몰</a>
+				</div>
+				<nav>
+					<div class="gnb_section gnb1">
+						<div class="one_dep">
+							<div>
+								<a href="./bed?category_name=프레임"> <span class="one">BED</span>
+									<span>침대</span>
+								</a>
+								<div class="two_dep">
+									<a href="./bed?category_name=프레임" target="_self"><span>프레임</span></a>
+									<a href="./bed?category_name=매트리스" target="_self"><span>매트리스</span></a>
+									<a href="./recently" target="_self"><span>신제품</span></a> <a
+										href="https://www.acebed.com/customer/prdct-manual/index.do?type=gnb"
+										target="_self"><span>제품 매뉴얼</span></a>
+								</div>
 							</div>
 						</div>
-					</c:when>
-					<c:otherwise>
-						<a href="./loginView">로그인</a>
-						<a href="./joinView">회원가입</a>
-					</c:otherwise>
-				</c:choose>
-				<a href="/wedding-members/benefit/index.do"
-					class="wedding wedding_2024">웨딩멤버스</a>
-				<!-- 2022-12-26 wedding_2023 클래스 추가 2023-12-29 클래스 수정 -->
-				<a href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스
-					침대몰</a>
-			</div>
-			<nav>
-				<div class="gnb_section gnb1">
-					<div class="one_dep">
-						<div>
-							<a href="./bed?category_name=프레임"> <span class="one">BED</span>
-								<span>침대</span>
-							</a>
-							<div class="two_dep">
-								<a href="./bed?category_name=프레임"
-									target="_self"><span>프레임</span></a> <a
-									href="./bed?category_name=매트리스"
-									target="_self"><span>매트리스</span></a> <a
-									href="./recently"
-									target="_self"><span>신제품</span></a> <a
-									href="https://www.acebed.com/customer/prdct-manual/index.do?type=gnb"
-									target="_self"><span>제품 매뉴얼</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="https://www.acebed.com/product/furnture/roomset/list.do">
-								<span class="one">FURNITURE</span> <span>가구</span>
-							</a>
-							<div class="two_dep">
+						<div class="one_dep">
+							<div>
 								<a
-									href="https://www.acebed.com/product/furnture/roomset/list.do"
-									target="_self"><span>룸 세트</span></a> <a
-									href="https://www.acebed.com/product/furnture/living/list.do"
-									target="_self"><span>리빙가구</span></a>
+									href="https://www.acebed.com/product/furnture/roomset/list.do">
+									<span class="one">FURNITURE</span> <span>가구</span>
+								</a>
+								<div class="two_dep">
+									<a
+										href="https://www.acebed.com/product/furnture/roomset/list.do"
+										target="_self"><span>룸 세트</span></a> <a
+										href="https://www.acebed.com/product/furnture/living/list.do"
+										target="_self"><span>리빙가구</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="one_dep">
+							<div>
+								<a href="javascript:"> <span class="one">STRESSLESS</span> <span>스트레스리스</span>
+								</a>
+								<div class="two_dep">
+									<a href="/product/furnture/stressless/list.do?typeCd=|TYPE010|"
+										target="_self"><span>1인용 리클라이너</span></a> <a
+										href="/product/furnture/stressless/list.do?typeCd=|TYPE020|"
+										target="_self"><span>오피스체어</span></a> <a
+										href="/product/furnture/stressless/list.do?typeCd=|TYPE030|"
+										target="_self"><span>소파</span></a> <a
+										href="/product/furnture/stressless/list.do?typeCd=|TYPE040|"
+										target="_self"><span>테이블&악세서리</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="one_dep">
+							<div>
+								<a href="/product/sleep-care/main/index.do"> <span
+									class="one">SLEEP CARE</span> <span>슬립케어</span>
+								</a>
+								<div class="two_dep">
+									<a href="./microcare" target="_self"><span>마이크로케어</span></a> <a
+										href="./smart-sleeve" target="_self"><span>스마트슬리브</span></a> <a
+										href="./microcare-coolingpad" target="_self"><span>마이크로케어
+											쿨링패드</span></a> <a href="./coolingbodypillow" target="_self"><span>쿨링
+											바디필로우</span></a> <a href="./microguard-eco" target="_self"><span>마이크로가드에코플러스</span></a>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="one_dep">
-						<div>
-							<a href="javascript:"> <span class="one">STRESSLESS</span> <span>스트레스리스</span>
-							</a>
-							<div class="two_dep">
-								<a href="/product/furnture/stressless/list.do?typeCd=|TYPE010|"
-									target="_self"><span>1인용 리클라이너</span></a> <a
-									href="/product/furnture/stressless/list.do?typeCd=|TYPE020|"
-									target="_self"><span>오피스체어</span></a> <a
-									href="/product/furnture/stressless/list.do?typeCd=|TYPE030|"
-									target="_self"><span>소파</span></a> <a
-									href="/product/furnture/stressless/list.do?typeCd=|TYPE040|"
-									target="_self"><span>테이블&악세서리</span></a>
+					<div class="gnb_section gnb2">
+						<div class="one_dep">
+							<div>
+								<a href="/bed-science/spring/index.do"> <span>침대과학</span>
+								</a>
+								<div class="two_dep">
+									<a href="/bed-science/spring/index.do" target="_self"><span>스프링</span></a>
+									<a href="/bed-science/technology/index.do" target="_self"><span>기술력</span></a>
+									<a href="/bed-science/awards/index.do" target="_self"><span>특허
+											및 수상내역</span></a> <a href="/bed-science/lab/index.do" target="_self"><span>침대공학연구소</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="one_dep">
+							<div>
+								<a href="./storyReview"> <span>에이스 스토리</span>
+								</a>
+								<div class="two_dep">
+									<a href="https://www.acebed.com/ace-story/sns/index.do"
+										target="_self"><span>NOW SNS</span></a> <a
+										href="./storyReview" target="_self"><span>고객후기</span></a> <a
+										href="https://www.acebed.com/ace-story/news/list.do"
+										target="_self"><span>뉴스룸</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="one_dep">
+							<div>
+								<a href="./experience"> <span>고객체험</span>
+								</a>
+								<div class="two_dep">
+									<a href="./experience" target="_self"><span>매트리스 체험존</span></a>
+									<a href="./experienceMoving" target="_self"><span>이동수면공학
+											연구소</span></a> <a
+										href="https://www.acebed.com/experience/factory/index.do"
+										target="_self"><span>공장 견학 신청</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="one_dep">
+							<div>
+								<a href="/board/event/list.do"> <span>이벤트</span>
+								</a>
+								<div class="two_dep">
+									<a href="/board/event/list.do" target="_self"><span>이벤트</span></a>
+									<a href="/board/announce/list.do" target="_self"><span>당첨자
+											안내</span></a>
+								</div>
+							</div>
+						</div>
+						<div class="one_dep">
+							<div>
+								<a href="./guide"> <span>매장안내</span>
+								</a>
+								<div class="two_dep">
+									<a href="./guide" target="_self"><span>매장찾기</span></a> <a
+										href="https://www.acebed.com/store/square/index.do"
+										target="_self"><span>에이스 스퀘어</span></a> <a
+										href="https://www.acebed.com/store/avenue/index.do"
+										target="_self"><span>에이스 에비뉴</span></a>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="one_dep">
-						<div>
-							<a href="/product/sleep-care/main/index.do"> <span
-								class="one">SLEEP CARE</span> <span>슬립케어</span>
-							</a>
-							<div class="two_dep">
-								<a href="./microcare" target="_self"><span>마이크로케어</span></a>
-								<a href="/product/sleep-care/smart-sleeve/index.do"
-									target="_self"><span>스마트슬리브</span></a> <a
-									href="/product/sleep-care/microcare-coolingpad/index.do"
-									target="_self"><span>마이크로케어 쿨링패드</span></a> <a
-									href="/product/sleep-care/coolingbodypillow/index.do"
-									target="_self"><span>쿨링 바디필로우</span></a> <a
-									href="/product/sleep-care/microguard-eco/index.do"
-									target="_self"><span>마이크로가드에코플러스</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="gnb_section gnb2">
-					<div class="one_dep">
-						<div>
-							<a href="/bed-science/spring/index.do"> <span>침대과학</span>
-							</a>
-							<div class="two_dep">
-								<a href="/bed-science/spring/index.do" target="_self"><span>스프링</span></a>
-								<a href="/bed-science/technology/index.do" target="_self"><span>기술력</span></a>
-								<a href="/bed-science/awards/index.do" target="_self"><span>특허
-										및 수상내역</span></a> <a href="/bed-science/lab/index.do" target="_self"><span>침대공학연구소</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="./storyReview"> <span>에이스 스토리</span>
-							</a>
-							<div class="two_dep">
-								<a href="https://www.acebed.com/ace-story/sns/index.do" target="_self"><span>NOW
-										SNS</span></a> <a href="./storyReview" target="_self"><span>고객후기</span></a>
-								<a href="https://www.acebed.com/ace-story/news/list.do" target="_self"><span>뉴스룸</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="./experience"> <span>고객체험</span>
-							</a>
-							<div class="two_dep">
-								<a href="./experience" target="_self"><span>매트리스
-										체험존</span></a> <a href="./experienceMoving" target="_self"><span>이동수면공학
-										연구소</span></a> <a href="https://www.acebed.com/experience/factory/index.do" target="_self"><span>공장
-										견학 신청</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="/board/event/list.do"> <span>이벤트</span>
-							</a>
-							<div class="two_dep">
-								<a href="/board/event/list.do" target="_self"><span>이벤트</span></a>
-								<a href="/board/announce/list.do" target="_self"><span>당첨자
-										안내</span></a>
-							</div>
-						</div>
-					</div>
-					<div class="one_dep">
-						<div>
-							<a href="./guide"> <span>매장안내</span>
-							</a>
-							<div class="two_dep">
-								<a href="./guide" target="_self"><span>매장찾기</span></a>
-								<a href="https://www.acebed.com/store/square/index.do" target="_self"><span>에이스
-										스퀘어</span></a> <a href="https://www.acebed.com/store/avenue/index.do" target="_self"><span>에이스
-										에비뉴</span></a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</nav>
-			<div class="gnb_search">
-				<a href="javascript:" class="search_btn">검색하기</a>
-				<div class="search_div">
-					<p class="search_input">
-						<input type="text" name="searchTerm" title="검색어"
-							placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
-							autocomplete="off" /> <a href="javascript:"
-							class="search_btn btnIntgrSearch"
-							onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
-					</p>
-					<div class="auto_complete" id="acTopPcArea"></div>
-					<a href="javascript:" class="x_btn">닫기</a>
-				</div>
-				<p class="search_bg"></p>
-			</div>
-			<div class="all_menu_area">
-				<a href="javascript:" class="all_meun_btn">전체메뉴</a> <a
-					href="javascript:" class="m_all_meun_btn mh_btn">모바일전체메뉴</a> <a
-					href="javascript:" class="m_prod_meun_btn mh_btn">모바일제품메뉴</a>
-				<div class="all_menu_div">
-					<p class="m_all_dim"></p>
-					<div class="visual_menu">
-						<p class="language">
-							<a href="javascript:" class="on">KOR</a> <a
-								href="http://eng.acebed.com">ENG</a>
+				</nav>
+				<div class="gnb_search">
+					<a href="javascript:" class="search_btn">검색하기</a>
+					<div class="search_div">
+						<p class="search_input">
+							<input type="text" name="searchTerm" title="검색어"
+								placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
+								autocomplete="off" /> <a href="javascript:"
+								class="search_btn btnIntgrSearch"
+								onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
 						</p>
-						<div class="pro_menu_list m_acco_menu">
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual1.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual1.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="javascript:">BED</a>
-									</div>
-									<div class="two_d">
-										<a href="/product/bed/frame/list.do" target="_self">프레임</a> <a
-											href="/product/bed/mattress/list.do" target="_self">매트리스</a>
-										<a href="/product/bed/new/list.do" target="_self">신제품</a> <a
-											href="/customer/prdct-manual/index.do?type=gnb"
-											target="_self">제품 매뉴얼</a>
-									</div>
-								</div>
-							</div>
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual2.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual2.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="javascript:">FURNITURE</a>
-									</div>
-									<div class="two_d">
-										<a href="/product/furnture/roomset/list.do" target="_self">룸
-											세트</a> <a href="/product/furnture/living/list.do" target="_self">리빙가구</a>
-									</div>
-								</div>
-							</div>
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual3.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual3.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="javascript:">STRESSLESS</a>
-									</div>
-									<div class="two_d">
-										<a
-											href="/product/furnture/stressless/list.do?typeCd=|TYPE010|"
-											target="_self">1인용 리클라이너</a> <a
-											href="/product/furnture/stressless/list.do?typeCd=|TYPE020|"
-											target="_self">오피스체어</a> <a
-											href="/product/furnture/stressless/list.do?typeCd=|TYPE030|"
-											target="_self">소파</a> <a
-											href="/product/furnture/stressless/list.do?typeCd=|TYPE040|"
-											target="_self">테이블&악세서리</a>
-									</div>
-								</div>
-							</div>
-							<div class="menu">
-								<p class="img">
-									<img
-										src="https://www.acebed.com/common/images/all-menu-visual4.jpg"
-										alt="" class="only_web" /> <img
-										src="https://www.acebed.com/common/images/m-all-menu-visual4.jpg"
-										alt="" class="only_mob" />
-								</p>
-								<div>
-									<div class="one_d">
-										<a href="javascript:">SLEEP CARE</a>
-									</div>
-									<div class="two_d">
-										<a href="/product/sleep-care/microcare/index.do"
-											target="_self">마이크로케어</a> <a
-											href="/product/sleep-care/smart-sleeve/index.do"
-											target="_self">스마트슬리브</a> <a
-											href="/product/sleep-care/microcare-coolingpad/index.do"
-											target="_self">마이크로케어 쿨링패드</a> <a
-											href="/product/sleep-care/coolingbodypillow/index.do"
-											target="_self">쿨링 바디필로우</a> <a
-											href="/product/sleep-care/microguard-eco/index.do"
-											target="_self">마이크로가드에코플러스</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<a href="javascript:" class="mh_x_btn">닫기</a>
+						<div class="auto_complete" id="acTopPcArea"></div>
+						<a href="javascript:" class="x_btn">닫기</a>
 					</div>
-					<div class="all_menu">
-						<div class="m_utill_div">
-							<a href="./loginView">로그인</a> <a href="./joinView">회원가입</a> <a
-								href="https://acebedmall.co.kr" target="_blank" class="ace_mall">에이스
-								침대몰</a>
-						</div>
-						<div class="search_div">
-							<p class="search_input">
-								<input type="text" name="searchTerm" title="검색어"
-									placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
-									autocomplete="off" /> <a href="javascript:"
-									class="search_btn btnIntgrSearch"
-									onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
+					<p class="search_bg"></p>
+				</div>
+				<div class="all_menu_area">
+					<a href="javascript:" class="all_meun_btn">전체메뉴</a> <a
+						href="javascript:" class="m_all_meun_btn mh_btn">모바일전체메뉴</a> <a
+						href="javascript:" class="m_prod_meun_btn mh_btn">모바일제품메뉴</a>
+					<div class="all_menu_div">
+						<p class="m_all_dim"></p>
+						<div class="visual_menu">
+							<p class="language">
+								<a href="javascript:" class="on">KOR</a> <a
+									href="http://eng.acebed.com">ENG</a>
 							</p>
-							<div class="auto_complete" id="acTopMblArea"></div>
+							<div class="pro_menu_list m_acco_menu">
+								<div class="menu">
+									<p class="img">
+										<img
+											src="https://www.acebed.com/common/images/all-menu-visual1.jpg"
+											alt="" class="only_web" /> <img
+											src="https://www.acebed.com/common/images/m-all-menu-visual1.jpg"
+											alt="" class="only_mob" />
+									</p>
+									<div>
+										<div class="one_d">
+											<a href="javascript:">BED</a>
+										</div>
+										<div class="two_d">
+											<a href="/product/bed/frame/list.do" target="_self">프레임</a> <a
+												href="/product/bed/mattress/list.do" target="_self">매트리스</a>
+											<a href="/product/bed/new/list.do" target="_self">신제품</a> <a
+												href="/customer/prdct-manual/index.do?type=gnb"
+												target="_self">제품 매뉴얼</a>
+										</div>
+									</div>
+								</div>
+								<div class="menu">
+									<p class="img">
+										<img
+											src="https://www.acebed.com/common/images/all-menu-visual2.jpg"
+											alt="" class="only_web" /> <img
+											src="https://www.acebed.com/common/images/m-all-menu-visual2.jpg"
+											alt="" class="only_mob" />
+									</p>
+									<div>
+										<div class="one_d">
+											<a href="javascript:">FURNITURE</a>
+										</div>
+										<div class="two_d">
+											<a href="/product/furnture/roomset/list.do" target="_self">룸
+												세트</a> <a href="/product/furnture/living/list.do" target="_self">리빙가구</a>
+										</div>
+									</div>
+								</div>
+								<div class="menu">
+									<p class="img">
+										<img
+											src="https://www.acebed.com/common/images/all-menu-visual3.jpg"
+											alt="" class="only_web" /> <img
+											src="https://www.acebed.com/common/images/m-all-menu-visual3.jpg"
+											alt="" class="only_mob" />
+									</p>
+									<div>
+										<div class="one_d">
+											<a href="javascript:">STRESSLESS</a>
+										</div>
+										<div class="two_d">
+											<a
+												href="/product/furnture/stressless/list.do?typeCd=|TYPE010|"
+												target="_self">1인용 리클라이너</a> <a
+												href="/product/furnture/stressless/list.do?typeCd=|TYPE020|"
+												target="_self">오피스체어</a> <a
+												href="/product/furnture/stressless/list.do?typeCd=|TYPE030|"
+												target="_self">소파</a> <a
+												href="/product/furnture/stressless/list.do?typeCd=|TYPE040|"
+												target="_self">테이블&악세서리</a>
+										</div>
+									</div>
+								</div>
+								<div class="menu">
+									<p class="img">
+										<img
+											src="https://www.acebed.com/common/images/all-menu-visual4.jpg"
+											alt="" class="only_web" /> <img
+											src="https://www.acebed.com/common/images/m-all-menu-visual4.jpg"
+											alt="" class="only_mob" />
+									</p>
+									<div>
+										<div class="one_d">
+											<a href="javascript:">SLEEP CARE</a>
+										</div>
+										<div class="two_d">
+											<a href="/product/sleep-care/microcare/index.do"
+												target="_self">마이크로케어</a> <a
+												href="/product/sleep-care/smart-sleeve/index.do"
+												target="_self">스마트슬리브</a> <a
+												href="/product/sleep-care/microcare-coolingpad/index.do"
+												target="_self">마이크로케어 쿨링패드</a> <a
+												href="/product/sleep-care/coolingbodypillow/index.do"
+												target="_self">쿨링 바디필로우</a> <a
+												href="/product/sleep-care/microguard-eco/index.do"
+												target="_self">마이크로가드에코플러스</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<a href="javascript:" class="mh_x_btn">닫기</a>
 						</div>
-						<div class="menu_list_div m_acco_menu">
-							<div class="menu">
-								<a href="javascript:" class="one_d">침대과학</a>
-								<div class="two_d">
-									<a href="/bed-science/spring/index.do" target="_self">스프링</a> <a
-										href="/bed-science/technology/index.do" target="_self">기술력</a>
-									<a href="/bed-science/awards/index.do" target="_self">특허 및
-										수상내역</a> <a href="/bed-science/lab/index.do" target="_self">침대공학연구소</a>
+						<div class="all_menu">
+							<div class="m_utill_div">
+								<a href="./loginView">로그인</a> <a href="./joinView">회원가입</a> <a
+									href="https://acebedmall.co.kr" target="_blank"
+									class="ace_mall">에이스 침대몰</a>
+							</div>
+							<div class="search_div">
+								<p class="search_input">
+									<input type="text" name="searchTerm" title="검색어"
+										placeholder="궁금하신 제품이나 정보를 빠르게 찾아보세요" maxlength="50"
+										autocomplete="off" /> <a href="javascript:"
+										class="search_btn btnIntgrSearch"
+										onclick="cmmCtrl.intgrSrchPage(this)">검색</a>
+								</p>
+								<div class="auto_complete" id="acTopMblArea"></div>
+							</div>
+							<div class="menu_list_div m_acco_menu">
+								<div class="menu">
+									<a href="javascript:" class="one_d">침대과학</a>
+									<div class="two_d">
+										<a href="/bed-science/spring/index.do" target="_self">스프링</a>
+										<a href="/bed-science/technology/index.do" target="_self">기술력</a>
+										<a href="/bed-science/awards/index.do" target="_self">특허 및
+											수상내역</a> <a href="/bed-science/lab/index.do" target="_self">침대공학연구소</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">에이스 스토리</a>
+									<div class="two_d">
+										<a href="/ace-story/sns/index.do" target="_self">NOW SNS</a> <a
+											href="/ace-story/review/list.do" target="_self">고객후기</a> <a
+											href="/ace-story/news/list.do" target="_self">뉴스룸</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">고객체험</a>
+									<div class="two_d">
+										<a href="/experience/mattress/index.do" target="_self">매트리스
+											체험존</a> <a href="/experience/move/index.do" target="_self">이동수면공학
+											연구소</a> <a href="/experience/factory/index.do" target="_self">공장
+											견학 신청</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">이벤트</a>
+									<div class="two_d">
+										<a href="/board/event/list.do" target="_self">이벤트</a> <a
+											href="/board/announce/list.do" target="_self">당첨자 안내</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">매장안내</a>
+									<div class="two_d">
+										<a href="/store/guide/index.do" target="_self">매장찾기</a> <a
+											href="/store/square/index.do" target="_self">에이스 스퀘어</a> <a
+											href="/store/avenue/index.do" target="_self">에이스 에비뉴</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">기업정보</a>
+									<div class="two_d">
+										<a href="/business/overview/index.do" target="_self">브랜드
+											스토리</a> <a href="/business/management-information/list.do"
+											target="_self">경영정보</a> <a
+											href="/business/guideline/index.do" target="_self">윤리경영</a> <a
+											href="/business/csr/index.do" target="_self">사회공익활동</a> <a
+											href="/business/location/index.do" target="_self">오시는길</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">고객지원</a>
+									<div class="two_d">
+										<a href="/customer/prdct-manual/index.do" target="_self">제품
+											매뉴얼</a> <a
+											href="javascript:cmmCtrl.loginCheckPage('/customer/counsel/index.do')"
+											target="_self">AS 및 상담</a> <a href="/customer/faq/index.do"
+											target="_self">자주 묻는 질문</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">웨딩멤버스</a>
+									<div class="two_d">
+										<a href="/wedding-members/benefit/index.do" target="_self">멤버스
+											혜택</a> <a href="/wedding-members/join/index.do" target="_self">가입안내</a>
+									</div>
+								</div>
+								<div class="menu">
+									<a href="javascript:" class="one_d">기타</a>
+									<div class="two_d">
+										<a href="/etc/policy/use/view.do" target="_self">이용약관</a> <a
+											href="/etc/policy/privacy/view.do" target="_self">개인정보처리방침</a>
+										<a href="/etc/new-store/index.do" target="_self">매장개설안내</a> <a
+											href="/etc/special-business/index.do" target="_self">특판사업</a>
+									</div>
 								</div>
 							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">에이스 스토리</a>
-								<div class="two_d">
-									<a href="/ace-story/sns/index.do" target="_self">NOW SNS</a> <a
-										href="/ace-story/review/list.do" target="_self">고객후기</a> <a
-										href="/ace-story/news/list.do" target="_self">뉴스룸</a>
-								</div>
+							<div class="m_banner">
+								<a href="/member/join/write.do?joinCd=wedding"><img
+									src="https://www.acebed.com/common/images/m-wedding-banner.jpg"
+									alt="" /></a>
 							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">고객체험</a>
-								<div class="two_d">
-									<a href="/experience/mattress/index.do" target="_self">매트리스
-										체험존</a> <a href="/experience/move/index.do" target="_self">이동수면공학
-										연구소</a> <a href="/experience/factory/index.do" target="_self">공장
-										견학 신청</a>
-								</div>
+							<div class="lnk_div">
+								<a href="https://acebedmall.co.kr" target="_blank"><span>에이스
+										침대몰<br />바로가기
+								</span></a> <a href="http://www.aceheritz.com" target="_blank"><span>에이스
+										헤리츠<br />바로가기
+								</span></a> <a href="http://www.aceavenue.co.kr" target="_blank"><span>에이스
+										에비뉴<br />바로가기
+								</span></a>
 							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">이벤트</a>
-								<div class="two_d">
-									<a href="/board/event/list.do" target="_self">이벤트</a> <a
-										href="/board/announce/list.do" target="_self">당첨자 안내</a>
-								</div>
+							<p class="m_language">
+								<a href="javascript:" class="on">KOR</a> <a
+									href="http://eng.acebed.com">ENG</a>
+							</p>
+							<div class="m_f_site">
+								<select title="에이스침대 패밀리 사이트 바로가기 : 새창열림"
+									onchange="if (this.value) window.open(this.value)">
+									<option value="">FAMILY SITE</option>
+									<option value="https://acebedmall.co.kr">에이스 침대몰</option>
+									<option value="http://www.aceheritz.com">에이스 헤리츠</option>
+									<option value="http://www.aceavenue.co.kr">에이스 에비뉴</option>
+									<option value="http://eng.acebed.com">ENGLISH</option>
+								</select>
 							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">매장안내</a>
-								<div class="two_d">
-									<a href="/store/guide/index.do" target="_self">매장찾기</a> <a
-										href="/store/square/index.do" target="_self">에이스 스퀘어</a> <a
-										href="/store/avenue/index.do" target="_self">에이스 에비뉴</a>
-								</div>
-							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">기업정보</a>
-								<div class="two_d">
-									<a href="/business/overview/index.do" target="_self">브랜드
-										스토리</a> <a href="/business/management-information/list.do"
-										target="_self">경영정보</a> <a href="/business/guideline/index.do"
-										target="_self">윤리경영</a> <a href="/business/csr/index.do"
-										target="_self">사회공익활동</a> <a
-										href="/business/location/index.do" target="_self">오시는길</a>
-								</div>
-							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">고객지원</a>
-								<div class="two_d">
-									<a href="/customer/prdct-manual/index.do" target="_self">제품
-										매뉴얼</a> <a
-										href="javascript:cmmCtrl.loginCheckPage('/customer/counsel/index.do')"
-										target="_self">AS 및 상담</a> <a href="/customer/faq/index.do"
-										target="_self">자주 묻는 질문</a>
-								</div>
-							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">웨딩멤버스</a>
-								<div class="two_d">
-									<a href="/wedding-members/benefit/index.do" target="_self">멤버스
-										혜택</a> <a href="/wedding-members/join/index.do" target="_self">가입안내</a>
-								</div>
-							</div>
-							<div class="menu">
-								<a href="javascript:" class="one_d">기타</a>
-								<div class="two_d">
-									<a href="/etc/policy/use/view.do" target="_self">이용약관</a> <a
-										href="/etc/policy/privacy/view.do" target="_self">개인정보처리방침</a>
-									<a href="/etc/new-store/index.do" target="_self">매장개설안내</a> <a
-										href="/etc/special-business/index.do" target="_self">특판사업</a>
-								</div>
-							</div>
+							<a href="javascript:" class="mh_x_btn">닫기</a>
 						</div>
-						<div class="m_banner">
-							<a href="/member/join/write.do?joinCd=wedding"><img
-								src="https://www.acebed.com/common/images/m-wedding-banner.jpg"
-								alt="" /></a>
-						</div>
-						<div class="lnk_div">
-							<a href="https://acebedmall.co.kr" target="_blank"><span>에이스
-									침대몰<br />바로가기
-							</span></a> <a href="http://www.aceheritz.com" target="_blank"><span>에이스
-									헤리츠<br />바로가기
-							</span></a> <a href="http://www.aceavenue.co.kr" target="_blank"><span>에이스
-									에비뉴<br />바로가기
-							</span></a>
-						</div>
-						<p class="m_language">
-							<a href="javascript:" class="on">KOR</a> <a
-								href="http://eng.acebed.com">ENG</a>
-						</p>
-						<div class="m_f_site">
-							<select title="에이스침대 패밀리 사이트 바로가기 : 새창열림"
-								onchange="if (this.value) window.open(this.value)">
-								<option value="">FAMILY SITE</option>
-								<option value="https://acebedmall.co.kr">에이스 침대몰</option>
-								<option value="http://www.aceheritz.com">에이스 헤리츠</option>
-								<option value="http://www.aceavenue.co.kr">에이스 에비뉴</option>
-								<option value="http://eng.acebed.com">ENGLISH</option>
-							</select>
-						</div>
-						<a href="javascript:" class="mh_x_btn">닫기</a>
+						<a href="javascript:" class="all_x_btn">닫기</a>
 					</div>
-					<a href="javascript:" class="all_x_btn">닫기</a>
 				</div>
-			</div>
-			</div>
+		</div>
 		</header>

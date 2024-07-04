@@ -28,6 +28,7 @@ public class ProductList implements ProductCommand {
 		HttpServletRequest request = (HttpServletRequest) map.get("request");
 		String category_name = request.getParameter("category_name");
 		ProductDao dao=sqlSession.getMapper(ProductDao.class);
+
 		List<Product> dto;
 		List<Map<String, String>> Adto;
 		if (category_name != null && !category_name.isEmpty()) {
