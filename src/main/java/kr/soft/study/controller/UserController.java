@@ -22,9 +22,9 @@ import kr.soft.study.util.UserDao;
 import kr.soft.study.command.user.Login;
 import kr.soft.study.command.user.MyPage;
 import kr.soft.study.command.user.NumberUpdate;
+import kr.soft.study.command.user.PasswordRecovery;
 import kr.soft.study.command.user.CheckEmail;
 import kr.soft.study.command.user.Delete;
-import kr.soft.study.command.user.DropOut;
 import kr.soft.study.command.user.Join;
 
 @Controller
@@ -35,10 +35,10 @@ public class UserController {
 	private UserList userList;
 	private UserUpdate userUpdate;
 	private NumberUpdate numberUpdate;
+	private PasswordRecovery passwordRecovery;
 
 	@Autowired
 	private SqlSession sqlSession;
-	private UserDao userDao;
 
 	// home
 	@RequestMapping("/")
@@ -236,32 +236,58 @@ public class UserController {
 		return path;
 	}
 
-	// 탈퇴하기
-	@RequestMapping(value = "/dropOut", method = RequestMethod.POST)
-	public String dropOut(HttpServletRequest request, Model model) {
-		System.out.println("dropOut()");
-		String email = request.getParameter("email");
+	// 비밀번호 찾기화면 이동
+	@RequestMapping("/passwordReset")
+	public String passwordReset(Model model) {
+		System.out.println("passwordReset()");
+		return "user/passwordReset";
+	}
 
-		System.out.println("Received email: " + email); // 로그 추가
+	// 비밀번호 찾기
+	@RequestMapping(value = "/findPassword", method = RequestMethod.POST)
+	public String findPassword(HttpServletRequest request, Model model) {
+		System.out.println("findPassword()");
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
 
+		System.out.println("Received name: " + name);
+		System.out.println("Received phone: " + phone);
+		
 		model.addAttribute("request", request);
 
-		DropOut dropOut = new DropOut(userDao);
-		dropOut.execute(model);
+		// 추가 로그: execute() 메서드 호출 전
+		System.out.println("Executing passwordRecoveryCommand...");
+
+		passwordRecovery.execute(model);
+
+		// 추가 로그: execute() 메서드 호출 후
+		System.out.println("passwordRecoveryCommand executed");
 
 		String path = (String) model.asMap().get("path");
+
+		// 추가 로그: path 값 확인
+		System.out.println("Path after execution: " + path);
+
 		return path;
 	}
 
-	// 관리자 회원주문목록
-	@RequestMapping("/memberOrder")
-	public String memberOrder(HttpSession session, HttpServletRequest request, Model model) {
-		System.out.println("memberView()");
-		model.addAttribute("request", request);
-
-		userList = new UserList(sqlSession);
-		userList.execute(model);
-		return "user/memberOrder";
+	@RequestMapping(value = "/passwordResetConfirm", method = RequestMethod.GET)
+	public String passwordResetConfirm(HttpServletRequest request, Model model) {
+		String email = request.getParameter("email");
+		model.addAttribute("email", email);
+		return "user/passwordResetConfirm";
 	}
+	
+	// 관리자 회원주문목록
+		@RequestMapping("/memberOrder")
+		public String memberOrder(HttpSession session, HttpServletRequest request, Model model) {
+			System.out.println("memberView()");
+			model.addAttribute("request", request);
+
+			userList = new UserList(sqlSession);
+			userList.execute(model);
+			return "user/memberOrder";
+		}
+
 
 }

@@ -335,10 +335,10 @@
 								<a href="/bed-science/spring/index.do"> <span>침대과학</span>
 								</a>
 								<div class="two_dep">
-									<a href="/bed-science/spring/index.do" target="_self"><span>스프링</span></a>
-									<a href="/bed-science/technology/index.do" target="_self"><span>기술력</span></a>
-									<a href="/bed-science/awards/index.do" target="_self"><span>특허
-											및 수상내역</span></a> <a href="/bed-science/lab/index.do" target="_self"><span>침대공학연구소</span></a>
+									<a href="./science" target="_self"><span>스프링</span></a>
+									<a href="./technic" target="_self"><span>기술력</span></a>
+									<a href="./patentAward" target="_self"><span>특허
+											및 수상내역</span></a> <a href="./research" target="_self"><span>침대공학연구소</span></a>
 								</div>
 							</div>
 						</div>
@@ -374,8 +374,6 @@
 								</a>
 								<div class="two_dep">
 									<a href="/board/event/list.do" target="_self"><span>이벤트</span></a>
-									<a href="/board/announce/list.do" target="_self"><span>당첨자
-											안내</span></a>
 								</div>
 							</div>
 						</div>
@@ -384,11 +382,7 @@
 								<a href="./guide"> <span>매장안내</span>
 								</a>
 								<div class="two_dep">
-									<a href="./guide" target="_self"><span>매장찾기</span></a> <a
-										href="https://www.acebed.com/store/square/index.do"
-										target="_self"><span>에이스 스퀘어</span></a> <a
-										href="https://www.acebed.com/store/avenue/index.do"
-										target="_self"><span>에이스 에비뉴</span></a>
+									<a href="./guide" target="_self"><span>매장찾기</span></a> 
 								</div>
 							</div>
 						</div>
@@ -534,10 +528,10 @@
 								<div class="menu">
 									<a href="javascript:" class="one_d">침대과학</a>
 									<div class="two_d">
-										<a href="/bed-science/spring/index.do" target="_self">스프링</a>
-										<a href="/bed-science/technology/index.do" target="_self">기술력</a>
-										<a href="/bed-science/awards/index.do" target="_self">특허 및
-											수상내역</a> <a href="/bed-science/lab/index.do" target="_self">침대공학연구소</a>
+										<a href="./science" target="_self">스프링</a>
+										<a href="./technic" target="_self">기술력</a>
+										<a href="./patentAward" target="_self">특허 및
+											수상내역</a> <a href="./research" target="_self">침대공학연구소</a>
 									</div>
 								</div>
 								<div class="menu">
@@ -560,16 +554,13 @@
 								<div class="menu">
 									<a href="javascript:" class="one_d">이벤트</a>
 									<div class="two_d">
-										<a href="/board/event/list.do" target="_self">이벤트</a> <a
-											href="/board/announce/list.do" target="_self">당첨자 안내</a>
+										<a href="/board/event/list.do" target="_self">이벤트</a> 
 									</div>
 								</div>
 								<div class="menu">
 									<a href="javascript:" class="one_d">매장안내</a>
 									<div class="two_d">
-										<a href="/store/guide/index.do" target="_self">매장찾기</a> <a
-											href="/store/square/index.do" target="_self">에이스 스퀘어</a> <a
-											href="/store/avenue/index.do" target="_self">에이스 에비뉴</a>
+										<a href="/store/guide/index.do" target="_self">매장찾기</a> 
 									</div>
 								</div>
 								<div class="menu">
