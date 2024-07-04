@@ -229,7 +229,7 @@
 									name="saveId" value="Y" title="아이디 저장"> <label
 									for="saveId">아이디 저장</label>
 							</p>
-							<a href="/member/search/index.do" class="txt_btn"><span>비밀번호 찾기</span></a>
+							<a href="./passwordReset" class="txt_btn"><span>비밀번호 찾기</span></a>
 						</div>
 						<div class="btn_div">
 							<button type="submit" class="blue_btn btnNormalLgn">

@@ -28,10 +28,12 @@ public interface UserDao {
 
 	// 이메일 중복 확인
 	public Users isLogin(@Param("param") String email);
-
+	
 	public Users getUserByEmail(String email);
-
+	// 마이페이지 번호 변경
 	public void updatePhoneNumber(String newPhoneNumber,String email);
+	// 비밀번호 찾기
+	public String findEmailByNameAndPhone(String name, String phone);
 
 
 }

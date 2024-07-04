@@ -24,7 +24,7 @@
 		select * from Users where email
 		= #{param}
 	</select>
-	
+
 	<!-- 관리자 회원 목록 -->
 	<select id="list" resultType="kr.soft.study.dto.Users">
 		select
@@ -59,7 +59,14 @@
 
 	<!-- 전화번호 변경 -->
 	<update id="updatePhoneNumber" parameterType="map">
-		UPDATE Users SET phone_number = #{param1} WHERE email = #{param2}
+		UPDATE Users SET
+		phone_number = #{param1} WHERE email = #{param2}
 	</update>
-
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="findEmailByNameAndPhone" parameterType="map"
+		resultType="string">
+		SELECT email FROM users WHERE name = #{param1} AND phone = #{param2}
+	</select>
+	
 </mapper>
