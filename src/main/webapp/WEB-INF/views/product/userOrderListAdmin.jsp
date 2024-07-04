@@ -298,7 +298,7 @@
 		<input type="text" id="input-clipboard"
 			style="position: absolute; top: -9999px; left: -9999px; z-index: -1" />
 		<div class="head_div">
-			<h2 class="titleH1">구매내역</h2>
+			<h2 class="titleH1">주문관리</h2>
 		</div>
 		<div class="content_div pb_0"
 			data-controller="controller/mp/mpa/MPAProductStoreIndexCtrl">
@@ -353,11 +353,17 @@
 													<td><span class="order-status ${order.status}">
 															${order.status} </span></td>
 													<td>
-														<form action="./cancelledOrder" method="post">
-															<input type="hidden" name="order_id"
-																value="${order.order_id}">
-															<button type="submit" class="return-button">주문취소</button>
-														</form>
+                            <form action="./updateOrderAdmin" method="post">
+                                <input type="hidden" name="order_id" value="${order.order_id}">
+                                <input type="hidden" name="email" value="${order.user_email}">
+                                <select name="status" onchange="this.form.submit()">
+                                    <option value="pending" ${order.status == 'pending' ? 'selected' : ''}>Pending</option>
+                                    <option value="processing" ${order.status == 'processing' ? 'selected' : ''}>Processing</option>
+                                    <option value="shipped" ${order.status == 'shipped' ? 'selected' : ''}>Shipped</option>
+                                    <option value="delivered" ${order.status == 'delivered' ? 'selected' : ''}>Delivered</option>
+                                    <option value="cancelled" ${order.status == 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                                </select>
+                            </form>
 													</td>
 												</tr>
 												<tr>

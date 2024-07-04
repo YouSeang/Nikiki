@@ -161,16 +161,24 @@
 	</insert>
 	<select id="getCartProducts" parameterType="string"
 		resultType="kr.soft.study.dto.Products">
-		SELECT p.product_id, p.product_name, p.description, p.image_url, p.price
+		SELECT p.product_id, p.product_name, p.description,
+		p.image_url, p.price
 		FROM Cart c
-		JOIN Products p ON c.product_id = p.product_id
+		JOIN Products p ON c.product_id =
+		p.product_id
 		WHERE c.user_email = #{userEmail}
-		ORDER BY c.created_at DESC
+		ORDER BY c.created_at
+		DESC
 	</select>
 	<delete id="deleteCartItem">
 		DELETE FROM Cart
 		WHERE user_email = #{param1}
-		AND product_id = #{param2}
+		AND
+		product_id = #{param2}
+	</delete>
+	<delete id="deleteCart">
+		DELETE FROM Cart
+		WHERE product_id = #{param1}
 	</delete>
 	<!-- 주문테이블 담기 -->
 	<insert id="insertOrder"
@@ -182,54 +190,88 @@
 
 	<insert id="insertOrderItem"
 		parameterType="kr.soft.study.dto.OrderItemsDto">
-		INSERT INTO OrderItems (order_id, product_id, attribute_id, price)
-		VALUES (#{order_id}, #{product_id}, #{attribute_id}, #{price})
+		INSERT INTO OrderItems (order_id, product_id,
+		attribute_id, price)
+		VALUES (#{order_id}, #{product_id},
+		#{attribute_id}, #{price})
 	</insert>
-	 <select id="getOrderListByEmail" resultMap="orderResultMap" parameterType="String">
-        SELECT 
-            o.order_id,
-            o.user_email,
-            o.total_price,
-            o.order_date,
-            o.status,
-            oi.order_item_id,
-            oi.product_id,
-            oi.attribute_id,
-            oi.quantity,
-            oi.price AS item_price,
-            p.product_name,
-            pa.attribute_name,
-            pa.value AS attribute_value
-        FROM 
-            Orders o
-        LEFT JOIN 
-            OrderItems oi ON o.order_id = oi.order_id
-        LEFT JOIN 
-            Products p ON oi.product_id = p.product_id
-        LEFT JOIN 
-            ProductAttributes pa ON oi.attribute_id = pa.attribute_id
-        WHERE 
-            o.user_email = #{user_email}
-        ORDER BY 
-            o.order_date ASC
-    </select>
+	<select id="getOrderListByEmail" resultMap="orderResultMap"
+		parameterType="String">
+		SELECT
+		o.order_id,
+		o.user_email,
+		o.total_price,
+		o.order_date,
+		o.status,
+		oi.order_item_id,
+		oi.product_id,
+		oi.attribute_id,
+		oi.quantity,
+		oi.price AS item_price,
+		p.product_name,
+		pa.attribute_name,
+		pa.value AS attribute_value
+		FROM
+		Orders o
+		LEFT JOIN
+		OrderItems oi ON
+		o.order_id = oi.order_id
+		LEFT JOIN
+		Products p ON oi.product_id =
+		p.product_id
+		LEFT JOIN
+		ProductAttributes pa ON oi.attribute_id =
+		pa.attribute_id
+		WHERE
+		o.user_email = #{user_email}
+		ORDER BY
+		o.order_date
+		ASC
+	</select>
 
-    <!-- Result Map -->
-    <resultMap id="orderResultMap" type="kr.soft.study.dto.Orders">
-        <id property="order_id" column="order_id" />
-        <result property="user_email" column="user_email" />
-        <result property="total_price" column="total_price" />
-        <result property="order_date" column="order_date" />
-        <result property="status" column="status" />
-        <collection property="orderItemsDto" ofType="kr.soft.study.dto.OrderItemsDto">
-            <id property="order_item_id" column="order_item_id" />
-            <result property="product_id" column="product_id" />
-            <result property="attribute_id" column="attribute_id" />
-            <result property="quantity" column="quantity" />
-            <result property="price" column="item_price" />
-            <result property="product_name" column="product_name" />
-            <result property="attribute_name" column="attribute_name" />
-            <result property="attribute_value" column="attribute_value" />
-        </collection>
-    </resultMap>
+	<!-- Result Map -->
+	<resultMap id="orderResultMap"
+		type="kr.soft.study.dto.Orders">
+		<id property="order_id" column="order_id" />
+		<result property="user_email" column="user_email" />
+		<result property="total_price" column="total_price" />
+		<result property="order_date" column="order_date" />
+		<result property="status" column="status" />
+		<collection property="orderItemsDto"
+			ofType="kr.soft.study.dto.OrderItemsDto">
+			<id property="order_item_id" column="order_item_id" />
+			<result property="product_id" column="product_id" />
+			<result property="attribute_id" column="attribute_id" />
+			<result property="quantity" column="quantity" />
+			<result property="price" column="item_price" />
+			<result property="product_name" column="product_name" />
+			<result property="attribute_name" column="attribute_name" />
+			<result property="attribute_value" column="attribute_value" />
+		</collection>
+	</resultMap>
+	<!-- 사용자 주문삭제 -->
+	<update id="cancelledOrder" parameterType="int">
+		UPDATE Orders
+		SET
+		status = 'cancelled'
+		WHERE order_id = #{order_id}
+	</update>
+	<!-- 상품별 주문내역 삭제(상품삭제시) -->
+	<delete id="deleteOrderItemsByProductId" parameterType="int">
+		DELETE
+		FROM OrderItems WHERE product_id = #{product_id}
+	</delete>
+
+	<!-- 상품삭제 시 주문취소상태로 변경 -->
+	<update id="updateOrderStatusToCancelled" parameterType="int">
+		UPDATE
+		Orders SET status = 'cancelled' WHERE order_id = (
+		SELECT order_id FROM
+		OrderItems WHERE product_id = #{product_id} LIMIT 1
+		)
+	</update>
+	<!-- 관리자 주문상태 변경 -->
+	<update id="updateOrderStatus">
+		UPDATE Orders SET status = #{param2} WHERE order_id = #{param1}
+	</update>
 </mapper>
