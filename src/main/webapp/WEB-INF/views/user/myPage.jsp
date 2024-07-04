@@ -211,7 +211,6 @@
 	data-curt-dt="2024-07-03">
 	<div id="wrap">
 	<jsp:include page="../header.jsp" />
-		
 		<div class="mypage_menu" data-swiftype-index="false">
 			<div class="top_div">
 				<p class="tit">마이페이지</p>

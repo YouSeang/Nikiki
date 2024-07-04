@@ -246,10 +246,10 @@
 						<c:when test="${not empty sessionScope.email}">
 							<a href="./logout">로그아웃</a>
 							<div class="my_page">
-								<a href="./myPage"><span>마이페이지</span></a>
-								<div class="slc_div">
-									<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
-										href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
+								<a href="javascript:" class="mypage-link"><span>마이페이지</span></a>
+								<div class="slc_div1">
+									<a href="./myPage">회원정보수정</a> <a
+										href="./userOrderList">구매내역</a> <a
 										href="./cart">장바구니</a> <a href="/my-page/counsel/index.do">상담내역</a>
 									<a href="/my-page/review/index.do">나의 후기</a>
 								</div>
@@ -270,12 +270,12 @@
 					<div class="gnb_section gnb1">
 						<div class="one_dep">
 							<div>
-								<a href="./bed?category_name=프레임"> <span class="one">BED</span>
+								<a href="./bed?parent_category_name=베드"> <span class="one">BED</span>
 									<span>침대</span>
 								</a>
 								<div class="two_dep">
-									<a href="./bed?category_name=프레임" target="_self"><span>프레임</span></a>
-									<a href="./bed?category_name=매트리스" target="_self"><span>매트리스</span></a>
+									<a href="./bed?category_name=프레임&parent_category_name=베드" target="_self"><span>프레임</span></a>
+									<a href="./bed?category_name=매트리스&parent_category_name=베드" target="_self"><span>매트리스</span></a>
 									<a href="./recently" target="_self"><span>신제품</span></a> <a
 										href="https://www.acebed.com/customer/prdct-manual/index.do?type=gnb"
 										target="_self"><span>제품 매뉴얼</span></a>
@@ -285,37 +285,37 @@
 						<div class="one_dep">
 							<div>
 								<a
-									href="https://www.acebed.com/product/furnture/roomset/list.do">
+									href="./bed?parent_category_name=가구">
 									<span class="one">FURNITURE</span> <span>가구</span>
 								</a>
 								<div class="two_dep">
 									<a
-										href="https://www.acebed.com/product/furnture/roomset/list.do"
+										href="./bed?category_name=룸&parent_category_name=가구"
 										target="_self"><span>룸 세트</span></a> <a
-										href="https://www.acebed.com/product/furnture/living/list.do"
+										href="./bed?category_name=리빙&parent_category_name=가구"
 										target="_self"><span>리빙가구</span></a>
 								</div>
 							</div>
 						</div>
 						<div class="one_dep">
 							<div>
-								<a href="javascript:"> <span class="one">STRESSLESS</span> <span>스트레스리스</span>
+								<a href="./bed?parent_category_name=스트레스리스"> <span class="one">STRESSLESS</span> <span>스트레스리스</span>
 								</a>
 								<div class="two_dep">
-									<a href="/product/furnture/stressless/list.do?typeCd=|TYPE010|"
+									<a href="./bed?category_name=리클라이너&parent_category_name=스트레스리스"
 										target="_self"><span>1인용 리클라이너</span></a> <a
-										href="/product/furnture/stressless/list.do?typeCd=|TYPE020|"
+										href="./bed?category_name=체어&parent_category_name=스트레스리스"
 										target="_self"><span>오피스체어</span></a> <a
-										href="/product/furnture/stressless/list.do?typeCd=|TYPE030|"
+										href="./bed?category_name=소파&parent_category_name=스트레스리스"
 										target="_self"><span>소파</span></a> <a
-										href="/product/furnture/stressless/list.do?typeCd=|TYPE040|"
+										href="./bed?category_name=테이블&parent_category_name=스트레스리스"
 										target="_self"><span>테이블&악세서리</span></a>
 								</div>
 							</div>
 						</div>
 						<div class="one_dep">
 							<div>
-								<a href="/product/sleep-care/main/index.do"> <span
+								<a href="./microcare"> <span
 									class="one">SLEEP CARE</span> <span>슬립케어</span>
 								</a>
 								<div class="two_dep">
