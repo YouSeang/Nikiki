@@ -1,6 +1,7 @@
 package kr.soft.study.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Orders {
 
@@ -10,8 +11,14 @@ public class Orders {
 	private int price;
 	private Timestamp order_date;
 	private String status;
+	private List<OrderItemsDto> orderItemsDto;
 	
-	
+	public List<OrderItemsDto> getOrderItemsDto() {
+		return orderItemsDto;
+	}
+	public void setOrderItemsDto(List<OrderItemsDto> orderItemsDto) {
+		this.orderItemsDto = orderItemsDto;
+	}
 	public int getPrice() {
 		return price;
 	}

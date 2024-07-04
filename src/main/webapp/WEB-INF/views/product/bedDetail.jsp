@@ -205,7 +205,14 @@
         align-items: center;
     }
 </style>
-			
+    <script>
+        function openPopup() {
+            var url = "https://online-pay.kakao.com/mockup/v1/82a0310a7de32c13e05ccaf29fffbc662c52a2aacf999b9b841d870c57f08afb/info";
+            var windowName = "popupWindow";
+            var windowFeatures = "width=800,height=600,scrollbars=yes";
+            window.open(url, windowName, windowFeatures);
+        }
+    </script>			
 </head>
 <body data-login-flag="N" data-device-type="web"
 	data-kakao-key="6f6b5601b844d8e4d8835588b2da67f2"
@@ -362,7 +369,7 @@
         </c:forEach>
     </div>
     <!-- <button type="button" onclick="orderProduct()">주문하기</button> -->
-    <input type="submit" value="주문하기"/>
+    <input type="submit" onclick="openPopup()" value="주문하기"/>
 </form>
 
 

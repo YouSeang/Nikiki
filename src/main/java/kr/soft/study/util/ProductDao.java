@@ -21,7 +21,8 @@ public interface ProductDao {
     List<Products> selectAllProduct();
     List<Products> getCartProducts(String userEmail);
     Product getProductWithAttributes(int productId);
-    List<Product> getProductCategoty(String category_name);
+    List<Product> getProductCategoty(String category_name,String parent_category_name);
+    List<Product> getProductParentCategoty(String parent_category_name);
     List<Product> getAllList();
     void deleteAttribute(int attribute_id);
     void deleteProductAttribute(int product_id);
@@ -32,6 +33,7 @@ public interface ProductDao {
     void deleteCartItem(String user_email,int product_id);
     void insertOrder(Orders orders);
     void insertOrderItem(OrderItemsDto orderItemDto);
+    List<Orders> getOrderListByEmail(String user_email);
 
 }
 
