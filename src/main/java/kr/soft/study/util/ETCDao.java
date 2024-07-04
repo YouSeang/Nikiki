@@ -20,4 +20,5 @@ public interface ETCDao {
     List<Reviews> getAllReviewsWithImages(); // 새로운 메소드 (관리자용)
     Reviews getReviewById(int reviewId); // 새로운 메소드 추가
     Users getUserByEmail(String email);
+    void deleteReview(int reviewId); // 삭제 메소드 추가
 }

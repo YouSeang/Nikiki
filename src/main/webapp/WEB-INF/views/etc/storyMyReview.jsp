@@ -124,28 +124,11 @@
         }
     </style>
 </head>
-<body data-login-flag="Y" data-device-type="web" data-kakao-key="6f6b5601b844d8e4d8835588b2da67f2" data-curt-dt="2024-07-04">
-    <div id="wrap">
+<body>
+    
         <jsp:include page="../header.jsp" />
-        <div class="mypage_menu" data-swiftype-index="false">
-            <div class="top_div">
-                <p class="tit">마이페이지</p>
-                <div class="info">
-                    <p class="fw_b">유세앙 고객님,</p>
-                    에이스침대 홈페이지 방문을 환영합니다.
-                </div>
-                <a href="/my-page/member-confirm/index.do" class="btn">회원정보 수정</a>
-            </div>
-            <div class="bottom_div">
-                <div class="link_list">
-                    <a href="/my-page/buy-auth/index.do">제품인증/구매내역</a>
-                    <a href="/my-page/product-store/index.do">관심 제품/매장</a>
-                    <a href="/my-page/counsel/index.do">상담내역</a>
-                    <a href="/my-page/review/index.do">나의 후기</a>
-                </div>
-            </div>
-            <a href="javascript:" class="x_btn"></a>
-        </div>
+        
+        
         <div id="content" data-swiftype-name="body" data-swiftype-type="text" data-swiftype-index="true">
             <div class="subCon">
                 <input type="text" id="input-clipboard" style="position:absolute; top:-9999px; left:-9999px; z-index:-1" />

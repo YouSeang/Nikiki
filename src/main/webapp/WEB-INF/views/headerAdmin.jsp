@@ -180,7 +180,7 @@
 <body data-login-flag="N" data-device-type="web"
 	data-curt-dt="2024-06-28">
 		<header data-swiftype-index="false">
-			<a href="/main/index.do" class="logo"><h1>ACE BED</h1></a>
+			<a href="./admin" class="logo"><h1>ACE BED</h1></a>
 			<div class="utill_div">
 				<c:choose>
 					<c:when test="${not empty sessionScope.email}">
@@ -217,7 +217,7 @@
 					</div>
 					<div class="one_dep">
 						<div>
-							<a href="/product/sleep-care/main/index.do"> <span
+							<a href="./storyAdminReview"> <span
 								class="one">REVIEW</span> <span>후기관리</span>
 							</a>
 						</div>
@@ -337,7 +337,7 @@
 								<a href="javascript:" class="one_d">주문관리</a>
 							</div>
 							<div class="menu">
-								<a href="javascript:" class="one_d">후기관리</a>
+								<a href="./storyAdminReview" class="one_d">후기관리</a>
 							</div>
 						</div>
 						<p class="m_language">
