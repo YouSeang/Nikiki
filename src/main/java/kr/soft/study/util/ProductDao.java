@@ -3,6 +3,7 @@ package kr.soft.study.util;
 import java.util.List;
 import java.util.Map;
 
+
 import kr.soft.study.dto.CartDto;
 import kr.soft.study.dto.OrderItemsDto;
 import kr.soft.study.dto.Orders;
@@ -25,6 +26,7 @@ public interface ProductDao {
     void deleteAttribute(int attribute_id);
     void deleteProductAttribute(int product_id);
     void deleteProduct(int product_id);
+
     List<Map<String, String>> getAttributeValues();
     void addToCart(CartDto cartDto);
     void deleteCartItem(String user_email,int product_id);

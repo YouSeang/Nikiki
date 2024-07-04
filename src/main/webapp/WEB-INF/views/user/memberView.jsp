@@ -199,34 +199,39 @@ body {
 }
 
 .container {
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
 	padding: 20px;
 }
-
+.maincon {
+margin-top: 500px; /* 헤더와 콘텐츠 사이에 더 많은 여백 추가 */
+}
 h2 {
-	color: #007B7F;
+	color: #d2cab6;
 	text-align: center;
+	font-size: 24px; /* 제목 글씨 크기 조정 */
 }
 
 table {
 	width: 100%;
 	margin: 20px 0;
 	border-collapse: collapse;
-	background-color: #A9F5F2;
+	background-color: #dddbce;
+	text-align: center;
 }
 
 table, th, td {
-	border: 1px solid #007B7F;
+	border: 1px solid #fefcf5;
 }
 
 th, td {
-	padding: 10px;
-	text-align: left;
+	padding: 20px;
+	font-size: 20px;
+	height: 60px; /* 테이블 셀 높이 설정 */
 }
 
 th {
-	background-color: #007B7F;
+	background-color: #a29f84;
 	color: white;
 }
 
@@ -235,7 +240,7 @@ td form {
 }
 
 input[type=submit] {
-	background-color: #007B7F;
+	background-color:#a29f84;
 	color: white;
 	border: none;
 	padding: 5px 10px;
@@ -246,7 +251,7 @@ input[type=submit] {
 }
 
 input[type=submit]:hover {
-	background-color: #005f5f;
+	background-color: #a29f84;
 }
 
 a.add-member {
@@ -301,12 +306,7 @@ a.add-member:hover {
 						</tr>
 					</c:forEach>
 				</table>
-				<br> <br> <br>
-				<div class="button-container">
-					<form action="./delete" method="get">
-						<input type="submit" value="Delete" class="add-member">
-					</form>
-				</div>
+				
 			</div>
 		</div>
 	</div>

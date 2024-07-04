@@ -233,9 +233,6 @@ td:first-child {
 
 input[type=text], input[type=password], input[type=date], input[type=email]
 	{
-	width: 100%;
-	padding: 10px;
-	margin: 5px 0;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -245,16 +242,21 @@ input[type=submit] {
 	background-color: #007B7F;
 	color: white;
 	border: none;
-	padding: 10px 20px;
 	cursor: pointer;
 	text-align: center;
 	border-radius: 5px;
-	width: 100%;
 	font-size: 16px;
 }
 
 input[type=submit]:hover {
 	background-color: #005f5f;
+}
+
+.form-group {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 20px; /* 상단 여백 추가 */
 }
 </style>
 
@@ -267,6 +269,7 @@ input[type=submit]:hover {
 		<div class="swiper-wrapper">
 			<div class="swiper-slide">
 				<h2>Update Member</h2>
+				<br> <br> <br>
 				<form action="./update" method="post">
 					<input type="hidden" name="oldEmail" value="${user.email}">
 					<table>
@@ -287,15 +290,26 @@ input[type=submit]:hover {
 						</tr>
 						<tr>
 							<td>New Email:</td>
-							<td><input type="email" name="newEmail"
-								value="${user.email}" required></td>
+							<td><input type="text" name="newEmail" value="${user.email}"
+								required></td>
 						</tr>
 					</table>
-					<input type="submit" value="Update">
+					<div class="form-group">
+						<input type="submit" value="Update">
+					</div>
 				</form>
+				<div class="form-group">
+					<form action="./delete" method="post">
+						<input type="hidden" name="email" value="${user.email}"> <input
+							type="submit" value="Delete">
+					</form>
+					<form action="./memberView">
+						<input type="submit" value="Back">
+					</form>
+				</div>
 			</div>
 		</div>
+		<jsp:include page="../footer.jsp" />
 	</div>
-	<jsp:include page="../footer.jsp" />
 </body>
 </html>
