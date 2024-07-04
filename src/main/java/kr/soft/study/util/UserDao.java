@@ -24,7 +24,7 @@ public interface UserDao {
 	public void updateUser(String name, String birthDate, String phoneNumber, String newEmail, String oldEmail);
 
 	// 관리자 회원 삭제
-	public void delete(String email);
+	public int delete(String email);
 
 	// 이메일 중복 확인
 	public Users isLogin(@Param("param") String email);
@@ -33,6 +33,5 @@ public interface UserDao {
 
 	public void updatePhoneNumber(String newPhoneNumber,String email);
 
-	public boolean deleteUserByEmail(String email);
 
 }

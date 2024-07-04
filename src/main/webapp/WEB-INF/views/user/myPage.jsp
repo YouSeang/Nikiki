@@ -191,7 +191,7 @@
 
 		var form = document.createElement("form");
 		form.setAttribute("method", "post");
-		form.setAttribute("action", "./dropOut");
+		form.setAttribute("action", "./delete");
 
 		var hiddenField = document.createElement("input");
 		hiddenField.setAttribute("type", "hidden");
@@ -744,9 +744,15 @@
 										<li>&middot; 구매인증 고객은 구매정보 및 마이크로가드 쿠폰도 함께 삭제됩니다.</li>
 									</ul>
 								</div>
+								<form id="deleteForm"
+									action="${pageContext.request.contextPath}/delete"
+									method="post" style="display: none;">
+									<input type="hidden" name="email"
+										value="<%=session.getAttribute("email")%>">
+								</form>
 								<p class="btn">
 									<a href="javascript:void(0);" class="btnWthdr"
-										onclick="sendPostRequest()">탈퇴하기</a>
+										onclick="document.getElementById('deleteForm').submit();">탈퇴하기</a>
 								</p>
 							</div>
 						</div>

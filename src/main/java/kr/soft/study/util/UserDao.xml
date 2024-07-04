@@ -24,7 +24,7 @@
 		select * from Users where email
 		= #{param}
 	</select>
-
+	
 	<!-- 관리자 회원 목록 -->
 	<select id="list" resultType="kr.soft.study.dto.Users">
 		select
@@ -62,8 +62,4 @@
 		UPDATE Users SET phone_number = #{param1} WHERE email = #{param2}
 	</update>
 
-	<!-- 마이페이지 탈퇴 -->
-	<delete id="deleteUserByEmail" parameterType="string">
-		DELETE FROM Users WHERE email = #{param}
-	</delete>
 </mapper>

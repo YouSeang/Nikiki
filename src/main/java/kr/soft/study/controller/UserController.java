@@ -24,7 +24,6 @@ import kr.soft.study.command.user.MyPage;
 import kr.soft.study.command.user.NumberUpdate;
 import kr.soft.study.command.user.CheckEmail;
 import kr.soft.study.command.user.Delete;
-import kr.soft.study.command.user.DropOut;
 import kr.soft.study.command.user.Join;
 
 @Controller
@@ -36,10 +35,8 @@ public class UserController {
 	private UserUpdate userUpdate;
 	private NumberUpdate numberUpdate;
 
-
 	@Autowired
 	private SqlSession sqlSession;
-	private UserDao userDao;
 
 	// home
 	@RequestMapping("/")
@@ -235,21 +232,5 @@ public class UserController {
 		return path;
 	}
 
-	// 탈퇴하기
-	 @RequestMapping(value = "/dropOut", method = RequestMethod.POST)
-	    public String dropOut(HttpServletRequest request, Model model) {
-	        System.out.println("dropOut()");
-	        String email = request.getParameter("email");
-
-	        System.out.println("Received email: " + email); // 로그 추가
-
-	        model.addAttribute("request", request);
-
-	        DropOut dropOut = new DropOut(userDao);
-	        dropOut.execute(model);
-
-	        String path = (String) model.asMap().get("path");
-	        return path;
-	    }
 
 }
