@@ -139,6 +139,12 @@ public class ETCController {
 	public String write(@RequestParam("atchFile") List<MultipartFile> files, HttpServletRequest request, Model model) {
 	    model.addAttribute("files", files);
 	    model.addAttribute("request", request);
+	    
+	 // 디버그 출력
+	    for (MultipartFile file : files) {
+	        System.out.println("Received file: " + file.getOriginalFilename());
+	    }
+	    
 	    InsertReview command = new InsertReview(sqlSession, context);
 	    command.execute(model);
 	    return "redirect:/storyReview"; // 원하는 경로로 리다이렉트

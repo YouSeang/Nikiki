@@ -223,7 +223,7 @@ function previewImages(event) {
 
             imgDiv.appendChild(img);
             imgDiv.appendChild(removeBtn);
-            container.appendChild(imgDiv); // 새로운 이미지를 미리보기 컨테이너에 추가
+            container.appendChild(imgDiv);
         };
         reader.readAsDataURL(file);
     });
@@ -251,7 +251,7 @@ function updateFileInput() {
         dataTransfer.items.add(file);
     });
 
-    fileInput.files = dataTransfer.files; // 파일 입력을 업데이트
+    fileInput.files = dataTransfer.files;
 }
 
 </script>
@@ -540,28 +540,28 @@ function updateFileInput() {
 										</dd>
 									</dl>
 									<dl>
-										<dt>이미지등록</dt>
-										<dd>
-											<p class="srch_file_bt inputFileDiv">
-												<a href="javascript:" class="input_btn full"><span>찾아보기</span></a>
-												<input type="file" name="atchFile" accept="image/*"
-													class="fileInput notRequired" multiple
-													onchange="previewImages(event)" />
-											</p>
-											<div id="fileCopy" class="fileCntChk" style="display: none"></div>
-											<div class="img_area img_resize" id="fileImg">
-												<input type="hidden" class="notRequired" id="atchFileId"
-													name="atchFileId" value="" /> <input type="hidden"
-													class="notRequired" id="delFileSeqList"
-													name="delFileSeqList" value="" />
-											</div>
-											<div class="img-preview-container" id="imgPreviewContainer"></div>
-											<div class="add_txt">
-												<p>&#8251; JPG, PNG, GIF 파일만 추가 가능(10mb 이하), 최대 5개 이미지
-													등록 가능</p>
-											</div>
-										</dd>
-									</dl>
+                                        <dt>이미지등록</dt>
+                                        <dd>
+                                            <p class="srch_file_bt inputFileDiv">
+                                                <a href="javascript:" class="input_btn full"><span>찾아보기</span></a>
+                                                <input type="file" name="atchFile" accept="image/*"
+                                                    class="fileInput notRequired" multiple
+                                                    onchange="previewImages(event)" />
+                                            </p>
+                                            <div id="fileCopy" class="fileCntChk" style="display: none"></div>
+                                            <div class="img_area img_resize" id="fileImg">
+                                                <input type="hidden" class="notRequired" id="atchFileId"
+                                                    name="atchFileId" value="" />
+                                                <input type="hidden" class="notRequired" id="delFileSeqList"
+                                                    name="delFileSeqList" value="" />
+                                            </div>
+                                            <div class="img-preview-container" id="imgPreviewContainer"></div>
+                                            <div class="add_txt">
+                                                <p>&#8251; JPG, PNG, GIF 파일만 추가 가능(10mb 이하), 최대 5개 이미지
+                                                    등록 가능</p>
+                                            </div>
+                                        </dd>
+                                    </dl>
 								</div>
 							</div>
 							<div class="btn_div inner">
