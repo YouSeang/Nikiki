@@ -290,7 +290,7 @@
 }
 </style>
 </head>
-<jsp:include page="../header.jsp" />
+<jsp:include page="../headerAdmin.jsp" />
 
 <div id="content" data-swiftype-name="body" data-swiftype-type="text"
 	data-swiftype-index="true">
