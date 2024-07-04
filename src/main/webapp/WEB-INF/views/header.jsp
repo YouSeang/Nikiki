@@ -189,7 +189,7 @@
 					<c:when test="${not empty sessionScope.email}">
 						<a href="./logout">로그아웃</a>
 						<div class="my_page">
-							<a href="javascript:"><span>마이페이지</span></a>
+							<a href="./myPage"><span>마이페이지</span></a>
 							<div class="slc_div">
 								<a href="/my-page/member-confirm/index.do">회원정보수정</a> <a
 									href="/my-page/buy-auth/index.do">제품인증/구매내역</a> <a
@@ -266,13 +266,12 @@
 							</a>
 							<div class="two_dep">
 								<a href="./microcare" target="_self"><span>마이크로케어</span></a>
-								<a href="/product/sleep-care/smart-sleeve/index.do"
-									target="_self"><span>스마트슬리브</span></a> <a
-									href="/product/sleep-care/microcare-coolingpad/index.do"
+								<a href="./smart-sleeve" target="_self"><span>스마트슬리브</span></a> <a
+									href="./microcare-coolingpad"
 									target="_self"><span>마이크로케어 쿨링패드</span></a> <a
-									href="/product/sleep-care/coolingbodypillow/index.do"
+									href="./coolingbodypillow"
 									target="_self"><span>쿨링 바디필로우</span></a> <a
-									href="/product/sleep-care/microguard-eco/index.do"
+									href="./microguard-eco"
 									target="_self"><span>마이크로가드에코플러스</span></a>
 							</div>
 						</div>
