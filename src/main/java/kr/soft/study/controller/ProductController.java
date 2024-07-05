@@ -160,7 +160,7 @@ public class ProductController {
 		model.addAttribute("request",request);
 		productCommand= new AddCart(sqlSession);
 		productCommand.execute(model);
-		return "redirect:/bed";
+		return "redirect:/cart";
 	}
 	//장바구니 삭제
 	@RequestMapping("/deleteCart")

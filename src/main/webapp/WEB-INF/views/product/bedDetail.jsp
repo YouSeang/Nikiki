@@ -225,7 +225,7 @@
 </style>
     <script>
         function openPopup() {
-            var url = "https://online-pay.kakao.com/mockup/v1/82a0310a7de32c13e05ccaf29fffbc662c52a2aacf999b9b841d870c57f08afb/info";
+            var url = "https://online-pay.kakao.com/mockup/v1/3daaa8071a25d4d47c8683b81c9b69b201ff90f5a2592f1045afcdbfb9bf6842/info";
             var windowName = "popupWindow";
             var windowFeatures = "width=800,height=600,scrollbars=yes";
             window.open(url, windowName, windowFeatures);

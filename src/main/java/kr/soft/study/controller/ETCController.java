@@ -266,5 +266,13 @@ public class ETCController {
 		System.out.println("event()");
 		return "etc/event";
 	}
+	//예약
+	@RequestMapping("/submitSchedule")
+    public String submitSchedule(HttpServletRequest request, Model model) {
+        model.addAttribute("request", request);
+        command = new SubmitSchedule(sqlSession);
+        command.execute(model);
+        return "redirect:/experienceMovingChoice";
+    }
 
 }
